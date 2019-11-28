@@ -1,0 +1,13 @@
+{
+  "name": "httpRPC",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/intuition-dev/httpRPC.git",
+  "author": "vic <uptimevic@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "bunyan": ">=1.8.12",
+    "bunyan-format2": ">=0.2.2",
+    "express": ">=4.0.0"
+  }
+}
