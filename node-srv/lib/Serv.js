@@ -72,7 +72,7 @@ class BaseRPCMethodHandler {
         let json = JSON.stringify(ret);
         resp.status(200).send(lz_string_1.default.compress(json));
     }
-    handleRPC(req, res) {
+    async handleRPC(req, res) {
         if (!this)
             throw new Error('bind of class instance needed');
         const THIZ = this;
@@ -88,7 +88,7 @@ class BaseRPCMethodHandler {
                 this._retErr(res, 'no such method ' + method);
                 return;
             }
-            const ans = THIZ[method](params);
+            const ans = await THIZ[method](params);
             const resp = {};
             resp.result = ans;
             THIZ._ret(res, resp);
@@ -101,8 +101,8 @@ class BaseRPCMethodHandler {
 }
 exports.BaseRPCMethodHandler = BaseRPCMethodHandler;
 class LogHandler extends BaseRPCMethodHandler {
-    constructor(foo) {
-        super();
+    constructor(foo, bro, cdn) {
+        super(bro, cdn);
         this._foo = foo;
     }
     async log(resp, params) {
@@ -121,8 +121,8 @@ class Serv {
         Serv._expInst = express_1.default();
         Serv._expInst.use(cors);
     }
-    setLogger(foo) {
-        this.routeRPC('log', new LogHandler(foo));
+    setLogger(foo, bro, cdn) {
+        this.routeRPC('log', new LogHandler(foo, bro, cdn));
     }
     routeRPC(route, handler) {
         const r = '/' + route;

@@ -153,8 +153,8 @@ export class BaseRPCMethodHandler {
 
 class LogHandler extends BaseRPCMethodHandler {
    _foo
-   constructor(foo) {
-      super()
+   constructor(foo, bro, cdn?) {
+      super(bro, cdn)
       this._foo = foo
    }
 
@@ -193,8 +193,8 @@ export class Serv {
 
    }//()
 
-   setLogger(foo) {
-      this.routeRPC('log', new LogHandler(foo) )
+   setLogger(foo, bro, cdn?) {
+      this.routeRPC('log', new LogHandler(foo, bro, cdn) )
    }
 
    /**
@@ -216,9 +216,9 @@ export class Serv {
     * @param cdnT CDN /one less in seconds- 1799
     * The longer the better! Max is 1 year in seconds ( 60*60*24*364 ). You can flush CDN at CDN and flush browser at browser.
     */
-   serveStatic(path:string, broT, cdnT) {
+   serveStatic(path:string, broT, cdnT?) {
       if(!broT ) broT = 30*60
-      if(!cdnT ) cdnT = (30*60)-1 // cdn is one less than bro
+      if(!cdnT ) cdnT = (30*60)-1 // cdn is less than bro
       
       log.info('Serving root:', path, broT, cdnT)
 

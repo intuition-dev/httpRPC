@@ -29,7 +29,7 @@ class Handler1 extends BaseRPCMethodHandler {
 }//()
 const h1 = new Handler1(1)
 service.routeRPC('api', h1 )
-service.setLogger(handleLog)
+service.setLogger(handleLog, 0)
 
 // should be class - used by multiple routes
 function multiply(a,b) {
