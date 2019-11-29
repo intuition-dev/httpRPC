@@ -89,6 +89,7 @@ class BaseRPCMethodHandler {
                 return;
             }
             const ans = await THIZ[method](params);
+            log.info(ans);
             const resp = {};
             resp.result = ans;
             THIZ._ret(res, resp);
