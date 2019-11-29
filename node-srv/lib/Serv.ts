@@ -61,20 +61,30 @@ This is called by the RPC router
 */
 export class BaseRPCMethodHandler {
 
+   cache:string
+   /**
+    * You likely want browser cache to be a bit larger than edge cache
+    * @param broT browser cache 
+    * @param cdnT  CDN/edge cache
+    */
+   constructor( broT, cdnT? ) {
+      if(!broT) broT = 1
+      if(!cdnT) cdnT = 1
+
+      this.cache = 'public, max-age='+broT+', s-max-age='+cdnT      
+   }
+
    /**
     * @param resp 
     * @param result 
     * @param broT careful: defaults to 1, should be larger than cdnT, maybe 0 is best for your cache
     * @param cdnT careful: defaults to 1, maybe 0 is best for your cache
     */
-   _ret(resp:Response, result, broT?, cdnT?) {
-      if(!broT) broT = 1
-      if(!cdnT) cdnT = 1
-
+   _ret(resp:Response, result) {
       const ret:any= {} // new return
       ret.result = result
 
-      resp.setHeader('Cache-Control', 'public, max-age='+broT+', s-max-age='+cdnT)
+      resp.setHeader('Cache-Control', this.cache)
       resp.setHeader('x-intu-ts', new Date().toISOString() )
 
       let json = JSON.stringify(ret)
@@ -87,9 +97,7 @@ export class BaseRPCMethodHandler {
     * @param broT careful: defaults to 1, maybe 0 is best for your cache
     * @param cdnT careful: defaults to 1, maybe 0 is best for your cache
     */
-   _retErr(resp:Response, msg, broT?, cdnT?) {
-      if(!broT) broT = 1
-      if(!cdnT) cdnT = 1
+   _retErr(resp:Response, msg) {
 
       if((!msg) || msg.length < 1) throw new Error('no message')
       log.warn(msg)
@@ -97,7 +105,7 @@ export class BaseRPCMethodHandler {
       ret.errorLevel = -1
       ret.errorMessage = msg
 
-      resp.setHeader('Cache-Control', 'public, max-age='+broT+', s-max-age='+cdnT)
+      resp.setHeader('Cache-Control',  this.cache)
       resp.setHeader('x-intu-ts', new Date().toISOString() )
 
       let json = JSON.stringify(ret)
@@ -109,7 +117,7 @@ export class BaseRPCMethodHandler {
     * @param req 
     * @param resp 
     */
-   handleRPC(req:Request, res:Response) {
+   async handleRPC(req:Request, res:Response) {
       if(!this) throw new Error('bind of class instance needed')
       const THIZ = this
       let method
@@ -129,14 +137,15 @@ export class BaseRPCMethodHandler {
          }
 
          //invoke the method request
-         const ans = THIZ[method](params)
+         const ans = await THIZ[method](params)
+         
          const resp:any= {} // new response
          resp.result = ans
          THIZ._ret(res, resp)
 
       } catch(err) {
          log.warn(err)
-         THIZ._retErr(res, qstr, null, null)
+         THIZ._retErr(res, qstr)
       }
    }//()
 

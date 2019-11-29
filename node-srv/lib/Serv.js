@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const lz_string_1 = __importDefault(require("lz-string"));
 const url_1 = __importDefault(require("url"));
-var serveStatic = require('serve-static');
+const serveStatic = require('serve-static');
 const bunyan_1 = __importDefault(require("bunyan"));
 const bunyan_format2_1 = __importDefault(require("bunyan-format2"));
 const formatOut = bunyan_format2_1.default({ outputMode: 'short' });
@@ -45,35 +45,34 @@ class CustomCors {
 }
 exports.CustomCors = CustomCors;
 class BaseRPCMethodHandler {
-    ret(resp, result, broT, cdnT) {
+    constructor(broT, cdnT) {
         if (!broT)
             broT = 1;
         if (!cdnT)
             cdnT = 1;
+        this.cache = 'public, max-age=' + broT + ', s-max-age=' + cdnT;
+    }
+    _ret(resp, result) {
         const ret = {};
         ret.result = result;
-        resp.setHeader('Cache-Control', 'public, max-age=' + broT + ', s-max-age=' + cdnT);
+        resp.setHeader('Cache-Control', this.cache);
         resp.setHeader('x-intu-ts', new Date().toISOString());
         let json = JSON.stringify(ret);
         resp.status(200).send(lz_string_1.default.compress(json));
     }
-    retErr(resp, msg, broT, cdnT) {
-        if (!broT)
-            broT = 1;
-        if (!cdnT)
-            cdnT = 1;
+    _retErr(resp, msg) {
         if ((!msg) || msg.length < 1)
             throw new Error('no message');
         log.warn(msg);
         const ret = {};
         ret.errorLevel = -1;
         ret.errorMessage = msg;
-        resp.setHeader('Cache-Control', 'public, max-age=' + broT + ', s-max-age=' + cdnT);
+        resp.setHeader('Cache-Control', this.cache);
         resp.setHeader('x-intu-ts', new Date().toISOString());
         let json = JSON.stringify(ret);
         resp.status(200).send(lz_string_1.default.compress(json));
     }
-    handleRPC(req, resp) {
+    handleRPC(req, res) {
         if (!this)
             throw new Error('bind of class instance needed');
         const THIZ = this;
@@ -86,14 +85,17 @@ class BaseRPCMethodHandler {
             const params = JSON.parse(str);
             method = params.method;
             if (typeof THIZ[method] != 'function') {
-                this.retErr(resp, 'no such method ' + method);
+                this._retErr(res, 'no such method ' + method);
                 return;
             }
-            THIZ[method](resp, params);
+            const ans = THIZ[method](params);
+            const resp = {};
+            resp.result = ans;
+            THIZ._ret(res, resp);
         }
         catch (err) {
-            log.info(err);
-            THIZ.retErr(resp, qstr, null, null);
+            log.warn(err);
+            THIZ._retErr(res, qstr);
         }
     }
 }

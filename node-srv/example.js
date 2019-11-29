@@ -10,13 +10,10 @@ allowedDomains.push('one.com');
 allowedDomains.push('two.org');
 const serviceApp = new Serv_1.Serv(['*']);
 class Handler1 extends Serv_1.BaseRPCMethodHandler {
-    multiply(res, params) {
+    multiply(params) {
         let a = params.a;
         let b = params.b;
-        const resp = {};
-        resp.result = multiply(a, b);
-        log.info(resp);
-        this.ret(res, resp, 4, 3);
+        return multiply(a, b);
     }
 }
 const h1 = new Handler1();

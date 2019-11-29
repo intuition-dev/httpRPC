@@ -14,7 +14,7 @@ allowedDomains.push('one.com') // get from config.yaml, should never be '*'
 allowedDomains.push('two.org') // XXX host or local would match localhost
 
 // makes a configured express instance
-const serviceApp = new Serv(['*'])
+const service = new Serv(['*'])
 
 class Handler1 extends BaseRPCMethodHandler {
 
@@ -27,11 +27,11 @@ class Handler1 extends BaseRPCMethodHandler {
    }
 
 }//()
-const h1 = new Handler1()
-serviceApp.routeRPC('api', h1 )
-serviceApp.setLogger(handleLog)
+const h1 = new Handler1(1)
+service.routeRPC('api', h1 )
+service.setLogger(handleLog)
 
-// should be class - maybe used by multiple routes
+// should be class - used by multiple routes
 function multiply(a,b) {
    return a*b
 }
@@ -41,17 +41,14 @@ function handleLog( params) {
    log.info(params.msg)
 }
 
-serviceApp.listen(8888)
+service.listen(8888)
 
-// example impl
+// example impl of Auth
 class CheckX implements iAuth {
- 
    auth(user:string, pswd:string, resp?, ctx?):Promise<string> {
       return new Promise( function (resolve, reject) {
          // check db to see if user and password match and then return level
          return resolve('OK') //or
       })
    }//()
-  
-
 }//class
