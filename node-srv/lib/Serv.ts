@@ -8,7 +8,7 @@ import express from 'express'
 import lz from 'lz-string'
 import URL from 'url'
 
-var serveStatic = require('serve-static')
+const serveStatic = require('serve-static')
 
 //log
 import bunyan from 'bunyan'
@@ -67,7 +67,7 @@ export class BaseRPCMethodHandler {
     * @param broT careful: defaults to 1, should be larger than cdnT, maybe 0 is best for your cache
     * @param cdnT careful: defaults to 1, maybe 0 is best for your cache
     */
-   ret(resp:Response, result, broT?, cdnT?) {
+   _ret(resp:Response, result, broT?, cdnT?) {
       if(!broT) broT = 1
       if(!cdnT) cdnT = 1
 
@@ -87,7 +87,7 @@ export class BaseRPCMethodHandler {
     * @param broT careful: defaults to 1, maybe 0 is best for your cache
     * @param cdnT careful: defaults to 1, maybe 0 is best for your cache
     */
-   retErr(resp:Response, msg, broT?, cdnT?) {
+   _retErr(resp:Response, msg, broT?, cdnT?) {
       if(!broT) broT = 1
       if(!cdnT) cdnT = 1
 
@@ -109,7 +109,7 @@ export class BaseRPCMethodHandler {
     * @param req 
     * @param resp 
     */
-   handleRPC(req:Request, resp:Response) {
+   handleRPC(req:Request, res:Response) {
       if(!this) throw new Error('bind of class instance needed')
       const THIZ = this
       let method
@@ -124,16 +124,19 @@ export class BaseRPCMethodHandler {
          method = params.method
          
          if(typeof THIZ[method] != 'function') {
-            this.retErr(resp, 'no such method '+ method)
+            this._retErr(res, 'no such method '+ method)
             return
          }
 
          //invoke the method request
-         THIZ[method](resp, params)
+         const ans = THIZ[method](params)
+         const resp:any= {} // new response
+         resp.result = ans
+         THIZ._ret(res, resp)
 
       } catch(err) {
-         log.info(err)
-         THIZ.retErr(resp, qstr, null, null)
+         log.warn(err)
+         THIZ._retErr(res, qstr, null, null)
       }
    }//()
 

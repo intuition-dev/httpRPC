@@ -19,15 +19,11 @@ const serviceApp = new Serv(['*'])
 class Handler1 extends BaseRPCMethodHandler {
 
    //THIZ[method](resp, params)
-   multiply(res, params) {
+   multiply(params) {
       let a = params.a
       let b = params.b
 
-      const resp:any= {} // new response
-      resp.result = multiply(a,b)
-
-      log.info(resp)
-      this.ret(res, resp, 4, 3)
+      return multiply(a,b)
    }
 
 }//()
