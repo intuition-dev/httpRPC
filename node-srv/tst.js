@@ -4,7 +4,7 @@ const bunyan = require('bunyan');
 const bformat = require('bunyan-format2');
 const formatOut = bformat({ outputMode: 'short' });
 const log = bunyan.createLogger({ src: true, stream: formatOut, name: "mainEx" });
-const Serv_1 = require("./Serv");
+const Serv_1 = require("./lib/Serv");
 let allowedDomains = [];
 allowedDomains.push('one.com');
 allowedDomains.push('two.org');

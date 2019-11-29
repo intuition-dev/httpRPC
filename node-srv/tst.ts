@@ -7,7 +7,7 @@ const log = bunyan.createLogger({src: true, stream: formatOut, name: "mainEx"})
 // const URL = require('url')
 
 // from mbake
-import { BaseRPCMethodHandler, Serv, iAuth } from './Serv'
+import { BaseRPCMethodHandler, Serv, iAuth } from './lib/Serv'
 
 let allowedDomains = []
 allowedDomains.push('one.com') // get from config.yaml, should never be '*'

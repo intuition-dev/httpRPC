@@ -3,14 +3,16 @@ import { Response, Request } from "express"
 // All rights reserved by MetaBake (INTUITION.DEV) | Cekvenich, licensed under LGPL 3.0
 // NOTE: You can extend these classes!
 
-const express = require('express')
+import express from 'express'
 
-const lz = require('lz-string')
-const URL = require('url')
+import lz from 'lz-string'
+import URL from 'url'
+
+var serveStatic = require('serve-static')
 
 //log
-const bunyan = require('bunyan')
-const bformat = require('bunyan-format2')  
+import bunyan from 'bunyan'
+import bformat from 'bunyan-format2'  
 const formatOut = bformat({ outputMode: 'short' })
 const log = bunyan.createLogger({src: true, stream: formatOut, name: "Serv"})
 
@@ -256,6 +258,4 @@ export  interface iAuth {
 
 }//i
 
-module.exports = {
-   Serv, BaseRPCMethodHandler
-}
+

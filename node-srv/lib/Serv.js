@@ -1,12 +1,16 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const express = require('express');
-const lz = require('lz-string');
-const URL = require('url');
-const bunyan = require('bunyan');
-const bformat = require('bunyan-format2');
-const formatOut = bformat({ outputMode: 'short' });
-const log = bunyan.createLogger({ src: true, stream: formatOut, name: "Serv" });
+const express_1 = __importDefault(require("express"));
+const lz_string_1 = __importDefault(require("lz-string"));
+const url_1 = __importDefault(require("url"));
+var serveStatic = require('serve-static');
+const bunyan_1 = __importDefault(require("bunyan"));
+const bunyan_format2_1 = __importDefault(require("bunyan-format2"));
+const formatOut = bunyan_format2_1.default({ outputMode: 'short' });
+const log = bunyan_1.default.createLogger({ src: true, stream: formatOut, name: "Serv" });
 class CustomCors {
     constructor(validOrigins) {
         return (request, response, next) => {
@@ -51,7 +55,7 @@ class BaseRPCMethodHandler {
         resp.setHeader('Cache-Control', 'public, max-age=' + broT + ', s-max-age=' + cdnT);
         resp.setHeader('x-intu-ts', new Date().toISOString());
         let json = JSON.stringify(ret);
-        resp.status(200).send(lz.compress(json));
+        resp.status(200).send(lz_string_1.default.compress(json));
     }
     retErr(resp, msg, broT, cdnT) {
         if (!broT)
@@ -67,7 +71,7 @@ class BaseRPCMethodHandler {
         resp.setHeader('Cache-Control', 'public, max-age=' + broT + ', s-max-age=' + cdnT);
         resp.setHeader('x-intu-ts', new Date().toISOString());
         let json = JSON.stringify(ret);
-        resp.status(200).send(lz.compress(json));
+        resp.status(200).send(lz_string_1.default.compress(json));
     }
     handleRPC(req, resp) {
         if (!this)
@@ -76,9 +80,9 @@ class BaseRPCMethodHandler {
         let method;
         let qstr;
         try {
-            qstr = URL.parse(req.url, true).query;
+            qstr = url_1.default.parse(req.url, true).query;
             let compressed = qstr['p'];
-            let str = lz.decompressFromEncodedURIComponent(compressed);
+            let str = lz_string_1.default.decompressFromEncodedURIComponent(compressed);
             const params = JSON.parse(str);
             method = params.method;
             if (typeof THIZ[method] != 'function') {
@@ -102,7 +106,7 @@ class LogHandler extends BaseRPCMethodHandler {
     async log(resp, params) {
         await this._foo(params);
         let json = JSON.stringify('logged');
-        resp.status(200).send(lz.compress(json));
+        resp.status(200).send(lz_string_1.default.compress(json));
     }
 }
 class Serv {
@@ -112,7 +116,7 @@ class Serv {
             throw new Error('one instance of express app already exists');
         log.info('Allowed >>> ', origins);
         const cors = new CustomCors(origins);
-        Serv._expInst = express();
+        Serv._expInst = express_1.default();
         Serv._expInst.use(cors);
     }
     setLogger(foo) {
@@ -153,6 +157,3 @@ class Serv {
     }
 }
 exports.Serv = Serv;
-module.exports = {
-    Serv, BaseRPCMethodHandler
-};
