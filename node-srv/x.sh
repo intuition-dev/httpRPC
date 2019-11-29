@@ -1,4 +1,4 @@
 clear
 tsc
 
-node main.js
+node tst.js

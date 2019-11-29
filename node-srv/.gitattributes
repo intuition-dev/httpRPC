@@ -1,4 +1,0 @@
-*.* linguist-language=Pug
-*.* linguist-vendored=Pug
-
-*.js linguist-vendored=true

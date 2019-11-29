@@ -4,7 +4,7 @@ import { Response, Request } from "express"
 // NOTE: You can extend these classes!
 
 const express = require('express')
-const serveStatic = require('serve-static')
+
 const lz = require('lz-string')
 const URL = require('url')
 
