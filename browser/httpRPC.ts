@@ -39,6 +39,8 @@ class httpRPC {//
     this.token=token
   }
 
+  DEBUG = false
+
   /**
    * @param route api apth, eg api
    * @param method CRUD, insert, check, listAll, etc
@@ -59,6 +61,7 @@ class httpRPC {//
     var compressed = LZString.compressToEncodedURIComponent(str)
 
     const THIZ = this
+  
     return new Promise(function(resolve, reject) {
       //console.info(formData.get('method'))
       let url:string = THIZ.httpOrs+'://'+THIZ.host + (THIZ.port ? (':' + THIZ.port) : '') + '/'+route 
@@ -66,7 +69,7 @@ class httpRPC {//
       url = url + '/?p=' + compressed
 
       //console.log(url)
-  
+        
       fetch(url, {
             method: 'GET',
             cache: 'default',
@@ -77,22 +80,26 @@ class httpRPC {//
 
           })//fetch
           .then(function(fullResp) {           
-            if(!fullResp.ok) 
-              reject('HTTP protocol error in RPC: ' + fullResp)
-             else {
-              return fullResp.text()
+            if(!fullResp.ok) {
+               console.warn('HTTP protocol error in RPC: ' + fullResp)
+               reject('HTTP protocol error in RPC: ' + fullResp)
             }
+             else 
+               return fullResp.text()
+            
           })
           .then(function(compressed) {
             var str = LZString.decompress(compressed)
             var resp=  JSON.parse(str)
             if((!resp) || resp.errorMessage) {
-              reject(method +' '+ resp)
+               console.warn(method +' '+ resp)
+               reject(method +' '+ resp)
             }
+            if(THIZ.DEBUG) console.log(resp)
             resolve(resp.result)
           })//fetch
           .catch(function (err) {
-            console.log('fetch err ', method, err)
+            console.warn('fetch err ', method, err)
             reject(method +' '+ err)
           })
       })//pro

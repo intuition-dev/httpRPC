@@ -3,6 +3,7 @@ var httpRPC = (function () {
         this.user = '';
         this.pswd = '';
         this.token = '';
+        this.DEBUG = false;
         this.httpOrs = httpOrs;
         this.host = host;
         this.port = port;
@@ -37,22 +38,26 @@ var httpRPC = (function () {
                 keepalive: true
             })
                 .then(function (fullResp) {
-                if (!fullResp.ok)
+                if (!fullResp.ok) {
+                    console.warn('HTTP protocol error in RPC: ' + fullResp);
                     reject('HTTP protocol error in RPC: ' + fullResp);
-                else {
-                    return fullResp.text();
                 }
+                else
+                    return fullResp.text();
             })
                 .then(function (compressed) {
                 var str = LZString.decompress(compressed);
                 var resp = JSON.parse(str);
                 if ((!resp) || resp.errorMessage) {
+                    console.warn(method + ' ' + resp);
                     reject(method + ' ' + resp);
                 }
+                if (THIZ.DEBUG)
+                    console.log(resp);
                 resolve(resp.result);
             })
                 .catch(function (err) {
-                console.log('fetch err ', method, err);
+                console.warn('fetch err ', method, err);
                 reject(method + ' ' + err);
             });
         });
