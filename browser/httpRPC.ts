@@ -90,12 +90,15 @@ class httpRPC {//
           })
           .then(function(compressed) {
             var str = LZString.decompress(compressed)
+
+            console.log(str)
+            if(THIZ.DEBUG) console.log(resp)
+
             var resp=  JSON.parse(str)
             if((!resp) || resp.errorMessage) {
                console.warn(method +' '+ resp)
                reject(method +' '+ resp)
             }
-            if(THIZ.DEBUG) console.log(resp)
             resolve(resp.result)
           })//fetch
           .catch(function (err) {
