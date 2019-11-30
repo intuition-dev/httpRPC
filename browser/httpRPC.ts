@@ -78,7 +78,7 @@ class httpRPC {//
           })//fetch
           .then(function(fullResp) {           
             if(!fullResp.ok) 
-              reject('HRRP protcol error in RPC: ' + fullResp)
+              reject('HTTP protocol error in RPC: ' + fullResp)
              else {
               return fullResp.text()
             }

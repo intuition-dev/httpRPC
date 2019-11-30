@@ -137,10 +137,8 @@ export class BaseRPCMethodHandler {
 
          //invoke the method request
          const ans = await THIZ[method](params)
-         log.info(ans)
-         const resp:any= {} // new response
-         resp.result = ans
-         THIZ._ret(res, resp)
+
+         THIZ._ret(res, ans)
 
       } catch(err) {
          log.warn(err)
