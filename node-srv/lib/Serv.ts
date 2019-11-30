@@ -126,6 +126,7 @@ export class BaseRPCMethodHandler {
          qstr = URL.parse(req.url, true).query
          let compressed = qstr['p']
          let str = lz.decompressFromEncodedURIComponent(compressed)
+         log.info(str)
 
          const params = JSON.parse(str)
          method = params.method
@@ -141,8 +142,8 @@ export class BaseRPCMethodHandler {
          THIZ._ret(res, ans)
 
       } catch(err) {
-         log.warn(err)
-         THIZ._retErr(res, qstr)
+         log.warn('c', err)
+         THIZ._retErr(res, method)
       }
    }//()
 

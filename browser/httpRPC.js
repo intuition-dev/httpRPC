@@ -38,7 +38,7 @@ var httpRPC = (function () {
             })
                 .then(function (fullResp) {
                 if (!fullResp.ok)
-                    reject('HRRP protcol error in RPC: ' + fullResp);
+                    reject('HTTP protocol error in RPC: ' + fullResp);
                 else {
                     return fullResp.text();
                 }
@@ -47,13 +47,13 @@ var httpRPC = (function () {
                 var str = LZString.decompress(compressed);
                 var resp = JSON.parse(str);
                 if ((!resp) || resp.errorMessage) {
-                    reject(resp);
+                    reject(method + ' ' + resp);
                 }
                 resolve(resp.result);
             })
                 .catch(function (err) {
-                console.log('fetch err', err);
-                reject(err);
+                console.log('fetch err ', method, err);
+                reject(method + ' ' + err);
             });
         });
     };

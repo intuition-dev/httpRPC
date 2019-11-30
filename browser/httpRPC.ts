@@ -87,13 +87,13 @@ class httpRPC {//
             var str = LZString.decompress(compressed)
             var resp=  JSON.parse(str)
             if((!resp) || resp.errorMessage) {
-              reject(resp)
+              reject(method +' '+ resp)
             }
             resolve(resp.result)
           })//fetch
           .catch(function (err) {
-            console.log('fetch err', err)
-            reject(err)
+            console.log('fetch err ', method, err)
+            reject(method +' '+ err)
           })
       })//pro
   }//invoke()
