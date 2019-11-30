@@ -16,7 +16,6 @@ class CustomCors {
         return (request, response, next) => {
             const origin = request.get('origin');
             const origin2 = request.headers.origin;
-            log.info(origin, origin2);
             if (!origin) {
                 return next();
             }

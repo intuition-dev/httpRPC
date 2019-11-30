@@ -5,8 +5,6 @@
 
 This is the reference implementation ( http://http-rpc.mbake.org )
 
-A Java port is here: - http://java-http-rpc.mbake.org
-
 
 #### Please star our main project here:
 - https://github.com/intuition-dev/INTUITION
@@ -38,11 +36,9 @@ node index.js
 
 ## Client-side
 
-For front-end to run you need a http server, such as Caddyserver, mbake CLI or intu (from npm); but any http server will work.
-So start an http server to run the index.html in www folder. It will make some dummy RPC calls.
+``` https://cdn.jsdelivr.net/npm/http-rpc@0.1.0/browser/httpRPC.js ```
 
-In production you should use this front-end:
-```https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v3.11.20/http-rpc+/web/httpRPC.min.js ```
+It requires fetch, promise and lz string ( https://cdn.jsdelivr.net/npm/lz-string@1.4.4/libs/lz-string.min.js  )
 
 ### Demo
 
