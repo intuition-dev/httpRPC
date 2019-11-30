@@ -106,10 +106,9 @@ class LogHandler extends BaseRPCMethodHandler {
         super(bro, cdn);
         this._foo = foo;
     }
-    async log(resp, params) {
+    async log(params) {
         await this._foo(params);
-        let json = JSON.stringify('logged');
-        resp.status(200).send(lz_string_1.default.compress(json));
+        return 'OK';
     }
 }
 class Serv {

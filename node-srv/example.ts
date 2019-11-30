@@ -38,7 +38,6 @@ function multiply(a,b) {
 
 function handleLog( params) {
    log.info(params)
-   log.info(params.msg)
 }
 
 service.listen(8888)
