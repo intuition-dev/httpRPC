@@ -1,1 +1,2 @@
-mbake -t in www folder and do a mbToolBelt release.
+
+Release via npm, update docs
