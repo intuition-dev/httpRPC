@@ -45,6 +45,7 @@ class CustomCors {
 exports.CustomCors = CustomCors;
 class BaseRPCMethodHandler {
     constructor(broT, cdnT) {
+        this.DEBUG = false;
         if (!broT)
             broT = 1;
         if (!cdnT)
@@ -81,6 +82,8 @@ class BaseRPCMethodHandler {
             qstr = url_1.default.parse(req.url, true).query;
             let compressed = qstr['p'];
             let str = lz_string_1.default.decompressFromEncodedURIComponent(compressed);
+            if (THIZ.DEBUG)
+                log.info(str);
             const params = JSON.parse(str);
             method = params.method;
             if (typeof THIZ[method] != 'function') {
@@ -88,11 +91,13 @@ class BaseRPCMethodHandler {
                 return;
             }
             const ans = await THIZ[method](params);
+            if (THIZ.DEBUG)
+                log.info(str);
             THIZ._ret(res, ans);
         }
         catch (err) {
-            log.warn(err);
-            THIZ._retErr(res, qstr);
+            log.warn('c', err);
+            THIZ._retErr(res, method);
         }
     }
 }

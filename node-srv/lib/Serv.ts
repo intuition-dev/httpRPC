@@ -60,6 +60,8 @@ This is called by the RPC router
 */
 export class BaseRPCMethodHandler {
 
+   DEBUG = false
+   
    cache:string
    /**
     * You likely want browser cache to be a bit larger than edge cache
@@ -126,7 +128,7 @@ export class BaseRPCMethodHandler {
          qstr = URL.parse(req.url, true).query
          let compressed = qstr['p']
          let str = lz.decompressFromEncodedURIComponent(compressed)
-         log.info(str)
+         if(THIZ.DEBUG) log.info(str)
 
          const params = JSON.parse(str)
          method = params.method
@@ -138,7 +140,7 @@ export class BaseRPCMethodHandler {
 
          //invoke the method request
          const ans = await THIZ[method](params)
-
+         if(THIZ.DEBUG) log.info(str)
          THIZ._ret(res, ans)
 
       } catch(err) {
