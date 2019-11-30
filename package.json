@@ -1,19 +1,19 @@
 {
-    "name": "httpRPC",
-    "version": "0.0.1",
-    "description": "*All my friends KNOW the low-coder*; INTUITION.DEV's CLI (mbake CLI) is open source and extensible low-code productivity tool for programmers.",
+    "name": "http-rpc",
+    "version": "0.1.0",
+    "description": "HTTP RPC, also includes edage cache",
     "license": "LGPL-3.0-only",
     "author": "http://www.INTUITION.DEV",
     "homepage": "http://www.INTUITION.DEV",
     "repository": {
         "type": "git",
-        "url": "http://git.mbake.org"
+        "url": "http://git.INTU.DEV"
     },
     "keywords": [
-        "pug",
-        "static gen",
-        "low-code",
-        "CRUD"
+        "RPC",
+        "JSON-RPC",
+        "grpc",
+        "protocol buffers"
     ],
     "engines": {
         "node": ">=10.16.3"
