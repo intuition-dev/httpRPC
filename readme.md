@@ -42,7 +42,7 @@ For front-end to run you need a http server, such as Caddyserver, mbake CLI or i
 So start an http server to run the index.html in www folder. It will make some dummy RPC calls.
 
 In production you should use this front-end:
-```https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v3.11.15/http-rpc+/web/httpRPC.min.js ```
+```https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v3.11.20/http-rpc+/web/httpRPC.min.js ```
 
 ### Demo
 
