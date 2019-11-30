@@ -58,6 +58,8 @@ class BaseRPCMethodHandler {
         resp.setHeader('Cache-Control', this.cache);
         resp.setHeader('x-intu-ts', new Date().toISOString());
         let json = JSON.stringify(ret);
+        if (this.DEBUG)
+            log.warn(json);
         resp.status(200).send(lz_string_1.default.compress(json));
     }
     _retErr(resp, msg) {
@@ -92,7 +94,7 @@ class BaseRPCMethodHandler {
             }
             const ans = await THIZ[method](params);
             if (THIZ.DEBUG)
-                log.info(str);
+                log.warn(method, ans);
             THIZ._ret(res, ans);
         }
         catch (err) {

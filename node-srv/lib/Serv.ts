@@ -89,6 +89,7 @@ export class BaseRPCMethodHandler {
       resp.setHeader('x-intu-ts', new Date().toISOString() )
 
       let json = JSON.stringify(ret)
+      if(this.DEBUG) log.warn(json)
       resp.status(200).send(lz.compress(json))
    }//()
 
@@ -140,7 +141,7 @@ export class BaseRPCMethodHandler {
 
          //invoke the method request
          const ans = await THIZ[method](params)
-         if(THIZ.DEBUG) log.info(str)
+         if(THIZ.DEBUG) log.warn(method, ans)
          THIZ._ret(res, ans)
 
       } catch(err) {
