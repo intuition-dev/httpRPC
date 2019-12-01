@@ -10,8 +10,8 @@ This is the reference implementation ( http://http-rpc.intuition.dev )
 
 ## HTTP-RPC
 
-Inspired by JSON-RPC, but works over HTTP: specifically it works with a browser over http protocol.
-Also it leverages browsers fetch() command. As a plus, it has built in edge cache: it can use both browser cache and CDN cache.
+Inspired by JSON-RPC, but works over HTTP: specifically it works with a browser over http protocol. Google FireBase use gRPC, based on protocol buffers.  Other alternatives are REST and GraphQL.
+HTTP-RPC leverages browsers fetch() command. As a plus, it has built in edge cache: it can use both browser cache and CDN cache.
 
 
 ## Features 
@@ -40,16 +40,35 @@ Full example:
 
 Steps:
 
-1. Write a server side method that you want to use. Mostly these are DB CRUD methods, but here is a multiply example:
+1. Write a server side method that you want to use. Mostly these are DB CRUD methods, but here is a multiply example, this is the method we will call from the browser:
 
-`function multiply(a,b) {
+`function doMultiply(a,b) {
    return a*b
 }`
 
-2. Write a handler that calls above method:
+2. Write a handler that calls above method. First you'll need to add the package and import :
 `
+npm add http-rpc
+import { BaseRPCMethodHandler, Serv } from 'http-rpc/node-srv/lib/Serv'
+`
+And an example handler:
+`
+class Handler1 extends BaseRPCMethodHandler {
+   constructor() {
+      super(2,1) 
+   }
 
+   multiply(params) {
+      let a = params.a
+      let b = params.b
+      return doMultiply(a,b)
+   }//()
+}
 `
+Here the doMultiply() calls the method in step 1.
+Also our constructor sets the cache to 2,1: the browser will cache for 2 seconds and CDN for 1. You can set this to 0,0.
+
+3. Now we need the http server that will call the handler.
 
 
 

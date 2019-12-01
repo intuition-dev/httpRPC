@@ -22,7 +22,7 @@ class Handler1 extends BaseRPCMethodHandler {
       let a = params.a
       let b = params.b
 
-      return multiply(a,b)
+      return doMultiply(a,b)
    }//()
 
 }//c
@@ -32,7 +32,7 @@ service.routeRPC('api', h1 ) // route to handler
 // service.setLogger(handleLog, 0)
 
 // RPC Example: (should be class)
-function multiply(a,b) {
+function doMultiply(a,b) {
    return a*b
 }
 
