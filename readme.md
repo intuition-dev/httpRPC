@@ -33,10 +33,7 @@ same business logic.
 
 # How to use:
 
-### Server side
-
-Full example:
-- https://github.com/intuition-dev/httpRPC/blob/master/node-srv/example.ts
+### Part I: Server side
 
 Steps:
 
@@ -47,10 +44,12 @@ Steps:
 }`
 
 2. Write a handler that calls above method. First you'll need to add the package and import :
+
 `
 npm add http-rpc
 import { BaseRPCMethodHandler, Serv } from 'http-rpc/node-srv/lib/Serv'
 `
+
 And an example handler:
 `
 class Handler1 extends BaseRPCMethodHandler {
@@ -68,24 +67,50 @@ class Handler1 extends BaseRPCMethodHandler {
 Here the doMultiply() calls the method in step 1.
 Also our constructor sets the cache to 2,1: the browser will cache for 2 seconds and CDN for 1. You can set this to 0,0.
 
-3. Now we need the http server that will call the handler.
+3. Now we need the http server that will route to the handler(s).
+
+Our service takes an array of approved CORS domains, eg:
+`
+const service = new Serv(['*'])
+const h1 = new Handler1()
+service.routeRPC('api', h1 ) // route to handler
+service.listen(8888)
+`
+A route /api will be handled by Handler1!
+We now have a running service with one handler and that handler has one method 'multiply' (that is then passed on to the business layer).
 
 
+## Part II: Client-side
+
+1. In the browser, load the lib(s from a CDN:
+
+`
+  <script src="https://cdn.jsdelivr.net/npm/lz-string@1.4.4/libs/lz-string.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/http-rpc@0.6.0/browser/httpRPC.js"></script>
+`
+
+NOTE: lz-string is a compression library used by http-rpc, so it needs to be loaded before:
+NOTE: You have to load polyfills for fetch and promise as needed to support ie11 and such.
+
+2. Now call your remote method:
+`
+const rpc = new httpRPC('http', 'localhost', 8888)
+
+rpc.invoke('api', 'multiply', {a:5, b:2})
+   .then(function(resp) {
+      console.log(resp)
+   })
+
+`
+Constructor is self explanatory. 
+The invoke() method takes the route ('api') and a method in the handler to call ('multiply'), plus the arguments( 5 and 2).
+It returns a promise with a result.
+
+Other: of course you'd likely have more than one handler, and each handler would handle more than one method.
+
+So that is how to use http-rpc in 5 steps.
 
 
- Server-side (node.js)
-
-```
-cd node-srv
-tsc
-node index.js
-```
-
-## Client-side
-
-``` https://cdn.jsdelivr.net/npm/http-rpc@0.6.0/browser/httpRPC.js ```
-
-It requires fetch, promise and lz string ( https://cdn.jsdelivr.net/npm/lz-string@1.4.4/libs/lz-string.min.js  )
 
 ### Demo
 
@@ -94,9 +119,7 @@ It requires fetch, promise and lz string ( https://cdn.jsdelivr.net/npm/lz-strin
 
 
 
-
-
-### Aside: Why I like RPC vs REST, GraphQL, etc.
+### Aside: Why 
 
 For me, RPC solves an organizational issue like so: I manage a back-end team, and a front-end team.
 The back-end seemed to be hands-of with any issues related to front-end calling remote services.
