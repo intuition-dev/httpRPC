@@ -36,7 +36,7 @@ node index.js
 
 ## Client-side
 
-``` https://cdn.jsdelivr.net/npm/http-rpc@0.5.0/browser/httpRPC.js ```
+``` https://cdn.jsdelivr.net/npm/http-rpc@0.6.0/browser/httpRPC.js ```
 
 It requires fetch, promise and lz string ( https://cdn.jsdelivr.net/npm/lz-string@1.4.4/libs/lz-string.min.js  )
 

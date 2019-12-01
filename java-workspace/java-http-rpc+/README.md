@@ -24,7 +24,7 @@ Of course Java does not run front-end, so you have to run the browser side as ja
 So start an http server to run the index.html in that folder. It will make some dummy RPC calls.
 
 In production you should use this front-end:
-```https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v3.11.20/http-rpc+/web/httpRPC.min.js ```
+```https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v3.11.26/http-rpc+/web/httpRPC.min.js ```
 
 
 ### Demo
