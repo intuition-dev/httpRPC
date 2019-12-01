@@ -45,15 +45,16 @@ var httpRPC = (function () {
                 else
                     return fullResp.text();
             })
-                .then(function (compressed) {
-                var str = LZString.decompress(compressed);
+                .then(function (str) {
+                console.log(str);
+                if (THIZ.DEBUG) {
+                    console.log(str);
+                }
                 var resp = JSON.parse(str);
                 if ((!resp) || resp.errorMessage) {
-                    console.warn(method + ' ' + resp);
-                    reject(method + ' ' + resp);
+                    console.warn(method + ' ' + str);
+                    reject(method + ' ' + str);
                 }
-                if (THIZ.DEBUG)
-                    console.log(resp);
                 resolve(resp.result);
             })
                 .catch(function (err) {

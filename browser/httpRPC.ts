@@ -86,18 +86,17 @@ class httpRPC {//
             }
              else 
                return fullResp.text()
-            
           })
-          .then(function(compressed) {
-            var str = LZString.decompress(compressed)
-
+          .then(function(str) {
+            //var str = LZString.decompress(compressed)
             console.log(str)
-            if(THIZ.DEBUG) console.log(resp)
-
+            if(THIZ.DEBUG) { 
+               console.log(str)
+            }
             var resp=  JSON.parse(str)
             if((!resp) || resp.errorMessage) {
-               console.warn(method +' '+ resp)
-               reject(method +' '+ resp)
+               console.warn(method +' '+ str)
+               reject(method +' '+ str)
             }
             resolve(resp.result)
           })//fetch

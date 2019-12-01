@@ -57,10 +57,9 @@ class BaseRPCMethodHandler {
         ret.result = result;
         resp.setHeader('Cache-Control', this.cache);
         resp.setHeader('x-intu-ts', new Date().toISOString());
-        let json = JSON.stringify(ret);
         if (this.DEBUG)
-            log.warn(json);
-        resp.status(200).send(lz_string_1.default.compress(json));
+            log.warn(ret);
+        resp.json(ret);
     }
     _retErr(resp, msg) {
         if ((!msg) || msg.length < 1)
@@ -71,8 +70,7 @@ class BaseRPCMethodHandler {
         ret.errorMessage = msg;
         resp.setHeader('Cache-Control', this.cache);
         resp.setHeader('x-intu-ts', new Date().toISOString());
-        let json = JSON.stringify(ret);
-        resp.status(200).send(lz_string_1.default.compress(json));
+        resp.json(ret);
     }
     async handleRPC(req, res) {
         if (!this)

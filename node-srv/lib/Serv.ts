@@ -88,9 +88,10 @@ export class BaseRPCMethodHandler {
       resp.setHeader('Cache-Control', this.cache)
       resp.setHeader('x-intu-ts', new Date().toISOString() )
 
-      let json = JSON.stringify(ret)
-      if(this.DEBUG) log.warn(json)
-      resp.status(200).send(lz.compress(json))
+      //let json = JSON.stringify(ret)
+      if(this.DEBUG) log.warn(ret)
+      // const r:string = lz.compress(json)
+      resp.json(ret)
    }//()
 
    /**
@@ -110,8 +111,7 @@ export class BaseRPCMethodHandler {
       resp.setHeader('Cache-Control',  this.cache)
       resp.setHeader('x-intu-ts', new Date().toISOString() )
 
-      let json = JSON.stringify(ret)
-      resp.status(200).send(lz.compress(json))
+      resp.json(ret)
    }//()
 
    /**
