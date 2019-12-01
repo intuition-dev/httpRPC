@@ -24,7 +24,6 @@ HTTP-RPC leverages browsers fetch() command. As a plus, it has built in edge cac
 - The https should be provided by the CDN/Edge. It makes for a faster https handshake. Also, some CDN offer QUIC (http v3) protocol.
 - Recommended practice is that if you have 2 screens calling same RPC: have 2 distinct RPC handlers back-end, that can later call the
 same business logic.
-- You can use this with www.INTUITION.DEV's ViewModel, that example is elsewhere on this site.
 
 ## Questions?
 - Open a ticket

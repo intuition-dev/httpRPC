@@ -8,8 +8,8 @@
     "node": ">=13.2.0"
   },
   "dependencies": {
-    "intu": ">=1.9.20"
-  },
+
+   },
   "devDependencies": {
     "@types/node": ">=12.7.5"
   }

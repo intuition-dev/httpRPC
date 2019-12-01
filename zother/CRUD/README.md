@@ -1,4 +1,7 @@
 
+
+
+
 <img src="http://MetaBake.github.io/mbakeDocs/logo.jpg" width="100">
 
 Demo: http://youtube.com/watch?v=B-mSA71S7VY
@@ -18,6 +21,8 @@ You'll need to run 'node dev1.ts' to create the db
 - screen/tabulator/index.pug: View
 - screen/tabulator/TabulatorBind.js: binds TabulatorViewModel.js to the View
 - assets/models/TabulatorViewModel.js: VM(view model) that reflects the View
+
+
 
 
 ## CRUD w/ ViewModel (VM) 
@@ -61,6 +66,18 @@ VM also has a dataSourceType: string = 'real'  //real or fake
 
 VM should also do any data validation; returning an empty string if OK or an error message.
 The purpose of VM is to allow development of View to be quicker; and to allow for a demo if back-end is b0rked.
+
+### ViewModel
+
+You can use any .js libraries / tools you like. But the default is our Typescript based 'ViewModel'. 
+'ViewModel' is front-end, runs in the browser and it's main functionality is 
+that is must to map exactly to our Pug View/screen. ViewModel provides simple data structures so that the View can easily bind to it. 
+Validation is also included.
+
+Here is an example app and a readme:
+[examples/CRUD](https://github.com/intuition-dev/INTUITION/tree/master/examples/CRUD/www)
+
+
 
 ### Advanced
 - You should favor composition over inheritance. You should even look at VM as an ECS(Entity-Component-System), where Entity is the name of the VM, 
