@@ -39,69 +39,78 @@ Steps:
 
 1. Write a server side method that you want to use. Mostly these are DB CRUD methods, but here is a multiply example, this is the method we will call from the browser:
 
-`function doMultiply(a,b) {
-   return a*b
-}`
+   `
+   function doMultiply(a,b) {
+      return a*b
+   }
+   `
 
 2. Write a handler that calls above method. First you'll need to add the package and import :
 
-`
-npm add http-rpc
-import { BaseRPCMethodHandler, Serv } from 'http-rpc/node-srv/lib/Serv'
-`
+
+   `
+   npm add http-rpc
+   import { BaseRPCMethodHandler, Serv } from 'http-rpc/node-srv/lib/Serv'
+   `
+
 
 And an example handler:
-`
-class Handler1 extends BaseRPCMethodHandler {
-   constructor() {
-      super(2,1) 
-   }
 
-   multiply(params) {
-      let a = params.a
-      let b = params.b
-      return doMultiply(a,b)
-   }//()
-}
-`
+   `
+   class Handler1 extends BaseRPCMethodHandler {
+      constructor() {
+         super(2,1) 
+      }
+
+      multiply(params) {
+         let a = params.a
+         let b = params.b
+         return doMultiply(a,b)
+      }//()
+   }
+   `
+
 Here the doMultiply() calls the method in step 1.
 Also our constructor sets the cache to 2,1: the browser will cache for 2 seconds and CDN for 1. You can set this to 0,0.
 
 3. Now we need the http server that will route to the handler(s).
 
 Our service takes an array of approved CORS domains, eg:
-`
-const service = new Serv(['*'])
-const h1 = new Handler1()
-service.routeRPC('api', h1 ) // route to handler
-service.listen(8888)
-`
+
+   `
+   const service = new Serv(['*'])
+   const h1 = new Handler1()
+   service.routeRPC('api', h1 ) // route to handler
+   service.listen(8888)
+   `
+
 A route /api will be handled by Handler1!
 We now have a running service with one handler and that handler has one method 'multiply' (that is then passed on to the business layer).
 
 
-## Part II: Client-side
+### Part II: Client-side
 
 1. In the browser, load the lib(s from a CDN:
 
-`
-  <script src="https://cdn.jsdelivr.net/npm/lz-string@1.4.4/libs/lz-string.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/http-rpc@0.6.0/browser/httpRPC.js"></script>
-`
+   `
+   <script src="https://cdn.jsdelivr.net/npm/lz-string@1.4.4/libs/lz-string.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/http-rpc@0.6.0/browser/httpRPC.js"></script>
+   `
 
 NOTE: lz-string is a compression library used by http-rpc, so it needs to be loaded before:
 NOTE: You have to load polyfills for fetch and promise as needed to support ie11 and such.
 
 2. Now call your remote method:
-`
-const rpc = new httpRPC('http', 'localhost', 8888)
 
-rpc.invoke('api', 'multiply', {a:5, b:2})
-   .then(function(resp) {
-      console.log(resp)
-   })
+   `
+   const rpc = new httpRPC('http', 'localhost', 8888)
 
-`
+   rpc.invoke('api', 'multiply', {a:5, b:2})
+      .then(function(resp) {
+         console.log(resp)
+      })
+   `
+
 Constructor is self explanatory. 
 The invoke() method takes the route ('api') and a method in the handler to call ('multiply'), plus the arguments( 5 and 2).
 It returns a promise with a result.
