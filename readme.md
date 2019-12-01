@@ -1,24 +1,20 @@
 
-# HTTP-RPC+
+# HTTP-RPC
 
-#### A like JSON-RPC, but works over HTTP: specifically it works with a browser as client over http protocol and leverages world wide web.
+#### Inspired by JSON-RPC, but works over HTTP: specifically it works with a browser over http protocol.
 
-This is the reference implementation ( http://http-rpc.mbake.org )
+This is the reference implementation ( http://http-rpc.intuition.dev )
 
-
-#### Please star our main project here:
+#### Marketing: Please star our main project here:
 - https://github.com/intuition-dev/INTUITION
 
-## HTTP-RPC+
+## HTTP-RPC
 
-Google's FireBase use gRPC, and there is JSON-RPC and there a more RPC. But JSON-RPC has issues w/ http and world wide web.
-So I wrote a reference implementation in nodejs and Java that works with browser.
-Also it leverages browsers fetch(), such as fetch cache. It can use both browser cache and CDN edge cache.
-
+Inspired by JSON-RPC, but works over HTTP: specifically it works with a browser over http protocol.
+Also it leverages browsers fetch() command. As a plus, it has built in edge cache: it can use both browser cache and CDN cache.
 
 
 ## Features 
-The + is for the plus features
 
 - Handles CORS and does so in a single trip - no preflight or double request
 - Built in error handling
@@ -26,7 +22,39 @@ The + is for the plus features
 - Has a field for the calling entity (or page or screen), so you know what screen/page called the RPC. 
 - Can use regular headers for caching at at edge w/ CDN or at the browser.
 
-## Server-side (node.js)
+### Notes
+- The https should be provided by the CDN/Edge. It makes for a faster https handshake. Also, some CDN offer QUIC (http v3) protocol.
+- Recommended practice is that if you have 2 screens calling same RPC: have 2 distinct RPC handlers back-end, that can later call the
+same business logic.
+- You can use this with www.INTUITION.DEV's ViewModel, that example is elsewhere on this site.
+
+## Questions?
+- Open a ticket
+
+# How to use:
+
+### Server side
+
+Full example:
+- https://github.com/intuition-dev/httpRPC/blob/master/node-srv/example.ts
+
+Steps:
+
+1. Write a server side method that you want to use. Mostly these are DB CRUD methods, but here is a multiply example:
+
+`function multiply(a,b) {
+   return a*b
+}`
+
+2. Write a handler that calls above method:
+`
+
+`
+
+
+
+
+ Server-side (node.js)
 
 ```
 cd node-srv
@@ -44,22 +72,9 @@ It requires fetch, promise and lz string ( https://cdn.jsdelivr.net/npm/lz-strin
 
 [<img src="http://img.youtube.com/vi/FYZqz-AvwRo/0.jpg" width="400"/>](http://www.youtube.com/watch?v=FYZqz-AvwRo)
 
-### Code review:
-
-- [Server side](https://github.com/intuition-dev/mbCLI/blob/master/src/lib/Serv.ts )
-- [Client side lib](https://github.com/intuition-dev/mbToolBelt/blob/master/http-rpc%2B/web/httpRPC.ts)
-- [Server side use](https://github.com/intuition-dev/mbToolBelt/blob/master/http-rpc%2B/node-srv/index.ts)
-- [Client side use](https://github.com/intuition-dev/mbToolBelt/blob/master/http-rpc%2B/web/main.js)
 
 
-### Notes
-- The https should be provided by the CDN/Edge. It makes for a faster https handshake. Also, some CDN offer QUIC (http v3) protocol.
-- Recommended practice is that if you have 2 screens calling same RPC: have 2 distinct RPC handlers back-end, that can later call the
-same business logic.
-- You can use this with www.INTUITION.DEV's ViewModel, that example is elsewhere on this site.
 
-## Questions?
-- http://forum.mbake.org 
 
 
 ### Aside: Why I like RPC vs REST, GraphQL, etc.
