@@ -1,2 +1,2 @@
 
-Release via npm, update docs
+Release via npm, update docs, other libs

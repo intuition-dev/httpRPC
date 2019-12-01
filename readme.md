@@ -3,8 +3,6 @@
 
 #### Inspired by JSON-RPC, but works over HTTP: specifically it works with a browser over http protocol.
 
-This is the reference implementation ( http://http-rpc.intuition.dev )
-
 #### Marketing: Please star our main project here:
 - https://github.com/intuition-dev/INTUITION
 
