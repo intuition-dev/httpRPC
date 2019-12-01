@@ -1,9 +1,4 @@
 
-const bunyan = require('bunyan')
-const bformat = require('bunyan-format2')  
-const formatOut = bformat({ outputMode: 'short' })
-const log = bunyan.createLogger({src: true, stream: formatOut, name: "mainEx"})
-
 // const URL = require('url')
 
 // from mbake
@@ -13,36 +8,37 @@ let allowedDomains = []
 allowedDomains.push('one.com') // get from config.yaml, should never be '*'
 allowedDomains.push('two.org') // XXX host or local would match localhost
 
-// makes a configured express instance
+// pass in the CORS domains 
 const service = new Serv(['*'])
 
+// handler
 class Handler1 extends BaseRPCMethodHandler {
 
-   //THIZ[method](resp, params)
    multiply(params) {
       let a = params.a
       let b = params.b
 
       return multiply(a,b)
-   }
+   }//()
 
-}//()
+}//c
 const h1 = new Handler1(1)
-service.routeRPC('api', h1 )
-service.setLogger(handleLog, 0)
+service.routeRPC('api', h1 ) // route to handler
 
-// should be class - used by multiple routes
+// service.setLogger(handleLog, 0)
+
+// Example: (should be class)
 function multiply(a,b) {
    return a*b
 }
 
-function handleLog( params) {
+/*function handleLog( params) {
    log.info(params)
-}
+}*/
 
 service.listen(8888)
 
-// example impl of Auth
+/* example impl of Auth
 class CheckX implements iAuth {
    auth(user:string, pswd:string, resp?, ctx?):Promise<string> {
       return new Promise( function (resolve, reject) {
@@ -50,4 +46,5 @@ class CheckX implements iAuth {
          return resolve('OK') //or
       })
    }//()
-}//class
+}//c
+*/
