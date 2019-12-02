@@ -142,6 +142,11 @@ team being responsible for the client-side calls.
 
 We did try JSON-RPC, but that had issues over HTTP and world wide web. So we mimicked that and built HTTP-RPC+. There is a node.js reference implementation, and also a Java port.
 
-#### Other links:
+#### Other RPC links:
 - https://thomashunter.name/posts/2017-09-27-is-it-time-to-replace-rest-with-rpc
 - https://dzone.com/articles/a-quick-introduction-to-http-rpc
+
+
+#### More
+
+This repo houses other backend/full stack code and examples
