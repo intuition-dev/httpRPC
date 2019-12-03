@@ -1,6 +1,8 @@
 
 node_modules/
 
+zother
+
 *.sh
 *.cmd
 
@@ -9,3 +11,4 @@ node_modules/
 *.java
 
 *.html
+
