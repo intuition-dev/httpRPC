@@ -34,7 +34,7 @@ async import() {
    })
 }//()
 
-private async check() {
+async check() {
    await db.count()
 
    await db.get()

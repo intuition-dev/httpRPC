@@ -84,7 +84,7 @@ export class GDB extends BaseDBL  {
 
       let time = perfy.end('c')
       console.log(':t:')
-      log.info(time)
+      //log.info(time)
    }
 
 }//()

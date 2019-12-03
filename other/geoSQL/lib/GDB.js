@@ -63,7 +63,6 @@ class GDB extends BaseDBL_1.BaseDBL {
         log.info(row);
         let time = perfy.end('c');
         console.log(':t:');
-        log.info(time);
     }
 }
 exports.GDB = GDB;
