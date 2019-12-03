@@ -127,15 +127,12 @@ For me, RPC solves an organizational issue like so: I manage a back-end team, an
 The back-end seemed to be hands-of with any issues related to front-end calling remote services.
 
 So in order to get the back-end team engaged, I made the back-end team responsible for the client side service|api calls to the back end.
-Rather than back-end team exposing and documenting back-end service: the back end now write client side API's that call the remote services.
 Back-end team is responsible for documenting client side API calls, testing, fail-over, handling-time outs, encoding protocol(eg: JSON | MsgPack), versioning, 
 capacity planing, performance, etc. If we use Swift, Kotlin, .js on front-end; the back-end team has to write an API in that language. </br>
 The front-end developers have a tough job w/ the front-end, among other thing due to a large number of libraries.  So the back-end team helps by writing the API calls
 for each and every screen | page.
 And the back-end team even help support the ViewModel, reducing any impedance that maybe related to back-end entity mapping. In general if the API call is slow or any issue,
-then it is the back-end team's problem. The front-end team would not even know if the back end team changed the wire protocol, or if a back end table gets renamed, or even if the back end is document based or SQL or an inverted FTS index. The API testing is now end-to-end, and ads a bit of value: you can go trough a user epic using API only( a user logs on, enters some data and then looks at the produced chart - now can be tested by the server side team; no UI).</br>
-Same for 3rd parties. Instead of documenting REST | GraphQL: Back-end teams releases libraries on a CDN with API documentation. The 3rd party user would download the lib and use it.
-For in-house front end teams, they don't even do that: the back end team writes and owns each and every screen's remote call. At first it was REST with some GraphQL experiments.
+then it is the back-end team's problem. 
 
 So the logical next step for the back-end team: start writing helper classes to call the remote service, hence HTTP-RPC+ was born, as a result of back-end 
 team being responsible for the client-side calls.
