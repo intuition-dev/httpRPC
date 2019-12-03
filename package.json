@@ -1,13 +1,13 @@
 {
     "name": "http-rpc",
-    "version": "0.6.2",
+    "version": "0.6.3",
     "description": "Inspired by JSON-RPC, but works over HTTP: specifically it works with a browser over http protocol.",
     "license": "LGPL-3.0-only",
     "author": "http://www.INTUITION.DEV",
-    "homepage": "http://http-rpc.intuition.dev",
+    "homepage": "https://github.com/intuition-dev/httpRPC",
     "repository": {
         "type": "git",
-        "url": "http://http-rpc.intuition.dev"
+        "url": "https://github.com/intuition-dev/httpRPC"
     },
     "keywords": [
         "RPC",
