@@ -15,7 +15,6 @@ Are there teams that bifurcate that back end is only services? Yes, and they are
 So full stack/back end programmers write the client side API calls used by the front end team. Those APIs call services and the services have a business layer that interacts with the DB. 
 The full stack team is also responsible for security, including auth and auth of users and not just TLS, hashing/salting the passwords. Security is in the domain of the back end teams.  As is SRE, monitoring, metrics, fail over, back up/restore, disaster recovery, etc. And Devops, including Blue/Green deployment (simplest is having two service DNS sub domains, one for Eastern US and one for EU, but it can get more complex). Also, ETL, transactional data and decision support analytics/ warehouse.
 
-So full stack normally includes everything that is not front end. The full stack staff engineers support front end engineers, providing API libraries client side for the front end team to use: so that the front end team does not have to worry anything about back end and services.
 
 ### Basics
 
