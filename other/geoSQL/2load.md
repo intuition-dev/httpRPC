@@ -1,5 +1,5 @@
 
-## Capacity Planning
+## Capacity Planning (Section 2)
 
 Lets do some capacity planning.
 Because once you know the performance, you can plan the capacity. You should know how many daily active users you have and based on DAU estimate how many concurrent users you have.
@@ -96,7 +96,9 @@ A single cloud server RAM is over 512 RAM and over 4 terabytes of NVMe(|m2|u2). 
 So if you have regular data, there is no need to cluster disturbed data services (eg. ClickHouse and many similar competitors, like Druid, Spark, ELK and a thousand more, mostly from Apache ).  
 But there are people that work on PetaBytes, for example NSA. In order to know how to leverage a data cluster: you must be familiar with how a single data server works. You'll likely enjoy a classic book: SQL for Smarties by Celko. (also there is SQL for Dummies, but that is for citizens/pedestrians and not for professional programmers)
 
-So test your platform. But if you want just to enjoy, using tech from 2018-19 average engineers can get ~ 25K tps on a single cloud box. A single box is sufficient for most Fortune 500 organizations; but maybe not for NSA and such that look at many Petabytes of data.  It is possible that you don't need K8. And for sure: if you don't know how a single data box works: you should not use K8, leave that for people who do.
+So test your platform, you should know how long it takes to service a request, and estimate number of concurrent users so that you know how to scale. If you skip this step: you will have bad performance.  But if you want just to enjoy, using tech from 2018-19 average engineers can get ~ 25K tps on a single cloud box. A single box is sufficient for most Fortune 500 organizations; but maybe not for NSA and such that look at many Petabytes of data.  
 
+### Lessons learned
 
+To do a distributed cluster of data systems you must first master a single system. And... once you master a single system, you may not need a cluster. (Fun fact: due to network latency, clusters are slower, but larger). It is possible and probable that you don't need K8. And for sure: if you don't know how a single data box works: you should not use K8, leave that for people who do.
 
