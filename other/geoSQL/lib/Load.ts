@@ -19,6 +19,7 @@ export class Load {
 
 async import() {
    perfy.start('imp')
+   
    await fs.createReadStream(csvFile)
    .pipe(csv({headers:false}))
    .on('data', async (row) => {

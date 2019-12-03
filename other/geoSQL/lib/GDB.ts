@@ -6,7 +6,7 @@ const log = bunyan.createLogger({src: true, stream: formatOut, name: "some name"
 
 import { BaseDBL } from 'mbakex/lib/BaseDBL'
 
-const ip = require('ip')
+const ip = require('ip') //
 
 const perfy = require('perfy')
 
