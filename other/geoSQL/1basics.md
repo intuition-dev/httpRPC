@@ -43,3 +43,4 @@ The CRUD part is incidental. As is performance, scalability, uptime, etc.
 
 :-)
 
+In someways, the full stack team resembles FireStore offering, or even Parse SDK. 
