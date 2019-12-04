@@ -1,5 +1,10 @@
 
 
+TOC of the 3 sections
+
+https://medium.com/@cekvneich/short-review-of-basics-of-full-stack-big-data-scalability-and-clusters-of-distributed-data-bcc8e3a8abd3
+
+
 # Short review of basics of full stack, big data, scalability and clusters of distributed data servers ( Section 1 of 3: )
 
 I have been developing for 20+ years and I have won trainer of the year. Here is a terse/short basics of full stack programing.

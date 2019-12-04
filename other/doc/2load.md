@@ -1,4 +1,8 @@
 
+TOC of the 3 sections
+
+https://medium.com/@cekvneich/short-review-of-basics-of-full-stack-big-data-scalability-and-clusters-of-distributed-data-bcc8e3a8abd3
+
 ## Capacity Planning (Section 2)
 
 Lets do some capacity planning.

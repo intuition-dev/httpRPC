@@ -1,4 +1,8 @@
 
+TOC of the 3 sections
+
+https://medium.com/@cekvneich/short-review-of-basics-of-full-stack-big-data-scalability-and-clusters-of-distributed-data-bcc8e3a8abd3
+
 ## Review: The Full stack / back end programmers ( Section 3):
 
 1. The job includes client side API. The job is not to write API, but to write good API as defined in part I.
