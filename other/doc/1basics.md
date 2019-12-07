@@ -20,6 +20,11 @@ Are there teams that bifurcate that back end is only services? Yes, and they are
 So full stack/back end programmers write the client side API calls used by the front end team. Those APIs call services and the services have a business layer that interacts with the DB. 
 The full stack team is also responsible for security, including auth and auth of users and not just TLS, hashing/salting the passwords. Security is in the domain of the back end teams.  As is SRE, monitoring, metrics, fail over, back up/restore, disaster recovery, etc. And Devops, including Blue/Green deployment (simplest is having two service DNS sub domains, one for Eastern US and one for EU, but it can get more complex). Also, ETL, transactional data and decision support analytics/ warehouse.
 
+Another part of full stack is to SRE redrills and load testing on nightwatchman/weekends. 
+
+Back end should not make a lot of noise, one way is a Dashboard. 
+One KPIs to show is the percent of capacity utilized.
+
 
 ### Basics
 
@@ -29,7 +34,7 @@ Basics of full stack team is that they don't deal with end users or business, th
 Who is a good candidate for full stack? As full stack is basics, this is not new tech, we have been doing CRUD since the 70's. Mostly you can use any imperative language (nodejs, python, go, etc.), know SQL (Declarative, or something similar if using noSQL), and know linux. Most cloud services are linux, for example you should know how to use iptables or similar.
 If you did not get a science or engineering degree, you can finish a 6 week coding school and I'd hire you if you know SQL.
 A few years of experience is a plus. 
-If you have more than 7 years I'd expect a full stack programmer to be promoted to front end developer, going towards designer or product manager.
+If you have more than 5-7 years I'd expect a full stack programmer to be promoted to front end developer, going towards designer or product manager.
 
 ### ViewModel: what is the Job!
 
