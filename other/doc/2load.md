@@ -52,6 +52,7 @@ You should test that you can insert a single row into a SQL table. If you are us
 
 You can get a CSV file I used from 
 https://db-ip.com/db/download/ip-to-city-lite
+(or the file is instructor provided)
 
 And now you need to read the CSV file, something like:
 
