@@ -126,7 +126,7 @@ So that is how to use http-rpc in 5 steps.
 For me, RPC solves an organizational issue like so: I manage a back-end team, and a front-end team.
 The back-end seemed to be hands-of with any issues related to front-end calling remote services.
 
-So in order to get the back-end team engaged, I made the back-end team responsible for the client side service|api calls to the back end.
+So in order to get the back-end team engaged, I made the back-end team responsible for the client side service|api calls to the backend.
 Back-end team is responsible for documenting client side API calls, testing, fail-over, handling-time outs, encoding protocol(eg: JSON | MsgPack), versioning, 
 capacity planing, performance, etc. If we use Swift, Kotlin, .js on front-end; the back-end team has to write an API in that language. </br>
 The front-end developers have a tough job w/ the front-end, among other thing due to a large number of libraries.  So the back-end team helps by writing the API calls
