@@ -20,7 +20,7 @@ Are there teams that bifurcate that backend is only services? Yes, and they are 
 So full stack/backend programmers write the client side API calls used by the front end team. And the API's need to be Topology-Aware, knowing what geo-distributed server to call. The  Those APIs call services and the services have a business layer that interacts with the DB. 
 The full stack team is also responsible for security, including auth and auth of users and not just TLS, hashing/salting the passwords. Security is in the domain of the backend teams.  As is SRE, monitoring, metrics, fail over, back up/restore, disaster recovery, (edge) cache, etc. And Devops, including Blue/Green deployment (simplest is having two service DNS sub domains, one for Eastern US and one for EU, but it can get more complex). Also, ETL, transactional data and decision support analytics/ warehouse.
 
-Another part of full stack is to SRE redrills and load testing on nightwatchman/weekends. 
+Another part of full stack is to SRE fire-drills and load testing on weekends. 
 
 backend should not make a lot of noise, one way is a Dashboard. 
 One KPIs to show is the percent of capacity utilized.
@@ -28,10 +28,10 @@ One KPIs to show is the percent of capacity utilized.
 
 ### Basics
 
-Basics of full stack team is that they don't deal with end users or business, their 'client' is the front end developers. Ideal team size of full stack team is larger than 3, accounting for weekend on-call and vacation/sick coverage. The full stack team is local to the office - because some of their team members have access to data that needs to be secure. Hence you have to insure that the full stack engineer is responsible/liable and not 'judgment proof' (99% of hacks are internal) in case of an intentional data leak. That is in addition to using IP access for data and data servers.
+Basics of full stack team is that they don't deal with end users or business, their 'client' is the front end developers. Ideal team size of full stack team is larger than 3, accounting for weekend on-call and vacation/sick coverage. Also maybe you have some come early and other stay late - and use some ticket system to track daily tasks. (example ticket tracking system is mantishub). The full stack team is local to the office - because some of their team members have access to data that needs to be secure. Hence you have to insure that the full stack engineer is responsible/liable and not 'judgment proof' (99% of hacks are internal) in case of an intentional data leak. That is in addition to using IP access for data and data servers.
 (Aside, a good ratio of front end to full stack is larger than 2:1, so if you have 3 backend programmers, you'd want 6 front end devs.)
 
-Who is a good candidate for full stack? As full stack is basics, this is not new tech, we have been doing CRUD since the 70's. Mostly you can use any imperative language (nodejs, python, go, etc.), know SQL (Declarative, or something similar if using noSQL), and know linux. Most cloud services are linux, for example you should know how to use iptables or similar.
+Who is a good candidate for full stack? As full stack is basics, this is not new tech, we have been doing CRUD since the 70's. Mostly you can use any imperative language (nodejs, python, go, etc.), know SQL (Declarative, or something similar if using noSQL), and know linux. Most cloud services are linux, for example you should know how to use iptables or similar. One recent fad is having some interest in statistics. 
 If you did not get a science or engineering degree, you can finish a 6 week coding school and I'd hire you if you know SQL.
 A few years of experience is a plus. 
 If you have more than 5-7 years I'd expect a full stack programmer to be promoted to front end developer, going towards designer or product manager.
