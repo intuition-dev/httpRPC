@@ -8,7 +8,7 @@ Reference implementation is here: http://http-rpc.mbake.org
 You should check the features and note there as this here is just a port.
 
 #### Please star our main project here:
-- https://github.com/intuition-dev/INTUITION
+- https://github.com/intuition-dev/INTU
 
 
 ### Server-side: run Main.java

@@ -3,7 +3,7 @@
     "version": "0.6.3",
     "description": "Inspired by JSON-RPC, but works over HTTP: specifically it works with a browser over http protocol.",
     "license": "LGPL-3.0-only",
-    "author": "http://www.INTUITION.DEV",
+    "author": "http://www.INTU.DEV",
     "homepage": "https://github.com/intuition-dev/httpRPC",
     "repository": {
         "type": "git",

@@ -75,7 +75,7 @@ that is must to map exactly to our Pug View/screen. ViewModel provides simple da
 Validation is also included.
 
 Here is an example app and a readme:
-[examples/CRUD](https://github.com/intuition-dev/INTUITION/tree/master/examples/CRUD/www)
+[examples/CRUD](https://github.com/intuition-dev/INTU/tree/master/examples/CRUD/www)
 
 
 
