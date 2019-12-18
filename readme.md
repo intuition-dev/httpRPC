@@ -1,7 +1,7 @@
 
 # HTTP-RPC
 
-#### Inspired by JSON-RPC, but works over HTTP: specifically it works with a browser over http protocol.
+#### Inspired by JSON-RPC anf gRPC, but works over HTTP: specifically it works with a browser over http protocol.
 
 #### Marketing: Please star our main project here:
 - https://github.com/intuition-dev/INTU
