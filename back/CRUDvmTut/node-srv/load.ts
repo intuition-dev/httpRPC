@@ -7,4 +7,5 @@ var log = bunyan.createLogger({src: true, stream: formatOut, name: "load"})
 import { CDB } from "./db/CDB"
 
 const db = new CDB()
-db.load10K()
+
+db.load1M()

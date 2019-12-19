@@ -3,7 +3,7 @@ declare var performance
 var bunyan = require('bunyan')
 var bformat = require('bunyan-format2')  
 var formatOut = bformat({ outputMode: 'short' })
-var log = bunyan.createLogger({src: true, stream: formatOut, name: "some name"})
+var log = bunyan.createLogger({src: true, stream: formatOut, name: "cdb"})
 
 var faker = require('faker')
 const hash = require("murmurhash3js")
@@ -19,30 +19,42 @@ export class CDB extends BaseDBL  {
       this.schema()
    }//()
 
-   fastCon(path,  fn) {
+   private fastCon(path,  fn) {
       this.defCon(path,  fn) 
       
-      //this._db.pragma('locking_mode=EXCLUSIVE')
+      this._db.pragma('locking_mode=EXCLUSIVE')
       log.info(this._db.pragma('locking_mode', { simple: true }))
-
    }
 
    private schema() {
-      this.fastCon(process.cwd(), 'cdb.db')
+      this.fastCon(process.cwd(), '/db/cdb.db')
 
-      const exists = this.tableExists('users')
+      const exists = this.tableExists('user')
       if(exists) return
 
-      log.info('.')
-      this.write(`CREATE TABLE users( guid, email, pswd_hash, 
+      log.info('sch')
+      this.write(`CREATE TABLE user( guid, email, pswd_hash, 
          auth_level, fname, lname, title, phone,     
          connections, dt_stamp TEXT) `)
    }//()
 
-   public load10K() {
+
+   public load1M() {
+      this.count()
+      let i = 0;
+      do {
+         this.load10K()
+         i++
+      }while (i < 100)
+      this.count()
+      log.info('+')
+   }
+
+   private load10K() {
       this.BEGIN()
 
-      {
+      let j = 0;
+      do {
       var guid = this.fakeGUID()
       var email = faker.internet.email()
       var pswd = faker.internet.password()
@@ -56,7 +68,7 @@ export class CDB extends BaseDBL  {
 
       var date = new Date().toISOString()
 
-      this.write(`INSERT INTO users( guid, email, pswd_hash, 
+      this.write(`INSERT INTO user( guid, email, pswd_hash, 
          auth_level, fname, lname, title, phone,     
          dt_stamp
          )
@@ -70,13 +82,19 @@ export class CDB extends BaseDBL  {
          auth_level, fname, lname, title, phone,     
          date
       )
-      }
+      j++
+      }while (j < 10*1000)
 
       this.COMMIT()
+      log.info('.')
    }//()
 
+   count() {
+      let r=this.readOne('SELECT count(*) AS count FROM user')
+      log.info(r)
+   }
 
-   fakeGUID() { //generates a guid client side so no need to wait
+   private fakeGUID() { //generates a guid client side so no need to wait
       var d = new Date().getTime();
       if (typeof performance !== 'undefined' && typeof performance.now === 'function') {
         d += performance.now(); //use high-precision timer if available
