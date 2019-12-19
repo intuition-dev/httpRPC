@@ -7,10 +7,10 @@
     "node": ">=13.2.0"
   },
   "dependencies": {
-    "http-rpc": ">=0.6.2",
-    "mbakex": ">=2.11.26"
+    "http-rpc": ">=0.6.3",
+    "mbakex": ">=2.12.1"
   },
   "devDependencies": {
-    "@types/node": ">=12.7.5"
+    "@types/node": ">=12.12.21"
   }
 }
