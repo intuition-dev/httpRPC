@@ -1,3 +1,3 @@
 clear
 tsc
-node main.js 
+node load.js 
