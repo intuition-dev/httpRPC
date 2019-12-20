@@ -46,7 +46,6 @@ export class CDB extends BaseDBL  {
       const qry = 'SELECT rowid, rank, * FROM user WHERE user MATCH ? ORDER BY rank LIMIT ? OFFSET ?' 
       const rows = this.read(qry, srchS, lim, o)
 
-      log.info(rows)
       return rows
    }//()
 

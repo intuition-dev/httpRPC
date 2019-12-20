@@ -1,3 +1,3 @@
 clear
 tsc
-node load.js 
+node crudSrv.js 
