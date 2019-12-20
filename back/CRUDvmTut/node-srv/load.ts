@@ -8,4 +8,6 @@ import { CDB } from "./db/CDB"
 
 const db = new CDB()
 
-db.load1M()
+
+//db.load1M()
+db.srchWpage('Wol', 2)

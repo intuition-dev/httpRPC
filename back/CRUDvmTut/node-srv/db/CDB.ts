@@ -33,14 +33,27 @@ export class CDB extends BaseDBL  {
       if(exists) return
 
       log.info('sch')
-      this.write(`CREATE TABLE user( guid, email, pswd_hash, 
-         auth_level, fname, lname, title, phone,     
-         connections, dt_stamp TEXT) `)
+
+      this.write(`CREATE VIRTUAL TABLE user USING fts5( guid UNINDEXED, pswd_hash UNINDEXED, 
+         auth_level UNINDEXED, fname, lname, title, phone, email,   
+         following_to UNINDEXED, followed_by UNINDEXED, dt_stamp UNINDEXED, tokenize = porter ) `)
+   }//()
+
+   srchWpage(srchS, o) {
+      let lim = 25
+      srchS = '^' +srchS+ '*'
+      log.info(srchS)
+      const qry = 'SELECT rowid, rank, * FROM user WHERE user MATCH ? ORDER BY rank LIMIT ? OFFSET ?' 
+      const rows = this.read(qry, srchS, lim, o)
+
+      log.info(rows)
+      return rows
    }//()
 
 
    public load1M() {
       this.count()
+
       let i = 0;
       do {
          this.load10K()
@@ -66,7 +79,7 @@ export class CDB extends BaseDBL  {
       var title = faker.name.title()
       var phone = faker.phone.phoneNumber()
 
-      var date = new Date().toISOString()
+      var date:string = new Date().toISOString()
 
       this.write(`INSERT INTO user( guid, email, pswd_hash, 
          auth_level, fname, lname, title, phone,     
