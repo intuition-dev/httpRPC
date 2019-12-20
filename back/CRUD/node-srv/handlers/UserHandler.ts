@@ -17,7 +17,7 @@ export class UserHandler extends BaseRPCMethodHandler {
       this._db = db
    }
 
-   pageViews(params) {
+   srch(params) {
 
       log.info(params)
 

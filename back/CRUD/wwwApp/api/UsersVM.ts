@@ -1,15 +1,21 @@
 
 
+console.log('uvm')
 
-const rpc = new httpRPC('http', 'localhost', 8888)
+depp.require('RPC', init)
 
-rpc.invoke('api', 'multiply', {a:5, b:2})
-   .then(function(resp) {
-      console.log(resp)
-})
+function init() {
+   console.log('init')
+   const rpc = new httpRPC('http', 'localhost', 8888)
 
-script(src='https://cdn.jsdelivr.net/npm/lz-string@1.4.4/libs/lz-string.min.js')
+   let args = {}
+   args['srch'] = 'vic'
+   args['o'] = 1
+   
+   rpc.invoke('uapi', 'srch', args)
+      .then(function(resp) {
+         console.log(resp)
+   })
 
-// lib from CDN w/ version:
-script(src='https://cdn.jsdelivr.net/npm/http-rpc@0.6.0/browser/httpRPC.js')
+}
 
