@@ -10,8 +10,6 @@ import {  UserHandler } from "./handlers/UserHandler"
 import { CDB } from "./db/CDB"
 
 
-const express = require('express');
-
 const srv = new Serv(['*']) 
 
 const db =  new CDB()
