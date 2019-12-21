@@ -1,10 +1,9 @@
 
 console.log('UI:')
 
-
 // var vm = new CrmVM()
 
-depp.require(['DOM'], function() {
+depp.require(['DOM', 'listjs'], function() {
     console.log('ready')
 }) 
  
@@ -12,7 +11,6 @@ depp.require(['DOM'], function() {
 function pushState() {
 
 }
-
 
 function testE1() {
 

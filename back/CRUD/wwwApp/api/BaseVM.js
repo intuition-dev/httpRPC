@@ -2,22 +2,6 @@ var BaseVM = (function () {
     function BaseVM() {
         this.E1Listener = {};
     }
-    BaseVM.prototype.testE1 = function () {
-        depp.require('eventBus', function () {
-            console.log('tst:');
-            var THIZ = this;
-            DeventBus.dispatch('dataB4', 'oh hi b4');
-            DeventBus.dispatch('dataB4', 'oh hi b4');
-            DeventBus.addListener('dataB4', function (data) {
-                console.log('b4', data);
-            });
-            DeventBus.addListener('dataAf', function (data) {
-                console.log('af:', data);
-            });
-            DeventBus.dispatch('dataAf', 'oh hi af');
-            DeventBus.dispatch('dataAf', 'oh hi af');
-        });
-    };
     BaseVM.prototype.genGUID = function () {
         var d = new Date().getTime();
         if (typeof performance !== 'undefined' && typeof performance.now === 'function') {
