@@ -1,3 +1,6 @@
 
+
+Link for browser changed, update links.
+
 Release via npm, update docs, other libs
 
