@@ -5,6 +5,24 @@ console.log('UI:')
 
 depp.require(['DOM', 'listjs'], function() {
     console.log('ready')
+
+    var options = {
+      valueNames: [ 'fname', 'lname' ],
+      item: 
+         `<tr> 
+            <td class="fname"></td>
+            <td class="lname"></td>
+         </tr>`
+      }      
+
+   let userLstEl = document.getElementById('userLst')
+   let data = [
+      {fname:'Vic', lname: 'C'},
+      {fname:'Vic2', lname: 'C2'}
+
+   ]
+   let userLst = new List(userLstEl, options, data)
+   console.log('listjs')
 }) 
  
 // sets the states of the view, such as buttons, click enabled/grayed and others
