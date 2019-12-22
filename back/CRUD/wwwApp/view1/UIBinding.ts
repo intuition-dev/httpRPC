@@ -2,14 +2,11 @@
 console.log('UI:')
 
 declare var depp
-declare var UsersVM
 declare var List
 declare var DeventBus
 
 class UIBinding {
-   static uvm
    constructor() {
-      UIBinding.uvm = new UsersVM()
       this.setupBut()
    }
 
@@ -17,10 +14,12 @@ class UIBinding {
       document.getElementById("srchBut").addEventListener("click", function(){
          var srch = document.getElementById('srchFld').value
          console.log('klk', srch)
-         if(UIBinding.userLst)
-            UIBinding.userLst.clear()
+         if(UIBinding.userLst) UIBinding.userLst.clear()
 
-         UIBinding.uvm.fetch(srch, 1)       
+         let arg:any ={}
+         arg.srch = srch
+         arg.o=1
+         DeventBus.dispatch('uFetch', arg)
       })
 
       DeventBus.addListener('onUData', UIBinding.onData)
@@ -29,6 +28,7 @@ class UIBinding {
 
    static userLst
    static onData(data) {
+      console.log('onData')
       let options = {
          valueNames: [ 'fname', 'lname', 'email','phone' ],
          item: 
@@ -51,14 +51,14 @@ class UIBinding {
    }//()
 
 }
-depp.define({'vm':'/api/UsersVM.js'})
-depp.require(['DOM', 'listjs', 'eventBus', 'RPC', 'vm'], function() {
+
+depp.require(['DOM', 'listjs', 'eventBus'], function() {
    console.log('ready')
    new UIBinding()
 }) 
  
 
-// sets the states of the view, such as buttons, click enabled/grayed and others
+// DELL
 function pushState() {
 
 }

@@ -1,7 +1,6 @@
 console.log('UI:');
 var UIBinding = (function () {
     function UIBinding() {
-        UIBinding.uvm = new UsersVM();
         this.setupBut();
     }
     UIBinding.prototype.setupBut = function () {
@@ -10,11 +9,15 @@ var UIBinding = (function () {
             console.log('klk', srch);
             if (UIBinding.userLst)
                 UIBinding.userLst.clear();
-            UIBinding.uvm.fetch(srch, 1);
+            var arg = {};
+            arg.srch = srch;
+            arg.o = 1;
+            DeventBus.dispatch('uFetch', arg);
         });
         DeventBus.addListener('onUData', UIBinding.onData);
     };
     UIBinding.onData = function (data) {
+        console.log('onData');
         var options = {
             valueNames: ['fname', 'lname', 'email', 'phone'],
             item: "<tr> \n               <td class=\"fname\"></td>\n               <td class=\"lname\"></td>\n               <td class=\"email\"></td>\n               <td class=\"phone\"></td>\n            </tr>"
@@ -30,8 +33,7 @@ var UIBinding = (function () {
     };
     return UIBinding;
 }());
-depp.define({ 'vm': '/api/UsersVM.js' });
-depp.require(['DOM', 'listjs', 'eventBus', 'RPC', 'vm'], function () {
+depp.require(['DOM', 'listjs', 'eventBus'], function () {
     console.log('ready');
     new UIBinding();
 });

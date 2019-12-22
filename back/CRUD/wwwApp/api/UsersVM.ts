@@ -11,7 +11,11 @@ class UsersVM {
    rpc = new httpRPC('http', 'localhost', 8888)
    
    constructor() {
-      this.fetch('a',1)
+      this.fetch('a',1)// initial load
+      let THIZ = this
+      DeventBus.addListener('uFetch', function(arg) {
+         THIZ.fetch(arg.srch,arg.o)
+      })
    }
 
    fetch(srch, o) {    
@@ -30,3 +34,8 @@ class UsersVM {
    }//()
 
 }//class
+
+depp.require(['eventBus', 'RPC'], function() {
+   console.log('ready')
+   new UsersVM()
+}) 

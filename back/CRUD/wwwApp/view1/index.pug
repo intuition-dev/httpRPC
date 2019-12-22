@@ -1,9 +1,10 @@
 head
    include headFrag
    
+   script(src='/api/UsersVM.js')
+body
    script(src='UIBinding.js')
 
-body
    p Table:
    div
       input#srchFld.smooth(type="text" placeholder='a') 

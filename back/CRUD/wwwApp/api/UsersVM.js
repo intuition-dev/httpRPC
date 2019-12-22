@@ -4,6 +4,10 @@ var UsersVM = (function () {
     function UsersVM() {
         this.rpc = new httpRPC('http', 'localhost', 8888);
         this.fetch('a', 1);
+        var THIZ = this;
+        DeventBus.addListener('uFetch', function (arg) {
+            THIZ.fetch(arg.srch, arg.o);
+        });
     }
     UsersVM.prototype.fetch = function (srch, o) {
         console.log('fetch');
@@ -19,3 +23,7 @@ var UsersVM = (function () {
     };
     return UsersVM;
 }());
+depp.require(['eventBus', 'RPC'], function () {
+    console.log('ready');
+    new UsersVM();
+});
