@@ -1,0 +1,49 @@
+// ------------------------------------------------------------------
+//  Core Styles of Min
+// ------------------------------------------------------------------
+
+@import '__var-lib.scss',
+        'general.scss';
+
+
+// ------------------------------------------------------------------
+//  Customize Optional Components
+//
+//  Set undesired components to false to exclude them from
+//  the final Min CSS output.
+// ------------------------------------------------------------------
+
+$import-headings:                         true !default;
+
+$import-buttons:                          true !default;
+
+$import-forms:                            true !default;
+
+$import-navbar:                           true !default;
+
+$import-tables:                           true !default;
+
+$import-messages:                         true !default;
+
+$import-icons:                            true !default;
+
+$import-grid:                             true !default;
+
+$import-messages:                         true !default;
+
+$import-ie-hacks:                         true !default;
+
+
+// ------------------------------------------------------------------
+//  Import Components based on above customization
+// ------------------------------------------------------------------
+
+@import 'button',
+        'grid',
+        'headings',
+        'icons',
+        'forms',
+        'navbar',
+        'table',
+        'messages',
+        'iehacks';

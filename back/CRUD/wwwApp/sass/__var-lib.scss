@@ -1,0 +1,31 @@
+//-------------------------------------------------------------------
+// Variable Library
+//
+// The purpose of the variable library is to have a centralized
+// location for various reusable values for the Min Framework.
+//
+// Instead of hunting through the different Sass files to update
+// values, simply change the variable in question to update all
+// instances of that value.
+//
+//-------------------------------------------------------------------
+
+
+// Dark Colors
+$c-black:         #000 !default;
+$c-off-black:     #999 !default;
+$c-darker:        #888 !default;
+$c-dark:          #777 !default;
+
+
+// Medium Colors
+$c-grey-dark:     #aaa !default;
+$c-grey:          #ccc !default;
+$c-grey-light:    #eee !default;
+
+// Light Colors
+$c-white:         #fff !default;
+
+
+// Inputs
+$c-focus:         #5ab !default;
