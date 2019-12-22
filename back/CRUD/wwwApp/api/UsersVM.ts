@@ -1,21 +1,32 @@
 
+declare var httpRPC
+declare var depp
+declare var DeventBus
 
 console.log('uvm')
 
-depp.require('RPC', init)
+depp.require(['RPC','eventBus'])
 
-function init() {
-   console.log('init')
-   const rpc = new httpRPC('http', 'localhost', 8888)
-
-   let args = {}
-   args['srch'] = 'vic'
-   args['o'] = 1
+class UsersVM {
+   rpc = new httpRPC('http', 'localhost', 8888)
    
-   rpc.invoke('uapi', 'srch', args)
+   constructor() {
+      this.fetch('a',1)
+   }
+
+   fetch(srch, o) {    
+      console.log('fetch')  
+      var _rpcS = Date.now()
+      let args = {}
+      args['srch'] = srch
+      args['o'] = o
+
+      this.rpc.invoke('uapi', 'srch', args)
       .then(function(resp) {
-         console.log(resp)
+         console.log(Date.now() - _rpcS, resp)
+         DeventBus.dispatch('onUData', resp)
+
    })
+   }//()
 
-}
-
+}//class

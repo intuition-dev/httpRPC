@@ -1,6 +1,5 @@
 var BaseVM = (function () {
     function BaseVM() {
-        this.E1Listener = {};
     }
     BaseVM.prototype.genGUID = function () {
         var d = new Date().getTime();

@@ -13,7 +13,7 @@ export class UserHandler extends BaseRPCMethodHandler {
     _db:CDB
    
    constructor(db) {
-      super(2,2)
+      super(10,9)
       this._db = db
    }
 
@@ -23,6 +23,9 @@ export class UserHandler extends BaseRPCMethodHandler {
 
       let srch = params.srch
       let o:number = params.o
+
+      if((!srch) || srch.length<1)
+         srch = 'a' 
 
       let ret  = this._db.srchWpage(srch, o)
       return ret

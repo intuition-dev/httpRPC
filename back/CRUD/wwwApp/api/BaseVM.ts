@@ -20,7 +20,6 @@ interface iVM{
  * Used by UI binding
  */
 class BaseVM { // 
-   E1Listener = {} // ;to store E1Listener data for events
 
    genGUID() { //generates a guid client side so no need to wait
       var d = new Date().getTime();
