@@ -40,7 +40,7 @@ export class CDB extends BaseDBL  {
    }//()
 
    srchWpage(srchS, o) {
-      let lim = 25
+      let lim = 10
       srchS = '^' +srchS+ '*'
       log.info(srchS)
       const qry = 'SELECT rowid, rank, * FROM user WHERE user MATCH ? ORDER BY rank LIMIT ? OFFSET ?' 

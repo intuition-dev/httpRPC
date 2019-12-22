@@ -4,16 +4,18 @@ console.log('UI:')
 // var vm = new CrmVM()
 
 depp.require(['DOM', 'listjs'], function() {
-    console.log('ready')
+   console.log('ready')
 
-    var options = {
-      valueNames: [ 'fname', 'lname' ],
-      item: 
-         `<tr> 
-            <td class="fname"></td>
-            <td class="lname"></td>
-         </tr>`
-      }      
+   setupBut()
+
+   var options = {
+   valueNames: [ 'fname', 'lname' ],
+   item: 
+      `<tr> 
+         <td class="fname"></td>
+         <td class="lname"></td>
+      </tr>`
+   }      
 
    let userLstEl = document.getElementById('userLst')
    let data = [
@@ -25,6 +27,13 @@ depp.require(['DOM', 'listjs'], function() {
    console.log('listjs')
 }) 
  
+function setupBut() {
+   document.getElementById("srchBut").addEventListener("click", function(){
+      console.log('klk')
+   })
+}
+
+
 // sets the states of the view, such as buttons, click enabled/grayed and others
 function pushState() {
 
