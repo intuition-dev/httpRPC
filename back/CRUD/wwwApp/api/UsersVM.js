@@ -10,11 +10,11 @@ var UsersVM = (function () {
         });
     }
     UsersVM.prototype.fetch = function (srch, o) {
-        console.log('fetch');
         var _rpcS = Date.now();
         var args = {};
         args['srch'] = srch;
         args['o'] = o;
+        console.log('fetch', args);
         this.rpc.invoke('uapi', 'srch', args)
             .then(function (resp) {
             console.log(Date.now() - _rpcS);

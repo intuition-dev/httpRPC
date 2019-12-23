@@ -17,7 +17,7 @@ Full stack/backend programmers write services, such as REST.  And mostly these a
 
 Are there teams that bifurcate that backend is only services? Yes, and they are usually dysfunctional. For example how to handle fail over of a service call? What if there are issues w/ the API call - who  handles it? I have seen backend teams blame the front end developers. A simple fix is: backend teams write and support the client side API calls.  
 
-So full stack/backend programmers write the client side API calls used by the front end team. And the API's need to be Topology-Aware, knowing what geo-distributed server to call. The  Those APIs call services and the services have a business layer that interacts with the DB. 
+So full stack/backend programmers write the client side API calls used by the front end team. And the API's need to be using a topology-aware client, knowing what geo-distributed server to call (/Map-Reduce). The  Those APIs call services and the services have a business layer that interacts with the DB. 
 The full stack team is also responsible for security, including auth and auth of users and not just TLS, hashing/salting the passwords. Security is in the domain of the backend teams.  As is SRE, monitoring, metrics, fail over, back up/restore, disaster recovery, (edge) cache, etc. And Devops, including Blue/Green deployment (simplest is having two service DNS sub domains, one for Eastern US and one for EU, but it can get more complex). Also, ETL, transactional data and decision support analytics/ warehouse.
 
 Another part of full stack is to SRE fire-drills and load testing on weekends. 
@@ -39,7 +39,7 @@ If you have more than 5-7 years I'd expect a full stack programmer to be promote
 ### ViewModel: what is the Job!
 
 I want to explain what the real job of full stack developer is. So I'll explain some words, a ViewModel(VM): VM is a data structure that maps exactly to the page/form UI(View). For example if the front end view shows name/address/phone, then VM has those form properties in the way the view uses them. If there are two data table on the view, then the VM has 2 array like structures with elements mapping to the fields exactly.
-This makes data binding of V to VM easy.
+This makes data binding of V to VM easy. (also having a mono-repo (in git) with front-end View and back-end VM/API helps keep them in-sync)
 (VM can be flux or any other pattern, that is irrelevant at the high level, I'm just trying to define what, now how). 
 And another words is O/R impedance (mismatch): This says that the E/R data model typically does not match the View and VM: how the data is displayed. The fields don't match, maybe it requires processing or joins or aggregates, etc. 
 So now I can define what the job function of the full stack developer is: Full stack job is not to developer client side CRUD API's!

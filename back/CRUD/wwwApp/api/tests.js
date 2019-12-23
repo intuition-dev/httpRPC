@@ -8,18 +8,32 @@ pro.then(function () {
 var TestVM1 = (function () {
     function TestVM1() {
         console.log('testVM1');
-        DeventBus.addListener('onUData', TestVM1.onVM1Data);
-        depp.define({ 'vm1': '/api/UsersVM.js' });
-        depp.require('vm1');
+        TestVM1.listener = DeventBus.addListener('onUData', TestVM1.onVM1Data);
+        depp.define({ 'vm1': '/api/UsersVM.js',
+            'chance': 'https://cdn.jsdelivr.net/npm/chance@1.1.4/chance.min.js'
+        });
+        depp.require(['vm1', 'chance']);
         QUnit.test("hello test", function (assert_) {
             TestVM1.assert = assert_;
             TestVM1.done1 = assert_.async();
+            TestVM1.done2 = assert_.async();
         });
     }
     TestVM1.onVM1Data = function (data) {
         console.log('data');
         TestVM1.assert.ok(true, "Passed!");
         TestVM1.done1();
+        DeventBus.removeListener(TestVM1.listener);
+        var arg = {};
+        arg.srch = chance.character({ alpha: true }) + chance.character({ alpha: true });
+        arg.o = 1;
+        DeventBus.dispatch('uFetch', arg);
+        DeventBus.addListener('onUData', TestVM1.onVM2Data);
+    };
+    TestVM1.onVM2Data = function (data2) {
+        console.log('data2');
+        TestVM1.assert.ok(true, "Passed!");
+        TestVM1.done2();
     };
     return TestVM1;
 }());

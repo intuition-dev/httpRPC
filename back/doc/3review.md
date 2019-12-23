@@ -19,3 +19,5 @@ https://medium.com/@cekvneich/short-review-of-basics-of-full-stack-big-data-scal
 That's it for basics of full stack, big data, scalability and clusters of distributed data servers
 
 I also plan to write part II: Advanced front end development, if you follow me on linked in or on medium, you'll know about it.
+
+ps: https://news.ycombinator.com/item?id=11312728
