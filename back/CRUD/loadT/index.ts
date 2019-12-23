@@ -2,6 +2,6 @@ import { Pupp } from "./lib/Pupp"
 
 const p = new Pupp()
 
-p.grade('https://www.nbcnews.com')
+p.grade('https://www.ubaycap.com')
 
-// run('https://www.ubaycap.com')
+
