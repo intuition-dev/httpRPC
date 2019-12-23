@@ -27,9 +27,8 @@ class UsersVM {
 
       this.rpc.invoke('uapi', 'srch', args)
       .then(function(resp) {
-         console.log(Date.now() - _rpcS, resp)
+         console.log(Date.now() - _rpcS)
          DeventBus.dispatch('onUData', resp)
-
    })
    }//()
 
