@@ -2,7 +2,7 @@
   "name": "pupp",
   "version": "1.0.0",
   "dependencies": {
-   "mbakex": ">=1.11.5",
+   "mbakex": ">=2.12.1",
    "puppeteer": ">=2.0.0"
   }
 }
