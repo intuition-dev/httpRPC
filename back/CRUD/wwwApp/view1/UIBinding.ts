@@ -57,12 +57,6 @@ depp.require(['DOM', 'listjs', 'eventBus'], function() {
    new UIBinding()
 }) 
  
-
-// DELL
-function pushState() {
-
-}
-
 function testE1() {
 
    depp.require('eventBus', function(){

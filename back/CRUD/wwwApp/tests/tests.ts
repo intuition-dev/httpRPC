@@ -7,7 +7,7 @@ declare var depp
 declare var DeventBus
 declare var chance
 
-let pro = loadQunit()
+var pro = loadQunit()
 pro.then(function(){
    console.log('qunit loaded')
 
