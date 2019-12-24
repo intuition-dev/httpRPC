@@ -1,7 +1,7 @@
 {
     "name": "http-rpc",
-    "version": "0.6.3",
-    "description": "Inspired by JSON-RPC and gROC, but works over HTTP: specifically it works with a browser over http protocol.",
+    "version": "1.0.1",
+    "description": "Inspired by JSON-RPC and gRPC, but works over HTTP: specifically it works with a browser over http protocol.",
     "license": "LGPL-3.0-only",
     "author": "http://www.INTUITION.DEV",
     "homepage": "https://github.com/intuition-dev/httpRPC",
@@ -10,7 +10,7 @@
         "url": "https://github.com/intuition-dev/httpRPC"
     },
     "keywords": [
-        "RPC",
+        "RPC", "http",
         "JSON-RPC",
         "gRPC",
         "protocol buffers",
@@ -27,6 +27,7 @@
         "serve-static": ">=1.14.1"
     },
     "devDependencies": {
-        "@types/node": ">=12.12.14"
-    }
+        "@types/node": ">=13.1.0",
+        "mbake": ">=7.12.2"
+      }
 }
