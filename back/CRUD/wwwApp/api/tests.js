@@ -31,13 +31,10 @@ var TestVM1 = (function () {
         DeventBus.addListener('onUData', TestVM1.onVM2Data);
     };
     TestVM1.onVM2Data = function (data2) {
-         console.log('data2');
-         TestVM1.assert.ok(true, "Passed!");
-         TestVM1.done2();
-         
-         // RPC send time it took
-
-         console.log('TestDone')
+        console.log('data2');
+        TestVM1.assert.ok(true, "Passed!");
+        TestVM1.done2();
+        console.log('TestsDone');
     };
     return TestVM1;
 }());

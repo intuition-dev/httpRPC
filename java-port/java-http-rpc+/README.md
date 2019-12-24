@@ -4,7 +4,7 @@
 The reference implementation is the node.js version, but here is a Java version. Goal is to work like the reference implementation back-end
 and be able to handle same front-end library.
 
-Reference implementation is here: http://http-rpc.mbake.org
+Reference implementation is here: http://http-rpc.metabake.net
 You should check the features and note there as this here is just a port.
 
 #### Please star our main project here:
@@ -40,4 +40,4 @@ In production you should use this front-end:
 - [Optional CORS  rejection example](https://github.com/intuition-dev/intu-diversity/blob/master/java-workspace/java-http-rpc%2B/src/org/hrp/api/AbstractHSrvHandler.java)
 
 ## Questions?
-- http://forum.mbake.org
+- http://forum.metabake.net

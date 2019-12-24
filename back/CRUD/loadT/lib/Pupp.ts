@@ -40,7 +40,7 @@ export class Pupp {
          if(fs.length>0)
             console.log(fs)
          
-         if(fs=='TestDone') browser.close()
+         if(fs=='TestsDone') browser.close()
       })
 
       page.goto(url, { waitUntil: ['load'], timeout: 4 * 1000 })

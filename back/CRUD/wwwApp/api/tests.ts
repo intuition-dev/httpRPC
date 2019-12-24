@@ -28,7 +28,7 @@ class TestVM1 {
       depp.define({'vm1':'/api/UsersVM.js'
        , 'chance': 'https://cdn.jsdelivr.net/npm/chance@1.1.4/chance.min.js'
       })
-      depp.require(['vm1', 'chance'])
+      depp.require(['vm1', 'chance', 'RPC', 'client' ])
 
       QUnit.test( "hello test", function( assert_ ) {
          TestVM1.assert = assert_
@@ -55,6 +55,9 @@ class TestVM1 {
       console.log('data2')
       TestVM1.assert.ok( true, "Passed!" )
       TestVM1.done2()
+      // in here we can call RPC to send data of duration, browser and ip
+      // rpc send metrics
+      console.log('TestsDone')
    }//()
    
 }//class

@@ -5,7 +5,7 @@ declare var DeventBus
 
 console.log('uvm')
 
-depp.require(['RPC','eventBus'])
+depp.require(['RPC','eventBus', 'trace'])
 
 class UsersVM {
    rpc = new httpRPC('http', 'localhost', 8888)
