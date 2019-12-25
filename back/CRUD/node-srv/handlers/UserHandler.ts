@@ -4,7 +4,7 @@ const formatOut = bformat({ outputMode: 'short' })
 const log = bunyan.createLogger({src: true, stream: formatOut, name: "UserHandler"})
 
 import { CDB } from "../db/CDB"
-import { BaseRPCMethodHandler } from 'http-rpc/node-srv/lib/Serv'
+import { BaseRPCMethodHandler } from 'http-rpc/lib/Serv'
 
 log.info('hand')
 

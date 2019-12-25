@@ -89,7 +89,7 @@ We now have a running service with one handler and that handler has one method '
 
    ```
    <script src="https://cdn.jsdelivr.net/npm/lz-string@1.4.4/libs/lz-string.min.js"></script>
-   <script src="https://cdn.jsdelivr.net/gh/intuition-dev/httpRPC@1.0.1/src/node-srv/browser/httpRPC.js"></script>
+   <script src="https://cdn.jsdelivr.net/gh/intuition-dev/httpRPC@1.0.1/src/node-srv/browser/httpRPC.min.js"></script>
    ```
 
 NOTE: lz-string is a compression library used by http-rpc, so it needs to be loaded before:

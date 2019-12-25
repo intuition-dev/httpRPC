@@ -4,7 +4,7 @@ const bformat = require('bunyan-format2')
 const formatOut = bformat({ outputMode: 'short' })
 const log = bunyan.createLogger({src: true, stream: formatOut, name: "crudApp"})
 
-import {  Serv }  from 'http-rpc/node-srv/lib/Serv'
+import {  Serv }  from 'http-rpc/lib/Serv'
 
 import {  UserHandler } from "./handlers/UserHandler"
 import { CDB } from "./db/CDB"

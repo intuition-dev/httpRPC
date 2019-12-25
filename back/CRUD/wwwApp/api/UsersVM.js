@@ -1,5 +1,4 @@
 console.log('uvm');
-depp.require(['RPC', 'eventBus']);
 var UsersVM = (function () {
     function UsersVM() {
         this.rpc = new httpRPC('http', 'localhost', 8888);
@@ -23,7 +22,7 @@ var UsersVM = (function () {
     };
     return UsersVM;
 }());
-depp.require(['eventBus', 'RPC'], function () {
+depp.require(['eventBus', 'RPC', 'trace'], function () {
     console.log('ready');
     new UsersVM();
 });

@@ -37,8 +37,6 @@ depp.require(['DOM', 'listjs', 'eventBus'], function () {
     console.log('ready');
     new UIBinding();
 });
-function pushState() {
-}
 function testE1() {
     depp.require('eventBus', function () {
         console.log('tst:');

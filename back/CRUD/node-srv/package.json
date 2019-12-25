@@ -4,15 +4,15 @@
   "description": "CRUD example",
   "private": true,
   "engines": {
-    "node": ">=13.2.0"
+    "node": ">=13.5.0"
   },
   "dependencies": {
     "faker": ">=4.1.0",
-    "http-rpc": ">=0.6.3",
-    "mbakex": ">=2.12.1",
+    "http-rpc": ">=1.1.0",
+    "mbakex": ">=2.12.2",
     "murmurhash3js": ">=3.0.1"
   },
   "devDependencies": {
-    "@types/node": ">=12.12.21"
+    "@types/node": ">=13.1.0"
   }
 }
