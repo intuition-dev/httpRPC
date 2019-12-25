@@ -14,11 +14,11 @@ This shows how to:
 
 ## CRUD w/ ViewModel (VM) 
 
-You can use any framework or library with INTUITION.  And INTUITION comes with a recommended 'app framework' for Web Apps, a ViewModel. VM.
+You can use any framework or library with INTUITION .  And INTUITION  comes with a recommended 'app framework' for Web Apps, a ViewModel. VM.
 The VM contains the fetch, REST, RPC or such commands to get the remote data.
 But more important: the VM maps to the View data fields exactly.
 
-This is similar to M-VM-V patern. Major difference is that the VM for INTUITION is
+This is similar to M-VM-V patern. Major difference is that the VM for INTUITION  is
 what KnockOut called Complex VM or a Master VM.
 
 The VM is called by the View's UIBinding and VM is tested end2end and (distributed) load/stress to find the performance.

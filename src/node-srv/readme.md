@@ -4,7 +4,7 @@
 #### Inspired by JSON-RPC and gRPC, but works over HTTP: specifically it works with a browser over http protocol.
 
 #### Marketing: Please star our main project here:
-- https://github.com/intuition-dev/INTU
+- https://github.com/INTUITION-dev/INTU
 
 ## HTTP-RPC
 
@@ -89,7 +89,7 @@ We now have a running service with one handler and that handler has one method '
 
    ```
    <script src="https://cdn.jsdelivr.net/npm/lz-string@1.4.4/libs/lz-string.min.js"></script>
-   <script src="https://cdn.jsdelivr.net/gh/intuition-dev/httpRPC@1.0.1/src/node-srv/browser/httpRPC.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/gh/INTUITION-dev/httpRPC@1.0.1/src/node-srv/browser/httpRPC.min.js"></script>
    ```
 
 NOTE: lz-string is a compression library used by http-rpc, so it needs to be loaded before:

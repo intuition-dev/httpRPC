@@ -8,7 +8,7 @@ Reference implementation is here: http://http-rpc.metabake.net
 You should check the features and note there as this here is just a port.
 
 #### Please star our main project here:
-- https://github.com/intuition-dev/INTU
+- https://github.com/INTUITION-dev/INTU
 
 
 ### Server-side: run Main.java
@@ -19,12 +19,12 @@ It is a stand alone http server based on
 
 ## Client-side
 
-Of course Java does not run front-end, so you have to run the browser side as javascript from the http-rpc+/web folder, and index.html ( https://github.com/intuition-dev/mbToolBelt/tree/master/http-rpc%2B/web )
+Of course Java does not run front-end, so you have to run the browser side as javascript from the http-rpc+/web folder, and index.html ( https://github.com/INTUITION-dev/mbToolBelt/tree/master/http-rpc%2B/web )
 
 So start an http server to run the index.html in that folder. It will make some dummy RPC calls.
 
 In production you should use this front-end:
-```https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v3.12.16/http-rpc+/web/httpRPC.min.js ```
+```https://cdn.jsdelivr.net/gh/INTUITION-dev/mbToolBelt@v3.12.16/http-rpc+/web/httpRPC.min.js ```
 
 
 ### Demo
@@ -35,9 +35,9 @@ In production you should use this front-end:
 
 ### Code review:
 
-- [HTTP Server's Handler.java](https://github.com/intuition-dev/intu-diversity/blob/master/java-workspace/java-http-rpc%2B/src/org/hrp/http/HSrvHandler.java)
-- [RPC/Router.java](https://github.com/intuition-dev/intu-diversity/blob/master/java-workspace/java-http-rpc%2B/src/org/hrp/routes/ScreensRouter.java)
-- [Optional CORS  rejection example](https://github.com/intuition-dev/intu-diversity/blob/master/java-workspace/java-http-rpc%2B/src/org/hrp/api/AbstractHSrvHandler.java)
+- [HTTP Server's Handler.java](https://github.com/INTUITION-dev/intu-diversity/blob/master/java-workspace/java-http-rpc%2B/src/org/hrp/http/HSrvHandler.java)
+- [RPC/Router.java](https://github.com/INTUITION-dev/intu-diversity/blob/master/java-workspace/java-http-rpc%2B/src/org/hrp/routes/ScreensRouter.java)
+- [Optional CORS  rejection example](https://github.com/INTUITION-dev/intu-diversity/blob/master/java-workspace/java-http-rpc%2B/src/org/hrp/api/AbstractHSrvHandler.java)
 
 ## Questions?
 - http://forum.metabake.net
