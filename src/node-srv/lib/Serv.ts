@@ -1,6 +1,6 @@
 import { Response, Request } from "express"
 
-// All rights reserved by INTUITION(INTUITION.DEV) | Cekvenich, licensed under LGPL 3.0
+// All rights reserved by CekvenichINTUITION.DEV) |  Cekvenich, licensed under LGPL 3.0
 // NOTE: You can extend these classes!
 
 import express from 'express'
