@@ -3,6 +3,6 @@ rm *.zip
 
 rm -rf ./loadT/node_modules
 rm -rf ./node-srv/node_modules
+rm ./node-srv/db/*.db
 
-zip -r ./CRUD.zip .
-zip -r ./CMS.zip ./examples/CMS
+zip -r ./CRUD.zip ../CRUD
