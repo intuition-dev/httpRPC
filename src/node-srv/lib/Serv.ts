@@ -1,6 +1,6 @@
 import { Response, Request } from "express"
 
-// All rights reserved by CekvenichINTUITION.DEV) |  Cekvenich, licensed under LGPL 3.0
+// All rights reserved by Cekvenich|INTUITION.DEV) |  Cekvenich, licensed under LGPL 3.0
 // NOTE: You can extend these classes!
 
 import express from 'express'
@@ -217,8 +217,8 @@ export class Serv {
     * The longer the better! Max is 1 year in seconds ( 60*60*24*364 ). You can flush CDN at CDN and flush browser at browser.
     */
    serveStatic(path:string, broT, cdnT?) {
-      if(!broT ) broT = 30*60
-      if(!cdnT ) cdnT = (30*60)-1 // cdn is less than bro
+      if(!broT ) broT = 24*60*60 + 1
+      if(!cdnT ) cdnT = 24*60*60 // cdn is less than bro
       
       log.info('Serving root:', path, broT, cdnT)
 
