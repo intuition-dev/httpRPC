@@ -6,7 +6,7 @@ import { Response, Request } from "express"
 import express from 'express'
 
 import lz from 'lz-string'
-import URL from 'url'
+const URL = require ( 'url' )
 
 const serveStatic = require('serve-static')
 
