@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "faker": ">=4.1.0",
-    "http-rpc": ">=1.1.0",
+    "http-rpc": ">=1.1.1",
     "mbakex": ">=2.12.2",
     "murmurhash3js": ">=3.0.1"
   },
