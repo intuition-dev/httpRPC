@@ -83,7 +83,7 @@ A route /api will be handled by Handler1!
 We now have a running service with one handler and that handler has one method 'multiply' (that is then passed on to the business layer).
 
 
-### Part II: Client-side
+### Part II: Client side
 
 1. In the browser, load the lib(s from a CDN:
 
@@ -135,7 +135,7 @@ And the back-end team even help support the ViewModel, reducing any impedance th
 then it is the back-end team's problem. 
 
 So the logical next step for the back-end team: start writing helper classes to call the remote service, hence HTTP-RPC+ was born, as a result of back-end 
-team being responsible for the client-side calls.
+team being responsible for the Client side calls.
 
 We did try JSON-RPC, but that had issues over HTTP and world wide web. So we mimicked that and built HTTP-RPC+. There is a node.js reference implementation, and also a Java port.
 
