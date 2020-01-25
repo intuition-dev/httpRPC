@@ -26,7 +26,7 @@ One popular platform is nodejs. We'll use these libraries/packages:
 - ip to map ip address string to an integer
 - perfy to measure time/performance.
 
-You can use yarn add to add each of these packages. Of course you should be somewhat close to your platform and use case so if you use pgSQL and Java, then you can find similar libraries/packages to above, and I'm sure you can adjust. But I'll continue with the nodejs example, you'll need an insert function like:
+You can use `npm i` to add each of these packages. Of course you should be somewhat close to your platform and use case so if you use pgSQL and Java, then you can find similar libraries/packages to above, and I'm sure you can adjust. But I'll continue with the nodejs example, you'll need an insert function like:
 
 ```
    ins(p) {
