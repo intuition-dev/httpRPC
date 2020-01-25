@@ -6,3 +6,5 @@ package-lock.*
 yarn.lock
 
 *.csv
+
+.yarn
