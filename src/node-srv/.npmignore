@@ -12,3 +12,6 @@ other
 
 *.html
 
+.yarn
+
+pacakge-lock.json
