@@ -1,6 +1,5 @@
 
 
-Link for browser changed, update links.
+Link for browser changed, update links in toolbelt, etc
 
-Release via npm, update docs, other libs
-
+Release via npm
