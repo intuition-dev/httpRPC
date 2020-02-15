@@ -1,5 +1,5 @@
 
-
-Link for browser changed, update links in toolbelt, etc
-
 Release via npm
+
+Update links in toolbelt to npm, etc.
+

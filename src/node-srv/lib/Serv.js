@@ -3,6 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const errorhandler = require('errorhandler');
 const express_1 = __importDefault(require("express"));
 const lz_string_1 = __importDefault(require("lz-string"));
 const URL = require('url');
@@ -114,6 +115,10 @@ class LogHandler extends BaseRPCMethodHandler {
 }
 class Serv {
     constructor(origins) {
+        process.on('unhandledRejection', (error, promise) => {
+            console.log(' Oh Lord! We forgot to handle a promise rejection here: ', promise);
+            console.log(' The error was: ', error);
+        });
         this._origins = origins;
         if (Serv._expInst)
             throw new Error('one instance of express app already exists');
@@ -121,6 +126,7 @@ class Serv {
         const cors = new CustomCors(origins);
         Serv._expInst = express_1.default();
         Serv._expInst.use(cors);
+        Serv._expInst.use(errorhandler({ dumpExceptions: true, showStack: true }));
     }
     setLogger(foo, bro, cdn) {
         this.routeRPC('log', new LogHandler(foo, bro, cdn));

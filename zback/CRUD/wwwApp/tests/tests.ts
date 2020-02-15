@@ -26,7 +26,7 @@ class TestVM1 {
       
       TestVM1.listener = DeventBus.addListener('onUData', TestVM1.onVM1Data)
       depp.define({'vm1':'/api/UsersVM.js'})
-      depp.require(['vm1', 'chance', 'RPC', 'client' ])
+      depp.require(['vm1', 'chance', 'RPC' ])
 
       QUnit.test( "hello test", function( assert_ ) {
          TestVM1.assert = assert_

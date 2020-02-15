@@ -1,4 +1,6 @@
 import { Response, Request } from "express"
+const errorhandler = require('errorhandler')
+
 
 // All rights reserved by Cekvenich|INTUITION.DEV) |  Cekvenich, licensed under LGPL 3.0
 // NOTE: You can extend these classes!
@@ -179,6 +181,12 @@ export class Serv {
     * @param origins An array of string that would match a domain. So host would match localhost. eg ['*'] 
     */
    constructor(origins:Array<string>) {
+
+      process.on('unhandledRejection', (error, promise) => {
+         console.log(' Oh Lord! We forgot to handle a promise rejection here: ', promise)
+         console.log(' The error was: ', error );
+      })
+      
       this._origins = origins
 
       // does it already exist?
@@ -190,6 +198,8 @@ export class Serv {
       // Serv._expInst.set('trust proxy', true)
 
       Serv._expInst.use(cors)
+
+      Serv._expInst.use(errorhandler({ dumpExceptions: true, showStack: true }))
 
    }//()
 

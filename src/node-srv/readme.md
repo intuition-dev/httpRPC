@@ -34,7 +34,7 @@ same business logic.
 
 Steps:
 
-1. Write a server side method that you want to use. Mostly these are DB CRUD methods, but here is a multiply example, this is the method we will call from the browser:
+1. Write a server side method that you want to use. Often these are DB CRUD methods, but here is a multiply example, this is the method we will call from the browser:
 
    ```
    function doMultiply(a,b) {
@@ -45,7 +45,8 @@ Steps:
 2. Write a handler that calls above method. First you'll need to add the package and import :
 
    ```
-   npm add http-rpc
+   npm i http-rpc
+   
    import { BaseRPCMethodHandler, Serv } from 'http-rpc/node-srv/lib/Serv'
    ```
 
@@ -89,7 +90,7 @@ We now have a running service with one handler and that handler has one method '
 
    ```
    <script src="https://cdn.jsdelivr.net/npm/lz-string@1.4.4/libs/lz-string.min.js"></script>
-   <script src="https://cdn.jsdelivr.net/gh/INTUITION-dev/httpRPC@1.1.2/src/node-srv/browser/httpRPC.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/http-rpc@1.1.5/browser/httpRPC.min.js"></script>
    ```
 
 NOTE: lz-string is a compression library used by http-rpc, so it needs to be loaded before:

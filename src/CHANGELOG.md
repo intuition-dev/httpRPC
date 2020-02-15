@@ -1,3 +1,6 @@
+
+- added error helper packages
+
 ### 1.1.2
 - new year
 
