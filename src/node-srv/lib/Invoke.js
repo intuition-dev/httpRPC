@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const fetch = require('node-fetch');
+const fetch = require('make-fetch-happen');
 const bunyan = require('bunyan');
 const bformat = require('bunyan-format2');
 const formatOut = bformat({ outputMode: 'short' });

@@ -1,6 +1,6 @@
 // All rights reserved by Cekvenich|INTUITION.DEV) |  Cekvenich, licensed under LGPL 3.0
 
-const fetch = require('node-fetch')
+const fetch = require('make-fetch-happen')
 
 const bunyan = require('bunyan')
 const bformat = require('bunyan-format2')  
