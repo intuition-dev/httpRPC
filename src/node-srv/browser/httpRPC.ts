@@ -1,5 +1,6 @@
 // All rights reserved by Cekvenich|INTUITION.DEV) |  Cekvenich, licensed under LGPL 3.0
 
+
 // requires Promise, lz-string and fetch
 class httpRPC {// 
   // uses simple auth
@@ -61,7 +62,6 @@ class httpRPC {//
     var compressed = LZString.compressToEncodedURIComponent(str)
 
     const THIZ = this
-  
     return new Promise(function(resolve, reject) {
       //console.info(formData.get('method'))
       let url:string = THIZ.httpOrs+'://'+THIZ.host + (THIZ.port ? (':' + THIZ.port) : '') + '/'+route 
@@ -81,8 +81,8 @@ class httpRPC {//
           })//fetch
           .then(function(fullResp) {           
             if(!fullResp.ok) {
-               console.warn('HTTP protocol error in RPC: ' + fullResp)
-               reject('HTTP protocol error in RPC: ' + fullResp)
+               console.warn('HTTP protocol error in RPC: '  + fullResp.status + fullResp)
+               reject('HTTP protocol error in RPC: ' +  fullResp.status + fullResp)
             }
              else 
                return fullResp.text()
@@ -94,11 +94,13 @@ class httpRPC {//
                console.log(str)
             }
             var resp=  JSON.parse(str)
+            
             if((!resp) || resp.errorMessage) {
                console.warn(method +' '+ str)
                reject(method +' '+ str)
             }
             resolve(resp.result)
+
           })//fetch
           .catch(function (err) {
             console.warn('fetch err ', method, err)

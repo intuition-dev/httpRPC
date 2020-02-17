@@ -3,6 +3,7 @@
 
 // from mbake
 import { BaseRPCMethodHandler, Serv, iAuth } from './lib/Serv'
+import { HttpRPC } from "./lib/SrvRPC"
 
 let allowedDomains = []
 allowedDomains.push('one.com') // get from config.yaml, should never be '*'
@@ -26,21 +27,27 @@ class Handler1 extends BaseRPCMethodHandler {
    }//()
 
 }//c
-const h1 = new Handler1()
-service.routeRPC('api', h1 ) // route to handler
-
-// service.setLogger(handleLog, 0)
-
-// RPC Example: (should be class)
+// RPC Example: (should be a class)
 function doMultiply(a,b) {
    return a*b
 }
 
-/*function handleLog( params) {
-   log.info(params)
-}*/
+const h1 = new Handler1()
+service.routeRPC('api', h1 ) // route to handler
 
 service.listen(8888)
+
+// part II: server side
+
+let params = {a:5, b:2}
+foo(params)
+async function foo(params) {
+   const rpc = new HttpRPC('http', 'localhost', 8888)
+   let ans = await rpc.invoke('api', 'multiply',  params  )
+   console.log(ans)
+}
+
+// part III
 
 /* example impl of Auth
 class CheckX implements iAuth {
@@ -52,3 +59,10 @@ class CheckX implements iAuth {
    }//()
 }//c
 */
+
+
+// service.setLogger(handleLog, 0)
+
+/*function handleLog( params) {
+   log.info(params)
+}*/

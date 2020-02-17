@@ -1,5 +1,5 @@
 
-Release via npm
+Release via npm, no need for a git release.
 
 Update links in toolbelt to npm, etc.
 

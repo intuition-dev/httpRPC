@@ -39,8 +39,8 @@ var httpRPC = (function () {
             })
                 .then(function (fullResp) {
                 if (!fullResp.ok) {
-                    console.warn('HTTP protocol error in RPC: ' + fullResp);
-                    reject('HTTP protocol error in RPC: ' + fullResp);
+                    console.warn('HTTP protocol error in RPC: ' + fullResp.status + fullResp);
+                    reject('HTTP protocol error in RPC: ' + fullResp.status + fullResp);
                 }
                 else
                     return fullResp.text();

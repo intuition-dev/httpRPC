@@ -1,4 +1,5 @@
-
+ ### 1.1.6
+- tested SrvRPC
 - added error helper packages
 
 ### 1.1.2
