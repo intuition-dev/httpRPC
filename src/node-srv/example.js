@@ -10,14 +10,19 @@ class Handler1 extends Serv_1.BaseRPCMethodHandler {
     constructor() {
         super(2, 1);
     }
-    multiply(params) {
+    async multiply(params) {
         let a = params.a;
         let b = params.b;
-        return doMultiply(a, b);
+        let result = await doMultiply(a, b);
+        return result;
     }
 }
-function doMultiply(a, b) {
-    return a * b;
+async function doMultiply(a, b) {
+    return new Promise(function (resolve, reject) {
+        setTimeout(function () {
+            resolve(a * b);
+        }, 500);
+    });
 }
 const h1 = new Handler1();
 service.routeRPC('api', h1);

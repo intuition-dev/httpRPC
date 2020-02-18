@@ -19,6 +19,8 @@ HTTP-RPC leverages browsers fetch() command. As a plus, it has built in edge cac
 - Handles user/password (or any name-value-pair) auth as well as token
 - Has a field for the calling entity (or page or screen), so you know what screen/page called the RPC. 
 - Can use regular headers for caching at at edge w/ CDN or at the browser.
+- Timeout, configurable
+- Browser side AND server side calls/invokes.
 
 ### Notes
 - The https should be provided by the CDN/Edge. It makes for a faster https handshake. Also, some CDN offer QUIC (http v3) protocol.
@@ -90,7 +92,7 @@ We now have a running service with one handler and that handler has one method '
 
    ```
    <script src="https://cdn.jsdelivr.net/npm/lz-string@1.4.4/libs/lz-string.min.js"></script>
-   <script src="https://cdn.jsdelivr.net/npm/http-rpc@1.1.6/browser/httpRPC.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/http-rpc@1.1.7/browser/httpRPC.min.js"></script>
    ```
 
 NOTE: lz-string is a compression library used by http-rpc, so it needs to be loaded before:

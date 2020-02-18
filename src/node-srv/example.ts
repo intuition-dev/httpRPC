@@ -19,17 +19,23 @@ class Handler1 extends BaseRPCMethodHandler {
       super(2,1) // example of 2 second browser cache and 1 second CDN/edge cache. You can set to 0,0 to disable.
    }
 
-   multiply(params) {
+   async multiply(params) {
       let a = params.a
       let b = params.b
 
-      return doMultiply(a,b)
+      let result = await doMultiply(a,b)
+      return  result
    }//()
 
 }//c
 // RPC Example: (should be a class)
-function doMultiply(a,b) {
-   return a*b
+async function doMultiply(a,b) {// simulate wait
+   return new Promise(function(resolve, reject) {
+      setTimeout(function(){
+         resolve( a*b )
+      },500)
+   })
+
 }
 
 const h1 = new Handler1()

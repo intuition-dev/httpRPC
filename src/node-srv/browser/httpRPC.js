@@ -16,7 +16,9 @@ var httpRPC = (function () {
     httpRPC.prototype.setToken = function (token) {
         this.token = token;
     };
-    httpRPC.prototype.invoke = function (route, method, params) {
+    httpRPC.prototype.invoke = function (route, method, params, timeout) {
+        if (!timeout)
+            timeout = 2000;
         if (!params)
             params = {};
         params.method = method;
@@ -27,7 +29,7 @@ var httpRPC = (function () {
         var str = JSON.stringify(params);
         var compressed = LZString.compressToEncodedURIComponent(str);
         var THIZ = this;
-        return new Promise(function (resolve, reject) {
+        var pro1 = new Promise(function (resolve, reject) {
             var url = THIZ.httpOrs + '://' + THIZ.host + (THIZ.port ? (':' + THIZ.port) : '') + '/' + route;
             url = url + '/?p=' + compressed;
             fetch(url, {
@@ -46,10 +48,6 @@ var httpRPC = (function () {
                     return fullResp.text();
             })
                 .then(function (str) {
-                console.log(str);
-                if (THIZ.DEBUG) {
-                    console.log(str);
-                }
                 var resp = JSON.parse(str);
                 if ((!resp) || resp.errorMessage) {
                     console.warn(method + ' ' + str);
@@ -62,6 +60,10 @@ var httpRPC = (function () {
                 reject(method + ' ' + err);
             });
         });
+        var pro2 = new Promise(function (resolve, reject) {
+            setTimeout(function () { return reject('timeout'); }, timeout);
+        });
+        return Promise.race([pro1, pro2]);
     };
     httpRPC.prototype.setItem = function (key, val) {
         sessionStorage.setItem(key, val);

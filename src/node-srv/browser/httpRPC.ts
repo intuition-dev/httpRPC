@@ -46,9 +46,11 @@ class httpRPC {//
    * @param route api apth, eg api
    * @param method CRUD, insert, check, listAll, etc
    * @param params Object of name value pairs.
+   * @param timeout defaults to 2000
    */
-  invoke(route, method, params):Promise<string> { // returns promise of results or err
+  invoke(route, method, params, timeout?):Promise<unknown> { // returns promise of results or err
     //if array, return as array
+    if(!timeout) timeout = 2000
     if(!params) params = {}
 
     params.method=method
@@ -62,7 +64,8 @@ class httpRPC {//
     var compressed = LZString.compressToEncodedURIComponent(str)
 
     const THIZ = this
-    return new Promise(function(resolve, reject) {
+    
+    const pro1 = new Promise(function(resolve, reject) {
       //console.info(formData.get('method'))
       let url:string = THIZ.httpOrs+'://'+THIZ.host + (THIZ.port ? (':' + THIZ.port) : '') + '/'+route 
 
@@ -88,11 +91,7 @@ class httpRPC {//
                return fullResp.text()
           })
           .then(function(str) {
-            //var str = LZString.decompress(compressed)
-            console.log(str)
-            if(THIZ.DEBUG) { 
-               console.log(str)
-            }
+            //var str = LZString.decompress(compressed) 
             var resp=  JSON.parse(str)
             
             if((!resp) || resp.errorMessage) {
@@ -106,7 +105,15 @@ class httpRPC {//
             console.warn('fetch err ', method, err)
             reject(method +' '+ err)
           })
-      })//pro
+      })//pro1
+
+    const pro2 = new Promise(function(resolve, reject) {
+      setTimeout(() => reject('timeout'), timeout)
+    })//pro2
+
+    //allow it to timeout. Should use AbortController with polly fill
+    return Promise.race([ pro1, pro2])
+    
   }//invoke()
 
   // for example keys

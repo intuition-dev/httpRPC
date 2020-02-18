@@ -55,8 +55,10 @@ export class HttpRPC {//
      * @param route api apth, eg api
      * @param method CRUD, insert, check, listAll, etc
      * @param params Object of name value pairs.
+     * @param timeout defaults to 2000
      */
-    invoke(route, method, params):Promise<string> { // returns promise of results or err
+    invoke(route, method, params, timeout?):Promise<string> { // returns promise of results or err
+      if(!timeout) timeout = 2000
       //if array, return as array
       if(!params) params = {}
   
@@ -75,6 +77,7 @@ export class HttpRPC {//
   
         url = url + '/?p=' + compressed
         fetch(url, {
+              timeout: timeout,
               method: 'GET',
               cache: 'default',
               redirect: 'follow',

@@ -24,7 +24,9 @@ class HttpRPC {
     setToken(token) {
         this.token = token;
     }
-    invoke(route, method, params) {
+    invoke(route, method, params, timeout) {
+        if (!timeout)
+            timeout = 2000;
         if (!params)
             params = {};
         params.method = method;
@@ -38,6 +40,7 @@ class HttpRPC {
             let url = THIZ.httpOrs + '://' + THIZ.host + (THIZ.port ? (':' + THIZ.port) : '') + '/' + route;
             url = url + '/?p=' + compressed;
             fetch(url, {
+                timeout: timeout,
                 method: 'GET',
                 cache: 'default',
                 redirect: 'follow',

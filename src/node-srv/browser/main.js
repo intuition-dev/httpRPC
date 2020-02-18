@@ -2,7 +2,7 @@
 
 const rpc = new httpRPC('http', 'localhost', 8888)
 
-rpc.invoke('api', 'multiply', {a:5, b:2})
+rpc.invoke('api', 'multiply', {a:5, b:2}, 300 )
    .then(function(resp) {
       console.log(resp)
    })
