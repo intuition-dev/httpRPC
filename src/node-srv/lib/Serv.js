@@ -86,6 +86,8 @@ class BaseRPCMethodHandler {
             if (THIZ.DEBUG)
                 log.info(str);
             const params = JSON.parse(str);
+            const ip = req.connection.remoteAddress;
+            params.remoteAddress = ip;
             method = params.method;
             if (typeof THIZ[method] != 'function') {
                 this._retErr(res, 'no such method ' + method);

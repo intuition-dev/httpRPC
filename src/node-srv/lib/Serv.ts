@@ -46,7 +46,7 @@ export class CustomCors {
    }//()
    
    static getReqAsOrigin(req):string {// no used
-      let proto = req.connection.encrypted ? 'https' : 'http'
+      let proto = req.socket.encrypted ? 'https' : 'http'
       const host = req.hostname
       let original = req.originalUrl
       log.info(original)
@@ -134,6 +134,10 @@ export class BaseRPCMethodHandler {
          if(THIZ.DEBUG) log.info(str)
 
          const params = JSON.parse(str)
+         
+         const ip = res.socket.remoteAddress;
+
+         params.remoteAddress = ip
          method = params.method
          
          if(typeof THIZ[method] != 'function') {
