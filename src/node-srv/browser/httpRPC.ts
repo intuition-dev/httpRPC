@@ -1,6 +1,5 @@
 // All rights reserved by Cekvenich|INTUITION.DEV) |  Cekvenich, licensed under LGPL 3.0
 
-
 // requires Promise, lz-string and fetch
 class httpRPC {// 
   // uses simple auth
