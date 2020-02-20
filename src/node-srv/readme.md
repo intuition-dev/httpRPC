@@ -9,7 +9,7 @@
 ## HTTP-RPC
 
 Inspired by JSON-RPC, but works over HTTP: specifically it works with a browser over http protocol. Google FireBase use gRPC, based on protocol buffers.  Other alternatives are REST and GraphQL.
-HTTP-RPC leverages browsers fetch() command. As a plus, it has built in edge cache: it can use both browser cache and CDN cache.
+HTTP-RPC leverage browsers fetch() command. As a plus, it has built in edge cache: it can use both browser cache and CDN cache.
 
 
 ## Features 
