@@ -1,5 +1,5 @@
-var httpRPC = (function () {
-    function httpRPC(httpOrs, host, port) {
+class httpRPC {
+    constructor(httpOrs, host, port) {
         this.user = '';
         this.pswd = '';
         this.token = '';
@@ -9,14 +9,14 @@ var httpRPC = (function () {
         this.port = port;
         console.log(this.httpOrs, this.host, this.port);
     }
-    httpRPC.prototype.setUser = function (user, pswd) {
+    setUser(user, pswd) {
         this.user = user;
         this.pswd = pswd;
-    };
-    httpRPC.prototype.setToken = function (token) {
+    }
+    setToken(token) {
         this.token = token;
-    };
-    httpRPC.prototype.invoke = function (route, method, params, timeout) {
+    }
+    invoke(route, method, params, timeout) {
         if (!timeout)
             timeout = 2000;
         if (!params)
@@ -28,9 +28,9 @@ var httpRPC = (function () {
         params.view = window.location.href;
         var str = JSON.stringify(params);
         var compressed = LZString.compressToEncodedURIComponent(str);
-        var THIZ = this;
-        var pro1 = new Promise(function (resolve, reject) {
-            var url = THIZ.httpOrs + '://' + THIZ.host + (THIZ.port ? (':' + THIZ.port) : '') + '/' + route;
+        const THIZ = this;
+        const pro1 = new Promise(function (resolve, reject) {
+            let url = THIZ.httpOrs + '://' + THIZ.host + (THIZ.port ? (':' + THIZ.port) : '') + '/' + route;
             url = url + '/?p=' + compressed;
             fetch(url, {
                 method: 'GET',
@@ -60,20 +60,20 @@ var httpRPC = (function () {
                 reject(method + ' ' + err);
             });
         });
-        var pro2 = new Promise(function (resolve, reject) {
-            setTimeout(function () { return reject('timeout'); }, timeout);
+        const pro2 = new Promise(function (resolve, reject) {
+            setTimeout(() => reject('timeout'), timeout);
         });
         return Promise.race([pro1, pro2]);
-    };
-    httpRPC.prototype.setItem = function (key, val) {
+    }
+    setItem(key, val) {
         sessionStorage.setItem(key, val);
-    };
-    httpRPC.prototype.getItem = function (key) {
+    }
+    getItem(key) {
         return sessionStorage.getItem(key);
-    };
-    httpRPC.prototype.log = function (msg, level, className) {
+    }
+    log(msg, level, className) {
         var THIZ = this;
-        var p = {
+        let p = {
             msg: msg,
             page: window.location.pathname,
             level: level,
@@ -97,6 +97,5 @@ var httpRPC = (function () {
             console.log(className, level, msg);
         else
             console.log(msg);
-    };
-    return httpRPC;
-}());
+    }
+}

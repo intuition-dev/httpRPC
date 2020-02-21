@@ -1,3 +1,6 @@
+  ### 2.2.0
+    - dropped support for es5
+ 
  ### 1.1.8
     - remote address
     - added timeout
