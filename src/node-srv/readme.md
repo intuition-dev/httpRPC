@@ -96,7 +96,6 @@ We now have a running service with one handler and that handler has one method '
    ```
 
 NOTE: lz-string is a compression library used by http-rpc, so it needs to be loaded before:
-NOTE: You have to load polyfills for fetch and promise as needed to support ie11 and such.
 
 2. Now call your remote method:
 

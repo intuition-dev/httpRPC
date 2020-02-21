@@ -50,12 +50,6 @@ Make sure that devops files are disabled in local and DEV. They are only for Pro
 - http://gtmetrix.com
 
 
-## Emulators (ie11 and older iOS)
-
-Of course everyone tests locally on IE 11, FF, iOS, Safari, Android, etc.
-
-- Browserstack account: to test IE 11, iOS and such.
-
 
 ## Pings
 

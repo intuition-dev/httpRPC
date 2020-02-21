@@ -8,7 +8,6 @@ const btoa = function(str){ return Buffer.from(str).toString('base64'); }
 const fetch = require('make-fetch-happen')
 const LZString = require('lz-string')
 
-// requires promise and fetch for ie11, you should require 'poly'
 export class HttpRPC {// 
     // uses simple auth
     httpOrs // protocol
