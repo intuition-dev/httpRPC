@@ -1,8 +1,0 @@
-{
-  "name": "pupp",
-  "version": "1.0.0",
-  "dependencies": {
-   "mbakex": ">=2.12.2",
-   "puppeteer": ">=2.0.0"
-  }
-}

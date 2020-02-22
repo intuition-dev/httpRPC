@@ -8,11 +8,11 @@
   },
   "dependencies": {
     "faker": ">=4.1.0",
-    "http-rpc": ">=1.1.1",
-    "mbakex": ">=2.12.2",
+    "http-rpc": ">=2.2.0",
+    "mbakex": ">=8.2.0",
     "murmurhash3js": ">=3.0.1"
   },
   "devDependencies": {
-    "@types/node": ">=13.1.0"
+    "@types/node": ">=13.7.4"
   }
 }
