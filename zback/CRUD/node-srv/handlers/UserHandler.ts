@@ -3,31 +3,23 @@ const bformat = require('bunyan-format2')
 const formatOut = bformat({ outputMode: 'short' })
 const log = bunyan.createLogger({src: true, stream: formatOut, name: "UserHandler"})
 
-import { CDB } from "../db/CDB"
+import { getData } from "./FakeDBCall"
 import { BaseRPCMethodHandler } from 'http-rpc/lib/Serv'
 
 log.info('hand')
 
 export class UserHandler extends BaseRPCMethodHandler {
   
-    _db:CDB
    
-   constructor(db) {
-      super(10,9)
-      this._db = db
+   constructor(db?) {
+      super(1,1)// cache
    }
 
    srch(params) {
 
       log.info(params)
 
-      let srch = params.srch
-      let o:number = params.o
-
-      if((!srch) || srch.length<1)
-         srch = 'a' 
-
-      let ret  = this._db.srchWpage(srch, o)
+      let ret  = getData()
       return ret
    }//()
 

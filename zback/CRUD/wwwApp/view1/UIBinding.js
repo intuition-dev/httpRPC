@@ -1,38 +1,42 @@
 console.log('UI:');
-var UIBinding = (function () {
-    function UIBinding() {
+class UIBinding {
+    constructor() {
         this.setupBut();
     }
-    UIBinding.prototype.setupBut = function () {
+    setupBut() {
         document.getElementById("srchBut").addEventListener("click", function () {
             var srch = document.getElementById('srchFld').value;
             console.log('klk', srch);
             if (UIBinding.userLst)
                 UIBinding.userLst.clear();
-            var arg = {};
+            let arg = {};
             arg.srch = srch;
             arg.o = 1;
             DeventBus.dispatch('uFetch', arg);
         });
         DeventBus.addListener('onUData', UIBinding.onData);
-    };
-    UIBinding.onData = function (data) {
+    }
+    static onData(data) {
         console.log('onData');
-        var options = {
+        let options = {
             valueNames: ['fname', 'lname', 'email', 'phone'],
-            item: "<tr> \n               <td class=\"fname\"></td>\n               <td class=\"lname\"></td>\n               <td class=\"email\"></td>\n               <td class=\"phone\"></td>\n            </tr>"
+            item: `<tr> 
+               <td class="fname"></td>
+               <td class="lname"></td>
+               <td class="email"></td>
+               <td class="phone"></td>
+            </tr>`
         };
         if (!(UIBinding.userLst)) {
-            var userLstEl = document.getElementById('userLst');
+            let userLstEl = document.getElementById('userLst');
             UIBinding.userLst = new List(userLstEl, options, data);
         }
         else {
             UIBinding.userLst.add(data);
         }
         console.log('listjs');
-    };
-    return UIBinding;
-}());
+    }
+}
 depp.require(['DOM', 'listjs', 'eventBus'], function () {
     console.log('ready');
     new UIBinding();

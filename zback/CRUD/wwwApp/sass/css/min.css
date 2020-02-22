@@ -1,6 +1,6 @@
 body,textarea,input{background:0;border-radius:0;font:16px sans-serif;margin:0;}
 *{outline:0;}
-.smooth{-webkit-transition:all .2s;transition:all .2s;}
+.smooth{transition:all .2s;}
 .container{margin:0 20px;width:auto;}
 @media (min-width:1310px){.container{margin:auto;width:1270px;}}
 .btn,.nav a{text-decoration:none;}
@@ -55,4 +55,4 @@ input[type='text'],textarea{-webkit-appearance:none;width:13em;}
  .pagename{margin-top:-11px;}}
 .table th,.table td{padding:.5em;text-align:left;}
 .table tbody > *:nth-child(2n),.table th{background:#ccc;}
-.msg{background:#def;border-left:5px solid #59d;padding:1.5em;} /* mB v7.12.1 on 2019-12-22T01:07:55.115Z */
+.msg{background:#def;border-left:5px solid #59d;padding:1.5em;} /* mB v8.2.1 on 2020-02-22T16:13:12.197Z */

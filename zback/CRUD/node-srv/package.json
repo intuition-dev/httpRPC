@@ -1,18 +1,17 @@
 {
-  "name": "CRUD",
-  "version": "1.0.0",
-  "description": "CRUD example",
-  "private": true,
-  "engines": {
-    "node": ">=12.16.0"
-  },
-  "dependencies": {
-    "faker": ">=4.1.0",
-    "http-rpc": ">=2.2.0",
-    "mbakex": ">=8.2.0",
-    "murmurhash3js": ">=3.0.1"
-  },
-  "devDependencies": {
-    "@types/node": ">=13.7.4"
-  }
+    "name": "CRUD",
+    "version": "1.0.0",
+    "description": "CRUD example",
+    "private": true,
+    "engines": {
+        "node": ">=12.16.0"
+    },
+    "dependencies": {
+        "http-rpc": ">=2.2.0",
+        "mbake": ">=8.2.0"
+
+    },
+    "devDependencies": {
+        "@types/node": ">=13.7.4"
+    }
 }

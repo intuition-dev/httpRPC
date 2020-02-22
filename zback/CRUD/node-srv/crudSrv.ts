@@ -7,14 +7,11 @@ const log = bunyan.createLogger({src: true, stream: formatOut, name: "crudApp"})
 import {  Serv }  from 'http-rpc/lib/Serv'
 
 import {  UserHandler } from "./handlers/UserHandler"
-import { CDB } from "./db/CDB"
 
 
 const srv = new Serv(['*']) 
 
-const db =  new CDB()
-
-const uHand = new UserHandler(db)
+const uHand = new UserHandler(null)
 
 srv.routeRPC('uapi',  uHand)
 
@@ -25,4 +22,4 @@ Serv._expInst.use(function(req,resp, next){
 })
 
 srv.listen(8888)
-
+// notice api and static is using same port
