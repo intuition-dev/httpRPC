@@ -25,14 +25,14 @@ class UsersVM {
 
       this.rpc.invoke('uapi', 'srch', args)
       .then(function(resp) {
-         console.log(Date.now() - _rpcS)
+         //console.log(Date.now() - _rpcS)
          DeventBus.dispatch('onUData', resp)
    })
    }//()
 
 }//class
 
-depp.require(['eventBus', 'RPC', 'trace'], function() {
+depp.require(['RPC'], function() {
    console.log('ready')
    new UsersVM()
 }) 

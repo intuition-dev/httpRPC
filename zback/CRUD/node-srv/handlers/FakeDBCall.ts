@@ -1,25 +1,23 @@
 
 
-
 export function getData() {
 
     let row1 = {
-        name: 'Vic', email: 'vic@gmail.com', password: '123'
+        fname: 'Vic', lname: 'Smith', email: 'vic@gmail.com', pass: 'a123'
     }
     let row2 = {
-        name: 'Al', email: 'vic@gmail.com', password: '123'
+        fname: 'Al', lname: 'Smith', email: 'vic@gmail.com', pass: 'a123'
     }
     let row3 = {
-        name: 'Bill', email: 'vic@gmail.com', password: '123'
+        fname: 'Bill', lname: 'Smith', email: 'vic@gmail.com', pass: 'a123'
     }
     let row4 = {
-        name: 'Tom', email: 'vic@gmail.com', password: '123'
+        fname: 'Tom', lname: 'Smith', email: 'vic@gmail.com', pass: 'a123'
     }
     let row5 = {
-        name: 'Harry', email: 'vic@gmail.com', password: '123'
+        fname: 'Harry', lname: 'Smith',email: 'vic@gmail.com', pass: 'a123'
     }
 
-
-    return [row1, row2, row3, row4, row5, row1, row2, row3, row4, row5,]
+    return [row1, row2, row3, row4, row5, row2, row3, row4, row5,]
 }
 
