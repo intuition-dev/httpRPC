@@ -1,7 +1,7 @@
 // All rights reserved by Cekvenich|INTUITION.DEV) |  Cekvenich, licensed under LGPL 3.0
 
 // requires  lz-string 
-class httpRPC {// 
+export class httpRPC {// 
   // uses simple auth
   httpOrs // protocol
   host
