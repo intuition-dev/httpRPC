@@ -1,4 +1,5 @@
 "use strict";
+// All rights reserved by Cekvenich|INTUITION.DEV) |  Cekvenich, licensed under LGPL 3.0
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -8,6 +9,7 @@ const express_1 = __importDefault(require("express"));
 const lz_string_1 = __importDefault(require("lz-string"));
 const URL = require('url');
 const serveStatic = require('serve-static');
+//log
 const bunyan_1 = __importDefault(require("bunyan"));
 const bunyan_format2_1 = __importDefault(require("bunyan-format2"));
 const formatOut = bunyan_format2_1.default({ outputMode: 'short' });
@@ -25,15 +27,16 @@ class CustomCors {
                 if (ori == '*')
                     approved = true;
                 if (origin.includes(ori))
-                    approved = true;
+                    approved = true; // allow on string match
             });
             if (approved) {
                 response.setHeader('Access-Control-Allow-Origin', origin);
                 return next();
             }
+            //else
             response.status(403).end();
         };
-    }
+    } //()
     static getReqAsOrigin(req) {
         let proto = req.socket.encrypted ? 'https' : 'http';
         const host = req.hostname;
@@ -42,9 +45,18 @@ class CustomCors {
         let origin = proto + '://' + host;
         return origin;
     }
-}
+} //class
 exports.CustomCors = CustomCors;
+/*
+Handler class
+This is called by the RPC router
+*/
 class BaseRPCMethodHandler {
+    /**
+     * You likely want browser cache to be a bit larger than edge cache
+     * @param broT browser cache
+     * @param cdnT  CDN/edge cache
+     */
     constructor(broT, cdnT) {
         this.DEBUG = false;
         if (!broT)
@@ -53,26 +65,45 @@ class BaseRPCMethodHandler {
             cdnT = 1;
         this.cache = 'public, max-age=' + broT + ', s-max-age=' + cdnT;
     }
+    /**
+     * @param resp
+     * @param result
+     * @param broT careful: defaults to 1, should be larger than cdnT, maybe 0 is best for your cache
+     * @param cdnT careful: defaults to 1, maybe 0 is best for your cache
+     */
     _ret(resp, result) {
-        const ret = {};
+        const ret = {}; // new return
         ret.result = result;
         resp.setHeader('Cache-Control', this.cache);
         resp.setHeader('x-intu-ts', new Date().toISOString());
+        //let json = JSON.stringify(ret)
         if (this.DEBUG)
             log.warn(ret);
+        // const r:string = lz.compress(json)
         resp.json(ret);
-    }
+    } //()
+    /**
+     * @param resp
+     * @param msg
+     * @param broT careful: defaults to 1, maybe 0 is best for your cache
+     * @param cdnT careful: defaults to 1, maybe 0 is best for your cache
+     */
     _retErr(resp, msg) {
         if ((!msg) || msg.length < 1)
             throw new Error('no message');
         log.warn(msg);
-        const ret = {};
+        const ret = {}; // new return
         ret.errorLevel = -1;
         ret.errorMessage = msg;
         resp.setHeader('Cache-Control', this.cache);
         resp.setHeader('x-intu-ts', new Date().toISOString());
         resp.json(ret);
-    }
+    } //()
+    /**
+     * In the background this method dynamically invokes the called method
+     * @param req
+     * @param resp
+     */
     async handleRPC(req, res) {
         if (!this)
             throw new Error('bind of class instance needed');
@@ -93,6 +124,7 @@ class BaseRPCMethodHandler {
                 this._retErr(res, 'no such method ' + method);
                 return;
             }
+            //invoke the method request
             const ans = await THIZ[method](params);
             if (THIZ.DEBUG)
                 log.warn(method, ans);
@@ -102,8 +134,8 @@ class BaseRPCMethodHandler {
             log.warn('c', err);
             THIZ._retErr(res, method);
         }
-    }
-}
+    } //()
+} //class
 exports.BaseRPCMethodHandler = BaseRPCMethodHandler;
 class LogHandler extends BaseRPCMethodHandler {
     constructor(foo, bro, cdn) {
@@ -114,35 +146,58 @@ class LogHandler extends BaseRPCMethodHandler {
         await this._foo(params);
         return 'OK';
     }
-}
+} //()
+/**
+ * Should be single socket for everything.
+ * Don't use methods here for Upload, use the expInst property to do it 'manually'
+ */
 class Serv {
+    /**
+     * @param origins An array of string that would match a domain. So host would match localhost. eg ['*']
+     */
     constructor(origins) {
         process.on('unhandledRejection', (error, promise) => {
             console.log(' Oh Lord! We forgot to handle a promise rejection here: ', promise);
             console.log(' The error was: ', error);
         });
         this._origins = origins;
+        // does it already exist?
         if (Serv._expInst)
             throw new Error('one instance of express app already exists');
         log.info('Allowed >>> ', origins);
         const cors = new CustomCors(origins);
         Serv._expInst = express_1.default();
+        // Serv._expInst.set('trust proxy', true)
         Serv._expInst.use(cors);
         Serv._expInst.use(errorhandler({ dumpExceptions: true, showStack: true }));
-    }
+    } //()
     setLogger(foo, bro, cdn) {
         this.routeRPC('log', new LogHandler(foo, bro, cdn));
     }
+    /**
+     * Route to a handler
+     * @param route
+     * @param foo
+    */
     routeRPC(route, handler) {
         const r = '/' + route;
         Serv._expInst.get(r, handler.handleRPC.bind(handler));
     }
+    /**
+     * Set the cache header and time
+     *
+     * @param path
+     * @param broT Bro(wser) cache time in seconds- 1800
+     * @param cdnT CDN /one less in seconds- 1799
+     * The longer the better! Max is 1 year in seconds ( 60*60*24*364 ). You can flush CDN at CDN and flush browser at browser.
+     */
     serveStatic(path, broT, cdnT) {
         if (!broT)
             broT = 24 * 60 * 60 + 1;
         if (!cdnT)
-            cdnT = 24 * 60 * 60;
+            cdnT = 24 * 60 * 60; // cdn is less than bro
         log.info('Serving root:', path, broT, cdnT);
+        //filter forbidden
         Serv._expInst.use((req, res, next) => {
             if (req.path.endsWith('.ts') || req.path.endsWith('.pug')) {
                 res.status(403).send('forbidden');
@@ -154,17 +209,22 @@ class Serv {
             setHeaders: function (res, path) {
                 if (serveStatic.mime.lookup(path) === 'text/html') { }
                 res.setHeader('Cache-Control', 'public, max-age=' + broT + ', s-max-age=' + cdnT);
+                // dynamic is less cache, only 5 minutes
                 if (path.endsWith('.yaml') || path.endsWith('.json')) {
                     res.setHeader('Cache-Control', 'public, max-age=' + 300 + ', s-max-age=' + 299);
                 }
                 res.setHeader('x-intu-ts', new Date().toISOString());
             }
-        }));
-    }
+        })); //use
+    } //()
+    /**
+     * Start server
+     * @param port
+     */
     listen(port) {
         Serv._expInst.listen(port, () => {
             log.info('services running on port:', port);
         });
     }
-}
+} //class
 exports.Serv = Serv;

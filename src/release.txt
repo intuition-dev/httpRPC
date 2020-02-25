@@ -3,4 +3,4 @@ Release via npm, no need for a git release.
 
 Update links in toolbelt to npm, etc.
 
-npm/http-rpc@2.2.0/browser/httpRPC
+npm/http-rpc@2.2.1/browser/httpRPC

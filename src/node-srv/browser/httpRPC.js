@@ -1,5 +1,21 @@
+// All rights reserved by Cekvenich|INTUITION.DEV) |  Cekvenich, licensed under LGPL 3.0
+// requires  lz-string 
+//    script(src='https://cdn.jsdelivr.net/npm/lz-string@1.4.4/libs/lz-string.min.js')
+
 export class httpRPC {
-    constructor(httpOrs, host, port) {
+       /**
+     *
+     * @param httpOrs should be 'https'
+     * @param host
+     * @param port
+     *
+     * eg:
+        var pro = window.location.protocol
+        pro = pro.replace(':', '')
+        var host = window.location.hostname
+        var port = window.location.port
+     */
+        constructor(httpOrs, host, port) {
         this.user = '';
         this.pswd = '';
         this.token = '';
@@ -16,6 +32,14 @@ export class httpRPC {
     setToken(token) {
         this.token = token;
     }
+
+
+       /**
+     * @param route api apth, eg api
+     * @param method CRUD, insert, check, listAll, etc
+     * @param params Object of name value pairs.
+     * @param timeout defaults to 2000
+     */
     invoke(route, method, params, timeout) {
 
         
@@ -33,13 +57,13 @@ export class httpRPC {
         const pro1 = new Promise(function(resolve, reject) {
             let url = THIZ.httpOrs + '://' + THIZ.host + (THIZ.port ? (':' + THIZ.port) : '') + '/' + route;
             
-            depp.require(['lz-string'], function() {
             url = url + '/?p=' + LZString.compressToEncodedURIComponent(str);
             fetch(url, {
                     method: 'GET',
                     cache: 'default',
                     redirect: 'follow',
                     mode: 'cors',
+                    //credentials: 'include',
                     keepalive: true
                 })
                 .then(function(fullResp) {
@@ -61,7 +85,7 @@ export class httpRPC {
                     console.warn('fetch err ', method, err);
                     reject(method + ' ' + err);
                 });
-            })
+            
         })//pro
 
         const pro2 = new Promise(function(resolve, reject) {
@@ -77,6 +101,13 @@ export class httpRPC {
     getItem(key) {
         return sessionStorage.getItem(key);
     }
+        /**
+     * Place this in ViewModel and vm calls the rpc
+     * and then in page you can say vm.log(..)
+     * @param msg
+     * @param level
+     * @param className
+     */
     log(msg, level, className) {
         var THIZ = this;
         let p = {
@@ -102,5 +133,5 @@ export class httpRPC {
             console.log(className, level, msg);
         else
             console.log(msg);
-    }
-}
+    }//()
+}//class
