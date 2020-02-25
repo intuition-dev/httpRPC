@@ -1,4 +1,4 @@
-class httpRPC {
+export class httpRPC {
     constructor(httpOrs, host, port) {
         this.user = '';
         this.pswd = '';
@@ -17,6 +17,8 @@ class httpRPC {
         this.token = token;
     }
     invoke(route, method, params, timeout) {
+
+        
         if (!timeout)
             timeout = 2000;
         if (!params)
@@ -27,44 +29,48 @@ class httpRPC {
         params.token = btoa(this.token);
         params.view = window.location.href;
         var str = JSON.stringify(params);
-        var compressed = LZString.compressToEncodedURIComponent(str);
         const THIZ = this;
-        const pro1 = new Promise(function (resolve, reject) {
+        const pro1 = new Promise(function(resolve, reject) {
             let url = THIZ.httpOrs + '://' + THIZ.host + (THIZ.port ? (':' + THIZ.port) : '') + '/' + route;
-            url = url + '/?p=' + compressed;
+            
+            depp.require(['lz-string'], function() {
+            url = url + '/?p=' + LZString.compressToEncodedURIComponent(str);
             fetch(url, {
-                method: 'GET',
-                cache: 'default',
-                redirect: 'follow',
-                mode: 'cors',
-                keepalive: true
+                    method: 'GET',
+                    cache: 'default',
+                    redirect: 'follow',
+                    mode: 'cors',
+                    keepalive: true
+                })
+                .then(function(fullResp) {
+                    if (!fullResp.ok) {
+                        console.warn('HTTP protocol error in RPC: ' + fullResp.status + fullResp);
+                        reject('HTTP protocol error in RPC: ' + fullResp.status + fullResp);
+                    } else
+                        return fullResp.text();
+                })
+                .then(function(str) {
+                    var resp = JSON.parse(str);
+                    if ((!resp) || resp.errorMessage) {
+                        console.warn(method + ' ' + str);
+                        reject(method + ' ' + str);
+                    }
+                    resolve(resp.result);
+                })
+                .catch(function(err) {
+                    console.warn('fetch err ', method, err);
+                    reject(method + ' ' + err);
+                });
             })
-                .then(function (fullResp) {
-                if (!fullResp.ok) {
-                    console.warn('HTTP protocol error in RPC: ' + fullResp.status + fullResp);
-                    reject('HTTP protocol error in RPC: ' + fullResp.status + fullResp);
-                }
-                else
-                    return fullResp.text();
-            })
-                .then(function (str) {
-                var resp = JSON.parse(str);
-                if ((!resp) || resp.errorMessage) {
-                    console.warn(method + ' ' + str);
-                    reject(method + ' ' + str);
-                }
-                resolve(resp.result);
-            })
-                .catch(function (err) {
-                console.warn('fetch err ', method, err);
-                reject(method + ' ' + err);
-            });
-        });
-        const pro2 = new Promise(function (resolve, reject) {
+        })//pro
+
+        const pro2 = new Promise(function(resolve, reject) {
             setTimeout(() => reject('timeout'), timeout);
         });
         return Promise.race([pro1, pro2]);
-    }
+        
+    }//()
+
     setItem(key, val) {
         sessionStorage.setItem(key, val);
     }
@@ -86,11 +92,10 @@ class httpRPC {
             p['appVersion'] = btoa(navigator.appVersion);
             p['userAgent'] = btoa(navigator.userAgent);
             p['platform'] = btoa(navigator.platform);
-        }
-        catch (err) {
+        } catch (err) {
             console.log(err);
         }
-        setTimeout(function () {
+        setTimeout(function() {
             THIZ.invoke('log', 'log', p);
         }, 1);
         if (className)
