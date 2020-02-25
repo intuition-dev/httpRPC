@@ -2,7 +2,7 @@ console.log('UI:');
 class UIBinding {
     constructor() {
         DeventBus.addListener('onUData', UIBinding.onData);
-    }
+    } //()
     static onData(data) {
         console.log('onData');
         let options = {
@@ -18,11 +18,11 @@ class UIBinding {
             let userLstEl = document.getElementById('userLst');
             UIBinding.userLst = new List(userLstEl, options, data);
         }
-        else {
+        else { //list exists
             UIBinding.userLst.add(data);
         }
         console.log('listjs', data);
-    }
+    } //()
 }
 depp.require(['DOM', 'listjs'], function () {
     console.log('ready');
