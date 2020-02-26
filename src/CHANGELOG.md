@@ -1,3 +1,6 @@
+
+- auto load lz string
+
 ### 2.2.1
   Module syntax:
   import { httpRPC } from 'https://cdn.jsdelivr.net/npm/http-rpc@2.2.1/browser/httpRPC.min.js'
@@ -7,7 +10,7 @@
  
  ### 1.1.8
     - remote address
-    - added timeout
+    - added **timeout**
     - tested SrvRPC
     - added error helper packages
 
