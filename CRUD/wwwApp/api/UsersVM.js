@@ -11,15 +11,13 @@ export class UsersVM {
         console.log('cons')
         let THIZ = this
         
-        depp.require(['lz-string'], function() { // after we have lz-string we can RPC
-            THIZ.rpc = new httpRPC('http', 'localhost', 8888);
-            THIZ.fetch('a', 1);
-    
-            defEventBus.addListener('uFetch', function(arg) {
-                THIZ.fetch(arg.srch, arg.o)
-            })
+        THIZ.rpc = new httpRPC('http', 'localhost', 8888);
+        THIZ.fetch('a', 1);
 
-        })//req
+        defEventBus.addListener('uFetch', function(arg) {
+            THIZ.fetch(arg.srch, arg.o)
+        })
+
     }//
 
     fetch(srch, o) {

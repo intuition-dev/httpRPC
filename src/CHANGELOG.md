@@ -1,5 +1,6 @@
 
 - auto load lz string
+- capital HttpRPC class
 
 ### 2.2.1
   Module syntax:

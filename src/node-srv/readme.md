@@ -88,20 +88,12 @@ We now have a running service with one handler and that handler has one method '
 
 ### Part II: Client side
 
-1. In the browser, you need lz-string first.
+ Now call your remote method:
 
    ```
-   <script src="https://cdn.jsdelivr.net/npm/lz-string@1.4.4/libs/lz-string.min.js"></script>
-   ```
+   import { HttpRPC } from 'https://cdn.jsdelivr.net/npm/http-rpc@2.2.1/browser/httpRPC.min.js'
 
-NOTE: lz-string is a compression library used by http-rpc, so it needs to be loaded before.
-
-2. Now call your remote method:
-
-   ```
-   import { httpRPC } from 'https://cdn.jsdelivr.net/npm/http-rpc@2.2.1/browser/httpRPC.min.js'
-
-   const rpc = new httpRPC('http', 'localhost', 8888)
+   const rpc = new HttpRPC('http', 'localhost', 8888)
 
    rpc.invoke('api', 'multiply', {a:5, b:2})
       .then(function(resp) {
