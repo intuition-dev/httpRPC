@@ -3,7 +3,19 @@
 //    script(src='https://cdn.jsdelivr.net/npm/lz-string@1.4.4/libs/lz-string.min.js')
 
 export class httpRPC {
-       /**
+
+    /** 
+     * So you can control your own sequence
+     **/
+    _addScript(callback) {
+        var s = document.createElement('script')
+        s.setAttribute('src', 'https://cdn.jsdelivr.net/npm/lz-string@1.4.4/libs/lz-string.min.js')
+        s.async = true // it does it anyway, as the script is async
+        document.getElementsByTagName('body')[0].appendChild(s)
+    }
+    lzStringAdded = false
+
+    /**
      *
      * @param httpOrs should be 'https'
      * @param host
@@ -15,7 +27,7 @@ export class httpRPC {
         var host = window.location.hostname
         var port = window.location.port
      */
-        constructor(httpOrs, host, port) {
+    constructor(httpOrs, host, port) {
         this.user = '';
         this.pswd = '';
         this.token = '';
@@ -25,24 +37,23 @@ export class httpRPC {
         this.port = port;
         console.log(this.httpOrs, this.host, this.port);
     }
+
     setUser(user, pswd) {
         this.user = user;
         this.pswd = pswd;
     }
+
     setToken(token) {
         this.token = token;
     }
 
-
-       /**
+    /**
      * @param route api apth, eg api
      * @param method CRUD, insert, check, listAll, etc
      * @param params Object of name value pairs.
      * @param timeout defaults to 2000
      */
     invoke(route, method, params, timeout) {
-
-        
         if (!timeout)
             timeout = 2000;
         if (!params)
@@ -98,10 +109,12 @@ export class httpRPC {
     setItem(key, val) {
         sessionStorage.setItem(key, val);
     }
+
     getItem(key) {
         return sessionStorage.getItem(key);
     }
-        /**
+
+    /**
      * Place this in ViewModel and vm calls the rpc
      * and then in page you can say vm.log(..)
      * @param msg
