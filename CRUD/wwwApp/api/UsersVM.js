@@ -3,7 +3,7 @@ import { EventFlux } from 'https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@
 new EventFlux() // makes defEventBus var
 
 // req for rpc
-import { httpRPC } from 'https://cdn.jsdelivr.net/npm/http-rpc@2.2.1/browser/httpRPC.min.js'
+import { httpRPC } from 'https://cdn.jsdelivr.net/npm/http-rpc@2.2.2/browser/httpRPC.min.js'
 
 export class UsersVM {
 

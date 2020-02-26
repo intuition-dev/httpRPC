@@ -1,4 +1,5 @@
 
+### 2.2.2
 - auto load lz string
 - capital HttpRPC class
 
