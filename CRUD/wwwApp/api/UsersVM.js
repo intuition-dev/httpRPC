@@ -3,7 +3,7 @@ import { EventFlux } from 'https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@
 new EventFlux() // makes defEventBus var
 
 // req for rpc
-import { httpRPC } from 'https://cdn.jsdelivr.net/npm/http-rpc@2.2.2/browser/httpRPC.min.js'
+import { HttpRPC } from 'https://cdn.jsdelivr.net/npm/http-rpc@2.2.6/browser/httpRPC.min.js'
 
 export class UsersVM {
 
@@ -11,7 +11,7 @@ export class UsersVM {
         console.log('cons')
         let THIZ = this
         
-        THIZ.rpc = new httpRPC('http', 'localhost', 8888);
+        THIZ.rpc = new HttpRPC('http', 'localhost', 8888);
         THIZ.fetch('a', 1);
 
         defEventBus.addListener('uFetch', function(arg) {

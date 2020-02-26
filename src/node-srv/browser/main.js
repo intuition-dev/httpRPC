@@ -1,5 +1,5 @@
 
-import { HttpRPC } from './httpRPC.js'
+import { HttpRPC } from './httpRPC.min.js'
 
 const rpc = new HttpRPC('http', 'localhost', 8888)
 
