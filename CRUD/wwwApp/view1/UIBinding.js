@@ -1,8 +1,10 @@
 console.log('UI:');
 class UIBinding {
+
     constructor() {
         defEventBus.addListener('onUData', UIBinding.onData);
     } //()
+    
     static onData(data) {
         console.log('onData');
         let options = {
@@ -23,8 +25,9 @@ class UIBinding {
         }
         console.log('listjs', data);
     } //()
-}
+}//
+
 depp.require(['DOM', 'listjs'], function () {
     console.log('ready');
-    new UIBinding();
+    new UIBinding()
 });
