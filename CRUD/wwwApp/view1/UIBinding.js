@@ -1,7 +1,7 @@
 console.log('UI:');
 class UIBinding {
     constructor() {
-        DeventBus.addListener('onUData', UIBinding.onData);
+        defEventBus.addListener('onUData', UIBinding.onData);
     } //()
     static onData(data) {
         console.log('onData');

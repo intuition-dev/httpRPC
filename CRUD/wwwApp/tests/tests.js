@@ -8,7 +8,7 @@ pro.then(function () {
 class TestVM1 {
     constructor() {
         console.log('testVM1');
-        TestVM1.listener = DeventBus.addListener('onUData', TestVM1.onVM1Data);
+        TestVM1.listener = defEventBus.addListener('onUData', TestVM1.onVM1Data);
         depp.define({ 'vm1': '/api/UsersVM.js' });
         depp.require(['vm1', 'chance', 'RPC']);
         QUnit.test("hello test", function (assert_) {
@@ -22,12 +22,12 @@ class TestVM1 {
         TestVM1.assert.ok(true, "Passed!");
         TestVM1.done1();
         // test 2
-        DeventBus.removeListener(TestVM1.listener);
+        defEventBus.removeListener(TestVM1.listener);
         let arg = {};
         arg.srch = chance.character({ alpha: true }) + chance.character({ alpha: true });
         arg.o = 1;
-        DeventBus.dispatch('uFetch', arg);
-        DeventBus.addListener('onUData', TestVM1.onVM2Data);
+        defEventBus.dispatch('uFetch', arg);
+        defEventBus.addListener('onUData', TestVM1.onVM2Data);
     } //()
     static onVM2Data(data2) {
         console.log('data2');

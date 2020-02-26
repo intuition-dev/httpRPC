@@ -1,3 +1,7 @@
+### 2.2.1
+  Module syntax:
+  import { httpRPC } from 'https://cdn.jsdelivr.net/npm/http-rpc@2.2.1/browser/httpRPC.min.js'
+
   ### 2.2.0
     - dropped support for es5
  

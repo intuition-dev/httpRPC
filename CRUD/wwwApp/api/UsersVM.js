@@ -6,10 +6,10 @@ export class UsersVM {
         this.rpc = new httpRPC('http', 'localhost', 8888);
         this.fetch('a', 1);
         let THIZ = this
-        depp.require(['lz-eventBus'], function() {
+        depp.require(['lz-defEventBus'], function() {
 
-        DeventBus.addListener('uFetch', function(arg) {
-            depp.require(['lz-eventBus'], function() {
+        defEventBus.addListener('uFetch', function(arg) {
+            depp.require(['lz-defEventBus'], function() {
             THIZ.fetch(arg.srch, arg.o)
             })
         })
@@ -25,7 +25,7 @@ export class UsersVM {
         this.rpc.invoke('uapi', 'srch', args)
             .then(function(resp) {
                 console.log('here')
-                DeventBus.dispatch('onUData', resp)
+                defEventBus.dispatch('onUData', resp)
             })
     }
 
