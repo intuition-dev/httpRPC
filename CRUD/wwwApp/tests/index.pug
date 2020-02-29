@@ -3,6 +3,9 @@ head
    include headFrag
 
 body
+
+   script(src='/api/UsersVM.js'  type="module")
+
    #qunit
    #qunit-fixture
-   script(src='/tests/tests.js')
+   script(src='/tests/tests.js' type='module')

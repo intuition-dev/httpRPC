@@ -4,7 +4,8 @@ head
    script(src='/api/UsersVM.js'  type="module")
    
 body
-
+   script(src='https://cdn.jsdelivr.net/npm/list.js@1.5.0/dist/list.min.js')
+   
    p Table:
    div
       input#srchFld.smooth(type="text" placeholder='a') 
@@ -19,4 +20,4 @@ body
             th Pass
          tbody.list
 
-   script(src='UIBinding.js')
+   script(src='UIBinding.js' type = 'module')

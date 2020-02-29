@@ -1,15 +1,8 @@
 
 <head>
-  <script>
-    var _start = Date.now()
-    window.ENV = '0' //- for comps, but it is also in scope for Pug for ENV logic
-    
-  </script>
   <title></title>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-  <script src="https://cdn.jsdelivr.net/npm/johnnydepp@0.1.0/dist/depp.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v8.2.3/src/toolBelt.min.js"></script>
   <link rel="stylesheet" href="/sass/css/min.css"/>
   <style>
     html { touch-action: manipulation; }
@@ -19,6 +12,7 @@
   <script src="/api/UsersVM.js" type="module"></script>
 </head>
 <body>
+  <script src="https://cdn.jsdelivr.net/npm/list.js@1.5.0/dist/list.min.js"></script>
   <p>Table:</p>
   <div>
     <input class="smooth" id="srchFld" type="text" placeholder="a"/><span>&nbsp;</span><a class="btn smooth btn-a btn-sm" id="srchBut">Search</a>
@@ -34,5 +28,5 @@
       <tbody class="list"></tbody>
     </table>
   </div>
-  <script src="UIBinding.js"></script>
-<!-- mB v8.2.5 on 2020-02-26T02:29:34.906Z --></body>
+  <script src="UIBinding.js" type="module"></script>
+<!-- mB v8.2.6 on 2020-02-29T19:12:43.756Z --></body>
