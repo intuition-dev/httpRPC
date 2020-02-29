@@ -1,6 +1,6 @@
 console.log('UI:');
 
-import { EventFlux } from 'https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v8.2.7/eventFlux/EventFlux.js'
+import { EventFlux } from 'https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v8.2.8/eventFlux/EventFlux.js'
 new EventFlux() // makes defEventBus var
 
 class UIBinding {
