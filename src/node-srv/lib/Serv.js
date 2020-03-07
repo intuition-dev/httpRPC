@@ -8,6 +8,7 @@ const errorhandler = require('errorhandler');
 const express_1 = __importDefault(require("express"));
 const lz_string_1 = __importDefault(require("lz-string"));
 const URL = require('url');
+var http = require('http');
 const serveStatic = require('serve-static');
 //log
 const bunyan_1 = __importDefault(require("bunyan"));
@@ -155,7 +156,7 @@ class Serv {
     /**
      * @param origins An array of string that would match a domain. So host would match localhost. eg ['*']
      */
-    constructor(origins) {
+    constructor(origins, urlK) {
         process.on('unhandledRejection', (error, promise) => {
             console.log(' Oh Lord! We forgot to handle a promise rejection here: ', promise);
             console.log(' The error was: ', error);
@@ -167,6 +168,8 @@ class Serv {
         log.info('Allowed >>> ', origins);
         const cors = new CustomCors(origins);
         Serv._expInst = express_1.default();
+        // url + headers defaults to 8K, make it and arg
+        http.createServer({ maxHeaderSize: urlK * 1024 }, Serv._expInst);
         // Serv._expInst.set('trust proxy', true)
         Serv._expInst.use(cors);
         Serv._expInst.use(errorhandler({ dumpExceptions: true, showStack: true }));
