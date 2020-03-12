@@ -1,4 +1,7 @@
 
+### 2.3.0
+- added size arg for url in node
+
 ### 2.2.2
 - auto load lz string
 - capital HttpRPC class
