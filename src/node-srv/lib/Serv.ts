@@ -187,11 +187,13 @@ export class Serv {
 
    /**
     * @param origins An array of string that would match a domain. So host would match localhost. eg ['*'] 
-    * @param urlK How many K for url + header. Node has it to 8 and that is low. Needs to be higher for RPC
+    * @param urlK How many K for url + header. Defults to 16 (K)
     */
-   constructor(origins:Array<string>, urlK:number) {
+   constructor(origins:Array<string>, urlK?:number ) {
       // https://github.com/nodejs/node/issues/24692#issuecomment-595560987
       // https://github.com/expressjs/express/issues/4131
+
+      if(!urlK) urlK = 16
 
       process.on('unhandledRejection', (error, promise) => {
          console.log(' Oh Lord! We forgot to handle a promise rejection here: ', promise)
@@ -205,7 +207,7 @@ export class Serv {
       log.info('Allowed >>> ', origins)
       const cors = new CustomCors(origins)
       Serv._expInst = express()
-      // url + headers defaults to 8 K:
+      // url + headers defaults to 8 K, here we set it
       http.createServer({maxHeaderSize: urlK * 1024}, Serv._expInst)
 
       // Serv._expInst.set('trust proxy', true)
