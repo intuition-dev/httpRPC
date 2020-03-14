@@ -2,14 +2,17 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const bunyan = require('bunyan');
 const bformat = require('bunyan-format2');
-const formatOut = bformat({ outputMode: 'short' });
 class TerseB {
     constructor(name) {
+        const formatOut = bformat({ outputMode: 'short' });
+        const DEV = process.env.DEV;
         let log;
-        if (true) // prod
+        if (!DEV) // prod
             log = bunyan.createLogger({ src: false, level: 31, stream: formatOut, name: name });
-        else // log all
+        else { // log all
             log = bunyan.createLogger({ src: true, stream: formatOut, name: name });
+            console.log('DEVlog', name);
+        }
         return log;
     } //()
 } //class

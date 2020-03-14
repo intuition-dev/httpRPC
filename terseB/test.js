@@ -6,6 +6,7 @@ class C {
         this.log = new terse_b_1.TerseB(this.constructor.name);
     }
     tst() {
+        console.log('DEV:', process.env.DEV);
         this.log.info('oh?');
         this.log.warn('War!');
     }

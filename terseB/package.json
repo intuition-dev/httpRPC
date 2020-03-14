@@ -1,7 +1,7 @@
 {
   "name": "terse-b",
-  "version": "1.0.0",
-  "description": "Bunyan lib that is terse to write.",
+  "version": "0.1.0",
+  "description": "Bunyan lib that is terse to use.",
   "keywords": [
     "Bunyan"
   ],
