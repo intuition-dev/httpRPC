@@ -1,0 +1,19 @@
+{
+  "name": "terse-b",
+  "version": "1.0.0",
+  "description": "Bunyan lib that is terse to write.",
+  "keywords": [
+    "Bunyan"
+  ],
+  "author": "Cekvenich",
+  "license": "MIT",
+
+  "dependencies": {
+    "bunyan": ">=1.8.12",
+    "bunyan-format2": ">=0.2.3"
+  }
+  ,"devDependencies": {
+    "@types/node": ">=13.9.0"
+}
+
+}

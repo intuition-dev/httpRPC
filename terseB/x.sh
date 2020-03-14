@@ -1,0 +1,4 @@
+
+tsc
+
+node test.js
