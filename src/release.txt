@@ -2,4 +2,4 @@
 Release via npm, no need for a git release.
 
 
-npm/http-rpc@2.3.1/browser/httpRPC
+npm/http-rpc@2.3.2/browser/httpRPC

@@ -1,5 +1,5 @@
 
-### 2.3.1
+### 2.3.2
 - use terse-b for logging
 - added size arg for url in node
 
