@@ -1,6 +1,6 @@
 
 tsc
 
-DEV=true node test.js
+DEV=true DEV=true node test.js
 
-node test.js
+DEV=true node test.js

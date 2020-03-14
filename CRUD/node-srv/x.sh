@@ -1,3 +1,3 @@
 clear
 tsc
-node crudSrv.js 
+DEV=true node crudSrv.js 

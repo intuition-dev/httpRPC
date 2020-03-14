@@ -1,6 +1,6 @@
 
-const bunyan = require('bunyan')
-const bformat = require('bunyan-format2')  
+import bunyan from 'bunyan'
+import bformat from 'bunyan-format2'  
 
 export class TerseB {
 

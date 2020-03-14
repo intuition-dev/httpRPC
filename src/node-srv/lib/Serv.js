@@ -10,11 +10,8 @@ const lz_string_1 = __importDefault(require("lz-string"));
 const URL = require('url');
 var http = require('http');
 const serveStatic = require('serve-static');
-//log
-const bunyan_1 = __importDefault(require("bunyan"));
-const bunyan_format2_1 = __importDefault(require("bunyan-format2"));
-const formatOut = bunyan_format2_1.default({ outputMode: 'short' });
-const log = bunyan_1.default.createLogger({ src: true, stream: formatOut, name: "Serv" });
+const terse_b_1 = require("terse-b/terse-b");
+const log = new terse_b_1.TerseB("ServTS");
 class CustomCors {
     constructor(validOrigins) {
         return (request, response, next) => {
@@ -155,14 +152,16 @@ class LogHandler extends BaseRPCMethodHandler {
 class Serv {
     /**
      * @param origins An array of string that would match a domain. So host would match localhost. eg ['*']
-     * @param urlK How many K for url + header. Node has it to 8 and that is low. Needs to be higher for RPC
+     * @param urlK How many K for url + header. Defults to 16 (K)
      */
     constructor(origins, urlK) {
         // https://github.com/nodejs/node/issues/24692#issuecomment-595560987
         // https://github.com/expressjs/express/issues/4131
+        if (!urlK)
+            urlK = 16;
         process.on('unhandledRejection', (error, promise) => {
-            console.log(' Oh Lord! We forgot to handle a promise rejection here: ', promise);
-            console.log(' The error was: ', error);
+            log.warn(' Oh Lord! We forgot to handle a promise rejection here: ', promise);
+            log.warn(' The error was: ', error);
         });
         this._origins = origins;
         // does it already exist?
@@ -171,7 +170,7 @@ class Serv {
         log.info('Allowed >>> ', origins);
         const cors = new CustomCors(origins);
         Serv._expInst = express_1.default();
-        // url + headers defaults to 8 K:
+        // url + headers defaults to 8 K, here we set it
         http.createServer({ maxHeaderSize: urlK * 1024 }, Serv._expInst);
         // Serv._expInst.set('trust proxy', true)
         Serv._expInst.use(cors);

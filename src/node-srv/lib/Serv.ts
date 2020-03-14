@@ -3,7 +3,6 @@
 
 // NOTE: You can extend these classes!
 
-
 import { Response, Request } from "express"
 const errorhandler = require('errorhandler')
 
@@ -16,11 +15,9 @@ var http = require('http')
 
 const serveStatic = require('serve-static')
 
-//log
-import bunyan from 'bunyan'
-import bformat from 'bunyan-format2'  
-const formatOut = bformat({ outputMode: 'short' })
-const log = bunyan.createLogger({src: true, stream: formatOut, name: "Serv"})
+import { TerseB } from "terse-b/terse-b"
+
+const log:any = new TerseB("ServTS")
 
 export class CustomCors {
 
@@ -48,7 +45,8 @@ export class CustomCors {
          response.status(403).end()
       }
    }//()
-   
+
+
    static getReqAsOrigin(req):string {// no used
       let proto = req.socket.encrypted ? 'https' : 'http'
       const host = req.hostname
@@ -196,8 +194,8 @@ export class Serv {
       if(!urlK) urlK = 16
 
       process.on('unhandledRejection', (error, promise) => {
-         console.log(' Oh Lord! We forgot to handle a promise rejection here: ', promise)
-         console.log(' The error was: ', error );
+         log.warn(' Oh Lord! We forgot to handle a promise rejection here: ', promise)
+         log.warn(' The error was: ', error );
       })
       
       this._origins = origins
