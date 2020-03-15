@@ -46,8 +46,7 @@ export class CustomCors {
       }
    }//()
 
-
-   static getReqAsOrigin(req):string {// no used
+   static _getReqAsOrigin(req):string {// not used
       let proto = req.socket.encrypted ? 'https' : 'http'
       const host = req.hostname
       let original = req.originalUrl
@@ -183,15 +182,14 @@ export class Serv {
 
    _origins:Array<string>
 
+   _urlSz
+
    /**
     * @param origins An array of string that would match a domain. So host would match localhost. eg ['*'] 
-    * @param urlK How many K for url + header. Defults to 16 (K)
+    * @param urlK How many bytes for url + header.  It has a small default
     */
-   constructor(origins:Array<string>, urlK?:number ) {
-      // https://github.com/nodejs/node/issues/24692#issuecomment-595560987
-      // https://github.com/expressjs/express/issues/4131
-
-      if(!urlK) urlK = 16
+   constructor(origins:Array<string>, urlSz?:number ) {
+      this._urlSz = urlSz;
 
       process.on('unhandledRejection', (error, promise) => {
          log.warn(' Oh Lord! We forgot to handle a promise rejection here: ', promise)
@@ -204,9 +202,8 @@ export class Serv {
       if(Serv._expInst) throw new Error( 'one instance of express app already exists')
       log.info('Allowed >>> ', origins)
       const cors = new CustomCors(origins)
+     
       Serv._expInst = express()
-      // url + headers defaults to 8 K, here we set it
-      http.createServer({maxHeaderSize: urlK * 1024}, Serv._expInst)
 
       // Serv._expInst.set('trust proxy', true)
 
@@ -227,7 +224,6 @@ export class Serv {
    */
    routeRPC(route:string, handler:BaseRPCMethodHandler) {
       const r: string = '/'+route  
-
       Serv._expInst.get(r, handler.handleRPC.bind(handler))
    }
 
@@ -275,9 +271,25 @@ export class Serv {
     * @param port 
     */
    listen(port:number) {
-      Serv._expInst.listen(port, () => {
-         log.warn('services running on port:', port)
-      })
+
+      // https://github.com/nodejs/node/issues/24692#issuecomment-595560987
+      // https://github.com/expressjs/express/issues/4131
+      // https://github.com/expressjs/express/blob/4.x/lib/application.js
+      // https://github.com/nodejs/node/issues/24692#issuecomment-596838657
+      // https://github.com/nodejs/node/blob/master/doc/api/http.md
+
+      if(!this._urlSz) this._urlSz = 2 * 1024
+
+      // url + headers size, here we set it: urlSz
+
+      //http.createServer({maxHeaderSize: this._urlSz }, Serv._expInst).listen(port)
+
+      Serv._expInst.listen(port)
+      
+      console.log('services running on port:', port)
+         
+      log.warn(http.maxHeaderSize)
+
    }
 }//class
 

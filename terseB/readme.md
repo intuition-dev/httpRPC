@@ -24,3 +24,16 @@ Result: 2 lines to set up logging, import and a decaration. In .js don't use `:a
 
 
 Note 2: avoid console.log
+
+
+## Performance mode for Express
+
+- http://expressjs.com/en/advanced/best-practice-performance.html#set-node_env-to-production
+
+
+/etc/systemd/system/myservice.service
+
+```
+    Environment=NODE_ENV=production
+
+```
