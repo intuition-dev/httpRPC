@@ -270,8 +270,6 @@ export class Serv {
       if(!this._urlSz) this._urlSz = 4 * 1024
 
       const server = http.createServer({maxHeaderSize: this._urlSz }, Serv._expInst).listen(port)
-
-      //Serv._expInst.listen(port)
       
       console.log('services running on port:', port)
       log.warn(server.maxHeaderSize)
