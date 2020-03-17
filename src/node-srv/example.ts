@@ -10,7 +10,7 @@ allowedDomains.push('one.com') // get from config.yaml, should never be '*'
 allowedDomains.push('two.org') // XXX host or local would match localhost
 
 // pass in the CORS domains 
-const service = new Serv(['*'],16)
+const service = new Serv(['*'],4 *1024)
 
 // handler
 class Handler1 extends BaseRPCMethodHandler {

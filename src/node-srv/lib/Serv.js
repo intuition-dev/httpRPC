@@ -56,7 +56,6 @@ class BaseRPCMethodHandler {
      * @param cdnT  CDN/edge cache
      */
     constructor(broT, cdnT) {
-        this.DEBUG = false;
         if (!broT)
             broT = 1;
         if (!cdnT)
@@ -75,8 +74,6 @@ class BaseRPCMethodHandler {
         resp.setHeader('Cache-Control', this.cache);
         resp.setHeader('x-intu-ts', new Date().toISOString());
         //let json = JSON.stringify(ret)
-        if (this.DEBUG)
-            log.warn(ret);
         // const r:string = lz.compress(json)
         resp.json(ret);
     } //()
@@ -112,8 +109,6 @@ class BaseRPCMethodHandler {
             qstr = URL.parse(req.url, true).query;
             let compressed = qstr['p'];
             let str = lz_string_1.default.decompressFromEncodedURIComponent(compressed);
-            if (THIZ.DEBUG)
-                log.info(str);
             const params = JSON.parse(str);
             const ip = res.socket.remoteAddress;
             params.remoteAddress = ip;
@@ -124,8 +119,6 @@ class BaseRPCMethodHandler {
             }
             //invoke the method request
             const ans = await THIZ[method](params);
-            if (THIZ.DEBUG)
-                log.warn(method, ans);
             THIZ._ret(res, ans);
         }
         catch (err) {
@@ -152,7 +145,7 @@ class LogHandler extends BaseRPCMethodHandler {
 class Serv {
     /**
      * @param origins An array of string that would match a domain. So host would match localhost. eg ['*']
-     * @param urlK How many bytes for url + header.  It has a small default
+     * @param urlK How many bytes for url + header.  In bytes
      */
     constructor(origins, urlSz) {
         this._urlSz = urlSz;
@@ -164,7 +157,7 @@ class Serv {
         // does it already exist?
         if (Serv._expInst)
             throw new Error('one instance of express app already exists');
-        log.info('Allowed >>> ', origins);
+        log.warn('Allowed >>> ', origins);
         const cors = new CustomCors(origins);
         Serv._expInst = express_1.default();
         // Serv._expInst.set('trust proxy', true)
@@ -222,18 +215,12 @@ class Serv {
      * @param port
      */
     listen(port) {
-        // https://github.com/nodejs/node/issues/24692#issuecomment-595560987
-        // https://github.com/expressjs/express/issues/4131
-        // https://github.com/expressjs/express/blob/4.x/lib/application.js
-        // https://github.com/nodejs/node/issues/24692#issuecomment-596838657
-        // https://github.com/nodejs/node/blob/master/doc/api/http.md
         if (!this._urlSz)
-            this._urlSz = 2 * 1024;
-        // url + headers size, here we set it: urlSz
-        //http.createServer({maxHeaderSize: this._urlSz }, Serv._expInst).listen(port)
-        Serv._expInst.listen(port);
+            this._urlSz = 4 * 1024;
+        const server = http.createServer({ maxHeaderSize: this._urlSz }, Serv._expInst).listen(port);
+        //Serv._expInst.listen(port)
         console.log('services running on port:', port);
-        log.warn(http.maxHeaderSize);
+        log.warn(server.maxHeaderSize);
     }
 } //class
 exports.Serv = Serv;

@@ -9,7 +9,7 @@ import {  Serv }  from 'http-rpc/lib/Serv'
 import {  UserHandler } from "./handlers/UserHandler"
 
 
-const srv = new Serv(['*']) 
+const srv = new Serv(['*'], 4 *1024) 
 
 const uHand = new UserHandler(null)
 
