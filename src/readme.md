@@ -14,7 +14,7 @@ HTTP-RPC leverage browsers fetch() command. As a plus, it has built in edge cach
 
 ## Features 
 
-- Handles CORS and does so in a single trip - no preflight or double request
+- Handles CORS and does so in a *single* trip - no preflight or double request
 - Built in error handling
 - Handles user/password (or any name-value-pair) auth as well as token
 - Has a field for the calling entity (or page or screen), so you know what screen/page called the RPC. 

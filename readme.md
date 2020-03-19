@@ -1,1 +1,1 @@
-./src/node-srv/readme.md
+src/readme.md
