@@ -21,6 +21,7 @@ HTTP-RPC leverage browsers fetch() command. As a plus, it has built in edge cach
 - Can use regular headers for caching at at edge w/ CDN or at the browser.
 - Timeout, configurable
 - Browser side AND server side calls/invokes.
+- Idempotent capability
 
 ### Notes
 - The https should be provided by the CDN/Edge. It makes for a faster https handshake. Also, some CDN offer QUIC (http v3) protocol.
