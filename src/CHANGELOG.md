@@ -1,4 +1,8 @@
 
+
+- remove log, move to monitor
+- changed auth, user/pswd to use JWT token as querystring
+
 ### 2.3.2
 - use terse-b for logging
 - added size arg for url in node

@@ -154,18 +154,6 @@ export class BaseRPCMethodHandler {
 
 }//class
 
-class LogHandler extends BaseRPCMethodHandler {
-   _foo
-   constructor(foo, bro, cdn?) {
-      super(bro, cdn)
-      this._foo = foo
-   }
-
-   async log(params) {// 'log', 'log'
-      await this._foo(params)
-      return 'OK'
-   }
-}//()
 
 /**
  * Should be single socket for everything.
@@ -208,9 +196,6 @@ export class Serv {
 
    }//()
 
-   setLogger(foo, bro, cdn?) {
-      this.routeRPC('log', new LogHandler(foo, bro, cdn) )
-   }
 
    /**
     * Route to a handler
@@ -276,17 +261,3 @@ export class Serv {
 
    }
 }//class
-
-export  interface iAuth {
-   /**
-    * Rejects with 'FAIL' if not. Else returns some string saying what kind of auth. Eg: 'admin' for full. Or 'microsoft' would mean only for that company. 
-    * @param user 
-    * @param pswd 
-    * @param resp response, optionally the auth class does the http response
-    * @param ctx Optional context, for example project|company. Is the user allowed in this project|company?
-    */
-   auth(user:string, pswd:string, resp?, ctx?):Promise<string>
-
-}//i
-
-

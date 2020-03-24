@@ -34,12 +34,7 @@ export class HttpRPC {//
   
     }
     //apiPath=''
-    user=''
-    pswd=''
-    setUser(user,pswd) { // simple auth,
-      this.user = user
-      this.pswd = pswd 
-    }
+
     token =''
     setToken(token) { 
       this.token=token
@@ -57,8 +52,7 @@ export class HttpRPC {//
       if(!params) params = {}
   
       params.method=method
-      params.user = btoa(this.user)
-      params.pswd = btoa(this.pswd)
+
       params.token = btoa(this.token)
   
       let str = JSON.stringify(params)

@@ -8,7 +8,7 @@
 
 ## HTTP-RPC
 
-Inspired by JSON-RPC, but works over HTTP: specifically it works with a browser over http protocol. Google FireBase use gRPC, based on protocol buffers.  Other alternatives are REST and GraphQL.
+Inspired by JSON-RPC, but works over HTTP: specifically it works with a browser over http/s protocol. Google FireBase use gRPC, based on protocol buffers.  Other alternatives are REST and GraphQL.
 HTTP-RPC leverage browsers fetch() command. As a plus, it has built in edge cache: it can use both browser cache and CDN cache.
 
 
@@ -16,12 +16,13 @@ HTTP-RPC leverage browsers fetch() command. As a plus, it has built in edge cach
 
 - Handles CORS and does so in a *single* trip - no preflight or double request
 - Built in error handling
-- Handles user/password (or any name-value-pair) auth as well as token
+- Handles JWT token
 - Has a field for the calling entity (or page or screen), so you know what screen/page called the RPC. 
 - Can use regular headers for caching at at edge w/ CDN or at the browser.
 - Timeout, configurable
 - Browser side AND server side calls/invokes.
-- Idempotent capability
+- Idempotent capability, configureable
+- Early TLS handshake via CDN edge
 
 ### Notes
 - The https should be provided by the CDN/Edge. It makes for a faster https handshake. Also, some CDN offer QUIC (http v3) protocol.
