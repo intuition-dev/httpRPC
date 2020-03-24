@@ -5,7 +5,7 @@ import bformat from 'bunyan-format2'
 export class TerseB {
 
     constructor(name) {
-        const formatOut = bformat({ outputMode: 'short' })
+        let formatOut = bformat( { outputMode: 'bunyan' })
 
         const DEV = process.env.DEV
         
