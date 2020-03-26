@@ -1,5 +1,6 @@
 
-
+- update mkdirp, but that needs to be removed after make-fetch-happen updates
+- added jwt
 - remove log, move to monitor
 - changed auth, user/pswd to use JWT token as querystring
 
