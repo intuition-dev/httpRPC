@@ -40,18 +40,3 @@ async function foo(params) {
     let ans = await rpc.invoke('api', 'multiply', params);
     console.log(ans);
 }
-// part III
-/* example impl of Auth
-class CheckX implements iAuth {
-   auth(user:string, pswd:string, resp?, ctx?):Promise<string> {
-      return new Promise( function (resolve, reject) {
-         // check db to see if user and password match and then return level
-         return resolve('OK') //or
-      })
-   }//()
-}//c
-*/
-// service.setLogger(handleLog, 0)
-/*function handleLog( params) {
-   log.info(params)
-}*/

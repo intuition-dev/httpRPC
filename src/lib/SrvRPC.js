@@ -21,17 +21,11 @@ class HttpRPC {
     constructor(httpOrs, host, port) {
         this._log = new terse_b_1.TerseB(this.constructor.name);
         //apiPath=''
-        this.user = '';
-        this.pswd = '';
         this.token = '';
         this.httpOrs = httpOrs;
         this.host = host;
         this.port = port;
         this._log.info(this.httpOrs, this.host, this.port);
-    }
-    setUser(user, pswd) {
-        this.user = user;
-        this.pswd = pswd;
     }
     setToken(token) {
         this.token = token;
@@ -49,8 +43,6 @@ class HttpRPC {
         if (!params)
             params = {};
         params.method = method;
-        params.user = btoa(this.user);
-        params.pswd = btoa(this.pswd);
         params.token = btoa(this.token);
         let str = JSON.stringify(params);
         const compressed = LZString.compressToEncodedURIComponent(str);

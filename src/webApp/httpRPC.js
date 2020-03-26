@@ -1,7 +1,9 @@
+"use strict";
 // All rights reserved by Cekvenich|INTUITION.DEV) |  Cekvenich, licensed under LGPL 3.0
 // requires  lz-string 
 //    script(src='https://cdn.jsdelivr.net/npm/lz-string@1.4.4/libs/lz-string.min.js')
-export class HttpRPC {
+Object.defineProperty(exports, "__esModule", { value: true });
+class HttpRPC {
     /**
      *
      * @param httpOrs should be 'https'
@@ -15,8 +17,6 @@ export class HttpRPC {
         var port = window.location.port
      */
     constructor(httpOrs, host, port) {
-        this.user = '';
-        this.pswd = '';
         this.token = '';
         this.DEBUG = false;
         this.httpOrs = httpOrs;
@@ -47,10 +47,6 @@ export class HttpRPC {
             }); //script
         });
     } //pro
-    setUser(user, pswd) {
-        this.user = user;
-        this.pswd = pswd;
-    }
     setToken(token) {
         this.token = token;
     }
@@ -66,8 +62,6 @@ export class HttpRPC {
         if (!params)
             params = {};
         params.method = method;
-        params.user = btoa(this.user);
-        params.pswd = btoa(this.pswd);
         params.token = btoa(this.token);
         params.view = window.location.href;
         var str = JSON.stringify(params);
@@ -117,39 +111,6 @@ export class HttpRPC {
     getItem(key) {
         return sessionStorage.getItem(key);
     }
-    /**
-     * Place this in ViewModel and vm calls the rpc
-     * and then in page you can say vm.log(..)
-     * @param msg
-     * @param level
-     * @param className
-     */
-    log(msg, level, className) {
-        var THIZ = this;
-        let p = {
-            msg: msg,
-            page: window.location.pathname,
-            level: level,
-            className: className
-        };
-        try {
-            if (window.ENV)
-                p['ENV'] = window.ENV;
-            p['view'] = window.location.href;
-            p['appVersion'] = btoa(navigator.appVersion);
-            p['userAgent'] = btoa(navigator.userAgent);
-            p['platform'] = btoa(navigator.platform);
-        }
-        catch (err) {
-            console.log(err);
-        }
-        setTimeout(function () {
-            THIZ.invoke('log', 'log', p);
-        }, 1);
-        if (className)
-            console.log(className, level, msg);
-        else
-            console.log(msg);
-    } //()
 } //class
+exports.HttpRPC = HttpRPC;
 HttpRPC.lzStringAdded = false;

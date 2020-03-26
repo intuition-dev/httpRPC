@@ -2,7 +2,7 @@
 // const URL = require('url')
 
 // from mbake
-import { BaseRPCMethodHandler, Serv, iAuth } from './lib/Serv'
+import { BaseRPCMethodHandler, Serv } from './lib/Serv'
 import { HttpRPC } from "./lib/SrvRPC"
 
 let allowedDomains = []
@@ -53,22 +53,3 @@ async function foo(params) {
    console.log(ans)
 }
 
-// part III
-
-/* example impl of Auth
-class CheckX implements iAuth {
-   auth(user:string, pswd:string, resp?, ctx?):Promise<string> {
-      return new Promise( function (resolve, reject) {
-         // check db to see if user and password match and then return level
-         return resolve('OK') //or
-      })
-   }//()
-}//c
-*/
-
-
-// service.setLogger(handleLog, 0)
-
-/*function handleLog( params) {
-   log.info(params)
-}*/
