@@ -1,9 +1,7 @@
-"use strict";
 // All rights reserved by Cekvenich|INTUITION.DEV) |  Cekvenich, licensed under LGPL 3.0
 // requires  lz-string 
 //    script(src='https://cdn.jsdelivr.net/npm/lz-string@1.4.4/libs/lz-string.min.js')
-Object.defineProperty(exports, "__esModule", { value: true });
-class HttpRPC {
+export class HttpRPC {
     /**
      *
      * @param httpOrs should be 'https'
@@ -112,5 +110,4 @@ class HttpRPC {
         return sessionStorage.getItem(key);
     }
 } //class
-exports.HttpRPC = HttpRPC;
 HttpRPC.lzStringAdded = false;

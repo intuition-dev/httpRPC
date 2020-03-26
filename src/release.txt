@@ -3,6 +3,6 @@ Release via npm, no need for a git release.
 
 webApp
 
-npm/http-rpc@2.3.7/browser/httpRPC
+https://cdn.jsdelivr.net/npm/http-rpc@2.4.1/webApp/httpRPC
 
 Also console log the version
