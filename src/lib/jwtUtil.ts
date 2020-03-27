@@ -17,18 +17,15 @@ makeExpiredToken(secret) {
     return jwt.sign(payload, secret, options)
 }
 
-newToken(secret, userID, role, ip, finger?, expiresIn?, counter?:number) {
+newToken(secret, userID, role, ip, finger?, expiresIn?) {
     if(!expiresIn) expiresIn = '2h'
     const options = {
         expiresIn: expiresIn 
     }
-    if(!counter) counter = 0
-    else counter++
 
     const payload = {
           userID: userID // email
         , role: role
-        , counter: counter
         , ip: ip
         , finger: finger
     }
@@ -54,8 +51,7 @@ verifyExtend(token, secret, nip, nfinger?, expiresIn?) { // throws an error, or 
 
     const userID = decoded['userID']
     const role = decoded['role']
-    const counter = decoded['counter']
-    return this.newToken(secret, userID, role, ip, nfinger, expiresIn, counter)
+    return this.newToken(secret, userID, role, ip, nfinger, expiresIn)
 }//()
 
 

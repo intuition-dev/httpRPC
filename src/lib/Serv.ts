@@ -28,6 +28,7 @@ export class CustomCors {
          const origin2= request.headers.origin
 
          if (!origin) {
+            log.warn('no origin')
             return next()
          }
 
@@ -144,7 +145,9 @@ export class BaseRPCMethodHandler {
 
          //invoke the method request
          const ans = await THIZ[method](params)
-         if(!ans.token) throw new Error('no token returned')
+         
+         const token = ans[0]
+         if(!token) throw new Error('no token returned')
 
          THIZ._ret(res, ans)
 

@@ -17,3 +17,5 @@ class C {
 }
 
 new C().tst()
+
+console.log('XXXXXXXXXXXXX')

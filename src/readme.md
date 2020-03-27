@@ -16,7 +16,7 @@ HTTP-RPC leverage browsers fetch() command. As a plus, it has built in edge cach
 
 - Handles CORS and does so in a *single* trip - no preflight or double request
 - Built in error handling
-- Handles JWT token
+- Handles JWT token. Benefit is that it only checks the DB on login.
 - Has a field for the calling entity (or page or screen), so you know what screen/page called the RPC. 
 - Can use regular headers for caching at at edge w/ CDN or at the browser.
 - Timeout, configurable
@@ -65,7 +65,7 @@ And an example handler:
       multiply(params) {
          let a = params.a
          let b = params.b
-         return doMultiply(a,b)
+         return [TOKEN, doMultiply(a,b)]
       }//()
    }
    ```
@@ -96,12 +96,13 @@ We now have a running service with one handler and that handler has one method '
    import { HttpRPC } from 'https://cdn.jsdelivr.net/npm/http-rpc@2.4.1/webApp/httpRPC.min.js'
 
    const rpc = new HttpRPC('http', 'localhost', 8888)
+   let params = {a:5,  b:2, token:TOKEN}
+   let ans:any = await rpc.invoke('api', 'multiply',  params  )
+   // console.log(ans[0])//token
+   console.log(ans[1])
 
-   rpc.invoke('api', 'multiply', {a:5, b:2})
-      .then(function(resp) {
-         console.log(resp)
-      })
    ```
+##### Note: You can get a token from jwtUtil in lib folder.
 
 Constructor is self explanatory. 
 The invoke() method takes the route ('api') and a method in the handler to call ('multiply'), plus the arguments( 5 and 2).

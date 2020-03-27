@@ -7,12 +7,14 @@ const bunyan_1 = __importDefault(require("bunyan"));
 const bunyan_format2_1 = __importDefault(require("bunyan-format2"));
 class TerseB {
     constructor(name) {
-        let formatOut = bunyan_format2_1.default({ outputMode: 'bunyan' });
         const DEV = process.env.DEV;
         let log;
-        if (!DEV) // prod
+        if (!DEV) { // prod
+            let formatOut = bunyan_format2_1.default({ outputMode: 'bunyan' });
             log = bunyan_1.default.createLogger({ src: false, level: 31, stream: formatOut, name: name });
-        else { // log all
+        }
+        else { // dev
+            let formatOut = bunyan_format2_1.default({ outputMode: 'long' });
             log = bunyan_1.default.createLogger({ src: true, stream: formatOut, name: name });
             console.log('log DEV=true', name);
         }

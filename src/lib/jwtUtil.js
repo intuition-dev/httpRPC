@@ -14,21 +14,16 @@ class JWT {
         };
         return jwt.sign(payload, secret, options);
     }
-    newToken(secret, userID, role, ip, finger, expiresIn, counter) {
+    newToken(secret, userID, role, ip, finger, expiresIn) {
         if (!expiresIn)
             expiresIn = '2h';
         const options = {
             expiresIn: expiresIn
         };
-        if (!counter)
-            counter = 0;
-        else
-            counter++;
         const payload = {
             userID: userID // email
             ,
             role: role,
-            counter: counter,
             ip: ip,
             finger: finger
         };
@@ -51,8 +46,7 @@ class JWT {
         } //fi
         const userID = decoded['userID'];
         const role = decoded['role'];
-        const counter = decoded['counter'];
-        return this.newToken(secret, userID, role, ip, nfinger, expiresIn, counter);
+        return this.newToken(secret, userID, role, ip, nfinger, expiresIn);
     } //()
     hashPass(password, salt) {
         return bcrypt.hashSync(password, salt);
