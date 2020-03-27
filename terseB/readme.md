@@ -37,3 +37,8 @@ Note 2: avoid console.log
     Environment=NODE_ENV=production
 
 ```
+
+
+## Notes
+
+- update mkdirp, but that needs to be removed after mv updates
