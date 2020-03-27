@@ -1,12 +1,12 @@
 console.log('UI:');
 
 import { EventFlux } from 'https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v8.2.8/eventFlux/EventFlux.js'
-new EventFlux() // makes defEventBus var
+new EventFlux() // makes defEventFlux var
 
 class UIBinding {
 
     constructor() {
-        defEventBus.addListener('onUData', UIBinding.onData);
+        defEventFlux.addListener('onUData', UIBinding.onData);
     } //()
     
     static onData(data) {

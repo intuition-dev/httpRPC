@@ -1,6 +1,14 @@
 
 
-export function getData() {
+
+
+export function isValid(userID, pswd) {
+
+    if(userID == 'admin') return true
+    return false
+}
+
+export function getCRMData() {
 
     let row1 = {
         fname: 'Vic', lname: 'Smith', email: 'vic@gmail.com', pass: 'a123'

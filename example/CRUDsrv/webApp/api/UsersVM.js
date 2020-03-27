@@ -1,6 +1,6 @@
 
 import { EventFlux } from 'https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v8.2.8/eventFlux/EventFlux.js'
-new EventFlux() // makes defEventBus var
+new EventFlux() // makes defEventFlux var
 
 // req for rpc
 import { HttpRPC } from 'https://cdn.jsdelivr.net/npm/http-rpc@2.4.1/webApp/httpRPC.min.js'
@@ -14,7 +14,7 @@ export class UsersVM {
         THIZ.rpc = new HttpRPC('http', 'localhost', 8888);
         THIZ.fetch('a', 1);
 
-        defEventBus.addListener('uFetch', function(arg) {
+        defEventFlux.addListener('uFetch', function(arg) {
             THIZ.fetch(arg.srch, arg.o)
         })
 
@@ -29,7 +29,7 @@ export class UsersVM {
         this.rpc.invoke('uapi', 'srch', args)
             .then(function(resp) {
                 console.log('got data')
-                defEventBus.dispatch('onUData', resp)
+                defEventFlux.dispatch('onUData', resp)
             })
     }//()
 
