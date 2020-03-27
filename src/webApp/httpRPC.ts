@@ -52,10 +52,6 @@ export class HttpRPC {
     }
 
 
-    setToken(token) {
-        this.token = token;
-    }
-
     /**
      * @param route api apth, eg api
      * @param method CRUD, insert, check, listAll, etc
@@ -68,7 +64,11 @@ export class HttpRPC {
         if (!params)
             params = {};
         params.method = method;
-        params.token = btoa(this.token);
+        
+        try {
+            params.token = this.getItem('jwt') // get old token
+        } catch(err){}
+
         params.view = window.location.href;
         var str = JSON.stringify(params);
         const THIZ = this;
@@ -100,6 +100,9 @@ export class HttpRPC {
                             console.warn(method + ' ' + str);
                             reject(method + ' ' + str);
                         }
+
+                        THIZ.setItem('jwt',resp.token) // saves token
+
                         resolve(resp.result);
                     })
                     .catch(function(err) {
@@ -119,11 +122,53 @@ export class HttpRPC {
     }//()
 
     setItem(key, val) {
-        sessionStorage.setItem(key, val);
+        localStorage.setItem(key, val);
     }
 
     getItem(key) {
-        return sessionStorage.getItem(key);
+        return localStorage.getItem(key);
     }
+    
+    getUrlVars() {
+        var vars = [], hash;
+        var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+        for (var i = 0; i < hashes.length; i++) {
+            hash = hashes[i].split('=');
+            vars.push(hash[0]);
+            vars[hash[0]] = hash[1];
+        }
+        return vars;
+    }
+
+    static genGUID() { //generates a guid client side so no need to wait
+        var d = new Date().getTime();
+        if (typeof performance !== 'undefined' && typeof performance.now === 'function') {
+        d += performance.now(); //use high-precision timer if available
+        }
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+        var r = (d + Math.random() * 16) % 16 | 0;
+        d = Math.floor(d / 16);
+        return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+        })
+    }
+    
+    static removeAllStore() { // cookies and storage. For example to log out.
+        var cookies = document.cookie.split("; ");
+        for (var c = 0; c < cookies.length; c++) {
+        var d = window.location.hostname.split(".");
+        while (d.length > 0) {
+            var cookieBase = encodeURIComponent(cookies[c].split(";")[0].split("=")[0]) + '=; expires=Thu, 01-Jan-1970 00:00:01 GMT; domain=' + d.join('.') + ' ;path=';
+            var p = location.pathname.split('/');
+            document.cookie = cookieBase + '/';
+            while (p.length > 0) {
+                document.cookie = cookieBase + p.join('/');
+                p.pop();
+            }//inner while
+            d.shift()
+        }//while
+        }//for
+        localStorage.clear()
+        sessionStorage.clear()
+    }//()
 
 }//class

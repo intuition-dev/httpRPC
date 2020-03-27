@@ -1,4 +1,8 @@
+todo: finger and ip
 
+### 2.4.2
+- must return token, that should be persistent
+- should send token in a reuqest
 - update mkdirp, but that needs to be removed after make-fetch-happen updates
 - added jwt
 - remove log, move to monitor

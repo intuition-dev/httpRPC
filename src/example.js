@@ -4,6 +4,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 // from mbake
 const Serv_1 = require("./lib/Serv");
 const SrvRPC_1 = require("./lib/SrvRPC");
+const jwtUtil_1 = require("./lib/jwtUtil");
+const jwt = new jwtUtil_1.JWT();
+let secret = '123';
 let allowedDomains = [];
 allowedDomains.push('one.com'); // get from config.yaml, should never be '*'
 allowedDomains.push('two.org'); // XXX host or local would match localhost
@@ -15,6 +18,7 @@ class Handler1 extends Serv_1.BaseRPCMethodHandler {
         super(2, 1); // example of 2 second browser cache and 1 second CDN/edge cache. You can set to 0,0 to disable.
     }
     async multiply(params) {
+        console.log(params.token, params.ip);
         let a = params.a;
         let b = params.b;
         let result = await doMultiply(a, b);
@@ -37,6 +41,7 @@ let params = { a: 5, b: 2 };
 foo(params);
 async function foo(params) {
     const rpc = new SrvRPC_1.HttpRPC('http', 'localhost', 8888);
+    rpc.setToken(jwt.makeExpiredToken(secret));
     let ans = await rpc.invoke('api', 'multiply', params);
     console.log(ans);
 }

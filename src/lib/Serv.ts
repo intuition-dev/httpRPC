@@ -122,8 +122,8 @@ export class BaseRPCMethodHandler {
    async handleRPC(req:Request, res:Response) {
       if(!this) throw new Error('bind of class instance needed')
       const THIZ = this
-      let method
       let qstr
+      let method
       try {
 
          qstr = URL.parse(req.url, true).query
@@ -144,6 +144,8 @@ export class BaseRPCMethodHandler {
 
          //invoke the method request
          const ans = await THIZ[method](params)
+         if(!ans.token) throw new Error('no token returned')
+
          THIZ._ret(res, ans)
 
       } catch(err) {

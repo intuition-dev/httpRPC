@@ -53,7 +53,7 @@ export class HttpRPC {//
   
       params.method=method
 
-      params.token = btoa(this.token)
+      params.token = this.token
   
       let str = JSON.stringify(params)
       const compressed = LZString.compressToEncodedURIComponent(str)
@@ -90,6 +90,9 @@ export class HttpRPC {//
                 THIZ._log.warn(method +' '+ str)
                 reject(method +' '+ str)
              }
+
+             THIZ.setToken(resp.token) // saves token
+
              resolve(resp.result)
 
             })//fetch

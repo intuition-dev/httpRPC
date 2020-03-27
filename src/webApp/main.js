@@ -3,6 +3,8 @@ import { HttpRPC } from './httpRPC.min.js'
 
 const rpc = new HttpRPC('http', 'localhost', 8888)
 
+rpc.setItem('jwt', 'blank')
+
 rpc.invoke('api', 'multiply', {a:5, b:2}, 600 )
    .then(function(resp) {
       console.log(resp)

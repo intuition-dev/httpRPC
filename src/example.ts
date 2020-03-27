@@ -4,6 +4,9 @@
 // from mbake
 import { BaseRPCMethodHandler, Serv } from './lib/Serv'
 import { HttpRPC } from "./lib/SrvRPC"
+import { JWT } from "./lib/jwtUtil"
+const jwt = new JWT()
+let secret = '123'
 
 let allowedDomains = []
 allowedDomains.push('one.com') // get from config.yaml, should never be '*'
@@ -19,7 +22,9 @@ class Handler1 extends BaseRPCMethodHandler {
       super(2,1) // example of 2 second browser cache and 1 second CDN/edge cache. You can set to 0,0 to disable.
    }
 
-   async multiply(params) {
+   async multiply(params:any) {
+      console.log(params.token, params.ip)
+
       let a = params.a
       let b = params.b
 
@@ -35,7 +40,6 @@ async function doMultiply(a,b) {// simulate wait
          resolve( a*b )
       },500)
    })
-
 }
 
 const h1 = new Handler1()
@@ -49,7 +53,9 @@ let params = {a:5, b:2}
 foo(params)
 async function foo(params) {
    const rpc = new HttpRPC('http', 'localhost', 8888)
-   let ans = await rpc.invoke('api', 'multiply',  params  )
+   rpc.setToken(jwt.makeExpiredToken(secret))
+   let ans:any = await rpc.invoke('api', 'multiply',  params  )
+
    console.log(ans)
 }
 
