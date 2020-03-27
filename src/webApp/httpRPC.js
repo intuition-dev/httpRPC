@@ -58,7 +58,7 @@ export class HttpRPC {
             params = {};
         params.method = method;
         try {
-            params.token = this.getItem('jwt'); // get old token
+            params.token = this.getItem('jwt'); // get old token from storage
         }
         catch (err) { }
         params.view = window.location.href;

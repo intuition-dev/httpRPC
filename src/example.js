@@ -46,6 +46,6 @@ async function foo(params) {
     const rpc = new SrvRPC_1.HttpRPC('http', 'localhost', 8888);
     rpc.setToken(jwt.makeExpiredToken(secret));
     let ans = await rpc.invoke('api', 'multiply', params);
-    console.log(ans[0]); //token
+    //console.log(ans[0])//token
     log.warn(ans[1]);
 }
