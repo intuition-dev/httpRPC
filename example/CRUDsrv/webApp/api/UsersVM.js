@@ -1,13 +1,14 @@
 
-import { EventFlux } from 'https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v8.2.8/eventFlux/EventFlux.js'
-new EventFlux() // makes defEventFlux var
+import { EventFlux } from 'https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v8.4.2/eventFlux/EventFlux.js'
+new EventFlux() // also creates global defEventFlux var
 
 // req for rpc
 import { HttpRPC } from 'https://cdn.jsdelivr.net/npm/http-rpc@2.4.1/webApp/httpRPC.min.js'
 
-export class UsersVM {
+export class  {
 
     constructor() {
+ 
         console.log('cons')
         let THIZ = this
         
