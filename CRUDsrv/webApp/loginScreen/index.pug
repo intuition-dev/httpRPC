@@ -1,4 +1,25 @@
 head
-
+   include headFrag
+   
+   // script(src='/api/UsersVM.js'  type="module")
+   
 body
-   p oh hi
+   .container
+      br 
+      form.grid-form#f1
+         fieldset
+               legend Login
+               div(data-row-span='1')
+                  div(data-field-span='1')
+                     label Name
+                     input(type='text')
+               div(data-row-span='1')
+                  div(data-field-span='1')
+                     label Password
+                     input(type='text')
+      .msg Bad Email or Password
+      #loginBut.btn.btn-sm.btn-a Login
+      .msg Autorized!
+      
+   script.
+      console.log('ready')
