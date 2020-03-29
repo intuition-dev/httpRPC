@@ -14,16 +14,19 @@ class JWT {
         };
         return jwt.sign(payload, secret, options);
     }
-    newToken(secret, userID, role, ip, finger, expiresIn) {
+    newToken5(secret, userID, role, ip, finger, expiresIn) {
         if (!expiresIn)
-            expiresIn = '2h';
+            expiresIn = '5 days';
         const options = {
             expiresIn: expiresIn
         };
+        let dt = new Date();
         const payload = {
             userID: userID // email
             ,
             role: role,
+            expDate: dt.setDate(dt.getDate() + 5) // 5 days
+            ,
             ip: ip,
             finger: finger
         };
@@ -32,9 +35,7 @@ class JWT {
     getPayload(token, secret) {
         return jwt.verify(token, secret);
     }
-    verifyExtend(token, secret, nip, nfinger, expiresIn) {
-        if (!expiresIn)
-            expiresIn = '2h';
+    verify(token, secret, nip, nfinger) {
         let decoded = jwt.verify(token, secret);
         const ip = decoded['ip'];
         if (ip != nip)
@@ -44,9 +45,7 @@ class JWT {
             if (finger != nfinger)
                 throw new Error('finger does not match');
         } //fi
-        const userID = decoded['userID'];
-        const role = decoded['role'];
-        return this.newToken(secret, userID, role, ip, nfinger, expiresIn);
+        return decoded;
     } //()
     hashPass(password, salt) {
         return bcrypt.hashSync(password, salt);

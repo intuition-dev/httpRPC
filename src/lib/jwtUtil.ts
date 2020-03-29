@@ -17,15 +17,17 @@ makeExpiredToken(secret) {
     return jwt.sign(payload, secret, options)
 }
 
-newToken(secret, userID, role, ip, finger?, expiresIn?) {
-    if(!expiresIn) expiresIn = '2h'
+newToken5(secret, userID, role, ip, finger?, expiresIn?) {
+    if(!expiresIn) expiresIn = '5 days'
     const options = {
         expiresIn: expiresIn 
     }
 
+    let dt = new Date()
     const payload = {
           userID: userID // email
         , role: role
+        , expDate: dt.setDate(dt.getDate() + 5)// 5 days
         , ip: ip
         , finger: finger
     }
@@ -37,8 +39,7 @@ getPayload(token, secret) { // throws an error, or returns payload
 }
 
 
-verifyExtend(token, secret, nip, nfinger?, expiresIn?) { // throws an error, or returns new token
-    if(!expiresIn) expiresIn = '2h'
+verify(token, secret, nip, nfinger?) { // throws an error if bad
 
     let decoded = jwt.verify(token, secret)
     const ip = decoded['ip']
@@ -49,9 +50,7 @@ verifyExtend(token, secret, nip, nfinger?, expiresIn?) { // throws an error, or 
         if(finger != nfinger) throw new Error('finger does not match')
     }//fi
 
-    const userID = decoded['userID']
-    const role = decoded['role']
-    return this.newToken(secret, userID, role, ip, nfinger, expiresIn)
+    return decoded
 }//()
 
 
