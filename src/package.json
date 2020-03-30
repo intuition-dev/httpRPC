@@ -1,6 +1,6 @@
 {
     "name": "http-rpc",
-    "version": "2.4.2",
+    "version": "2.4.5",
     "description": "Inspired by JSON-RPC and gRPC, but works over HTTP: specifically it works with a browser over http protocol.",
     "license": "LGPL-3.0-only",
     "author": "http://www.INTUITION.DEV",
@@ -30,7 +30,7 @@
         "mkdirp": "^0.5.4",
         "perfy": ">=1.1.5",
         "serve-static": ">=1.14.1",
-        "terse-b": ">=1.0.3"
+        "terse-b": ">=1.0.6"
     },
     "devDependencies": {
         "mkdirp": "^0.5.4",

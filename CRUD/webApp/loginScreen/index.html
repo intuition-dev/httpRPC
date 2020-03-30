@@ -12,6 +12,7 @@
   <!-- script(src='/api/UsersVM.js'  type="module")-->
 </head>
 <body>
+  <script type="module" src="https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v8.4.3/eventFlux/EventFlux.min.js"></script>
   <div class="container"><br/>
     <div>
       <style>
@@ -63,6 +64,7 @@
        const inputs = document.getElementsByTagName('input')
        let obj = getInputsValue(inputs)
        console.log(obj)
+       defEventFlux.doAction('evX', 'oh hi');
     }
     
     // /////////////////////////////////////////////////////////////////
@@ -85,7 +87,7 @@
        if (id) s.id = id
        if (callback) s.onload = callback
        s.async = false 
-       document.getElementsByTagName('body')[0].appendChild(s)
+       document.getElementsByTagName('head')[0].appendChild(s)
     }
   </script>
-<!-- mB v8.4.1 on 2020-03-30T02:12:22.359Z --></body>
+<!-- mB v8.4.1 on 2020-03-30T15:14:45.112Z --></body>

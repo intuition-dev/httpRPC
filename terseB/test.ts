@@ -7,8 +7,6 @@ class C {
 
     tst() {
         
-        console.log('DEV:',process.env.DEV)
-
         this.log.info('oh?')
         this.log.warn('War!')
 

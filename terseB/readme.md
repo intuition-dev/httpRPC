@@ -2,9 +2,10 @@
 
 I noticed my log files were getting large. Also, I need loggin in each file. So I need something terse without to many LOC.
 
-If node env is  'DEV=true' it will log all, else only above INFO.
+If node env is 'NODE_ENV=production' it will log only above INFO as JSON.
+Else you get all w/ CLI.
 
-eg: `DEV=true node index.js`
+eg: `NODE_ENV=production node index.js`
 
 Note: If you don't set above during DEV, ** you won't see the logs! **
 

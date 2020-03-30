@@ -1,5 +1,5 @@
 
-import { EventFlux } from 'https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v8.4.2/eventFlux/EventFlux.js'
+import { EventFlux } from 'https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v8.4.3/eventFlux/EventFlux.js'
 new EventFlux() // also creates global defEventFlux var
 
 // req for rpc
@@ -22,7 +22,6 @@ export class  {
     }//
 
     fetch(srch, o) {
-        var _rpcS = Date.now();
         let args = {};
         args['srch'] = srch;
         args['o'] = o;

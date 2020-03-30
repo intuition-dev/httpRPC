@@ -1,6 +1,6 @@
 
 tsc
 
-DEV=true node test.js
+NODE_ENV=production node test.js
 
 node test.js

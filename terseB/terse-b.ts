@@ -6,16 +6,15 @@ export class TerseB {
 
     constructor(name) {
 
-        const DEV = process.env.DEV
+        const PROD = process.env.NODE_ENV
         
         let log
-        if(!DEV) {// prod
+        if(PROD) {// prod
             let formatOut = bformat( { outputMode: 'bunyan' })
             log = bunyan.createLogger({src: false, level: 31, stream: formatOut, name: name })
         } else { // dev
             let formatOut = bformat( { outputMode: 'long' })
             log = bunyan.createLogger({src: true, stream: formatOut, name: name })
-            console.log('log DEV=true', name)
         }
         return log
     }//()

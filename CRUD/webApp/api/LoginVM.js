@@ -1,5 +1,5 @@
 
-import { EventFlux } from 'https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v8.4.2/eventFlux/EventFlux.js'
+import { EventFlux } from 'https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v8.4.3/eventFlux/EventFlux.js'
 new EventFlux() // also creates global defEventFlux var
 
 // req for rpc
@@ -15,14 +15,13 @@ export class  {
         THIZ.rpc = new HttpRPC('http', 'localhost', 8888);
         THIZ.fetch('a', 1);
 
-        defEventFlux.addListener('uFetch', function(arg) {
+        defEventFlux.register('checkLogin', function(arg) {
             THIZ.fetch(arg.srch, arg.o)
         })
 
     }//
 
     fetch(srch, o) {
-        var _rpcS = Date.now();
         let args = {};
         args['srch'] = srch;
         args['o'] = o;

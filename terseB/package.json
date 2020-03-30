@@ -1,6 +1,6 @@
 {
   "name": "terse-b",
-  "version": "1.0.3",
+  "version": "1.0.6",
   "description": "Bunyan lib that is terse to use.",
   "keywords": [
     "Bunyan"
