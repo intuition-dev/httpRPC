@@ -18,6 +18,9 @@
         .msg {
            display: none;
         }
+        .pswd {
+           
+        }
       </style>
       <form class="grid-form" id="loginF">
         <fieldset>
@@ -25,13 +28,13 @@
           <div data-row-span="1">
             <div data-field-span="1">
               <label>Name</label>
-              <input id="email" type="text"/>
+              <input class="form-control" id="email" type="text"/>
             </div>
           </div>
           <div data-row-span="1">
             <div data-field-span="1">
               <label>Password</label>
-              <input id="pswd" type="password"/>
+              <input class="form-control pswd" id="pswd" type="text"/>
             </div>
           </div>
         </fieldset>
@@ -47,7 +50,7 @@
     })
     function disAutoReady() {
        $(document).ready(function() {
-          $('#loginF').disableAutoFill()
+          $('#loginF').disableAutoFill({passwordField: 'pswd'})
           console.log('dis ready')
        })
     }
@@ -85,4 +88,4 @@
        document.getElementsByTagName('body')[0].appendChild(s)
     }
   </script>
-<!-- mB v8.4.1 on 2020-03-30T01:38:19.238Z --></body>
+<!-- mB v8.4.1 on 2020-03-30T01:56:47.247Z --></body>
