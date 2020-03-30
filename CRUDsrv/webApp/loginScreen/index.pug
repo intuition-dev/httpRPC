@@ -11,9 +11,11 @@ body
             .msg {
                display: none;
             }
-            .pswd {
-               
+            
+            .pswd { // https://fontstruct.com/fontstructions/show/1106896/password_dots_2
+               -webkit-text-security: disc;
             }
+
          form.grid-form#loginF
             fieldset
                   legend Login
@@ -35,10 +37,8 @@ body
          addScript('https://cdn.jsdelivr.net/npm/disableautofill@1.2.8/src/jquery.disableAutoFill.min.js',  disAutoReady )
       })
       function disAutoReady() {
-         $(document).ready(function() {
-            $('#loginF').disableAutoFill({passwordField: 'pswd'})
-            console.log('dis ready')
-         })
+         $('#loginF').disableAutoFill()
+         console.log('dis ready')
       }
 
       // end load /////////////////////////////////////////////////////////

@@ -18,9 +18,11 @@
         .msg {
            display: none;
         }
-        .pswd {
-           
+        
+        .pswd { // https://fontstruct.com/fontstructions/show/1106896/password_dots_2
+           -webkit-text-security: disc;
         }
+        
       </style>
       <form class="grid-form" id="loginF">
         <fieldset>
@@ -49,10 +51,8 @@
        addScript('https://cdn.jsdelivr.net/npm/disableautofill@1.2.8/src/jquery.disableAutoFill.min.js',  disAutoReady )
     })
     function disAutoReady() {
-       $(document).ready(function() {
-          $('#loginF').disableAutoFill({passwordField: 'pswd'})
-          console.log('dis ready')
-       })
+       $('#loginF').disableAutoFill()
+       console.log('dis ready')
     }
     
     // end load /////////////////////////////////////////////////////////
@@ -88,4 +88,4 @@
        document.getElementsByTagName('body')[0].appendChild(s)
     }
   </script>
-<!-- mB v8.4.1 on 2020-03-30T01:56:47.247Z --></body>
+<!-- mB v8.4.1 on 2020-03-30T02:12:22.359Z --></body>
