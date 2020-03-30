@@ -2,6 +2,7 @@ import { EventFlux } from 'https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@
 new EventFlux(); // also creates global defEventFlux var
 // req for rpc
 import { HttpRPC } from 'https://cdn.jsdelivr.net/npm/http-rpc@2.4.1/webApp/httpRPC.min.js';
+
 export class LoginVM {
     constructor() {
         console.log('cons');
@@ -9,19 +10,22 @@ export class LoginVM {
         THIZ.rpc = new HttpRPC('http', 'localhost', 8888);
         defEventFlux.register('checkLogin', this.checkLogin);
     } //()
-    checkLogin(o) {
-        console.log(o);
-        if (true)
-            return;
-        let args = {};
-        args['srch'] = srch;
-        args['o'] = o;
+    
+    checkLogin(args) {
         console.log('fetch', args);
-        this.rpc.invoke('uapi', 'srch', args)
+        this.rpc.invoke('apis', 'login', args)
             .then(function (resp) {
-            console.log('got data');
-            defEventFlux.dispatch('onUData', resp);
+               
+                this.doLoginOK(resp);
         });
     } //()
+
+    doLoginOK(rep) {
+        console.log('got data', resp);
+
+
+    }
+
+
 } //class
 new LoginVM();

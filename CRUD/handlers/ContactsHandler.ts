@@ -1,15 +1,12 @@
 
- 
+import { TerseB } from "terse-b/terse-b"
 
-const log = bunyan.createLogger({src: true, stream: formatOut, name: "UserHandler"})
-
-import { getData } from "./FakeDBCall"
+import { getData } from "../bl/FakeDB"
 import { BaseRPCMethodHandler } from 'http-rpc/lib/Serv'
 
-log.info('hand')
-
-export class UserHandler extends BaseRPCMethodHandler {
+export class ContactsHandler extends BaseRPCMethodHandler {
   
+   log:any = new TerseB(this.constructor.name)
    
    constructor(db?) {
       super(1,1)// cache

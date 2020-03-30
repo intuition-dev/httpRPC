@@ -4,7 +4,7 @@ const log = bunyan.createLogger({ src: true, stream: formatOut, name: "UserHandl
 const FakeDBCall_1 = require("./FakeDBCall");
 const Serv_1 = require("http-rpc/lib/Serv");
 log.info('hand');
-class UserHandler extends Serv_1.BaseRPCMethodHandler {
+class ContactsHandler extends Serv_1.BaseRPCMethodHandler {
     constructor(db) {
         super(1, 1); // cache
     }
@@ -14,4 +14,4 @@ class UserHandler extends Serv_1.BaseRPCMethodHandler {
         return ret;
     } //()
 } //class
-exports.UserHandler = UserHandler;
+exports.ContactsHandler = ContactsHandler;

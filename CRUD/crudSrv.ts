@@ -1,19 +1,17 @@
 
 
- 
-
-const log = bunyan.createLogger({src: true, stream: formatOut, name: "crudApp"})
+import { TerseB } from "terse-b/terse-b"
+const log:any = new TerseB("example")
 
 import {  Serv }  from 'http-rpc/lib/Serv'
 
-import {  UserHandler } from "./handlers/UserHandler"
-
+import {  LoginHandler } from "./handlers/LoginHandler"
 
 const srv = new Serv(['*'], 4 *1024) 
 
-const uHand = new UserHandler(null)
+const lhandler = new LoginHandler(null)
 
-srv.routeRPC('uapi',  uHand)
+srv.routeRPC('apis',  lhandler)
 
 srv.serveStatic('../wwwApp', 60*60, 60)
 
