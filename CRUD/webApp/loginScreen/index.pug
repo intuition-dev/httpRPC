@@ -1,7 +1,7 @@
 head
    include headFrag
    
-   // script(src='/api/UsersVM.js'  type="module")
+   script(src='/api/LoginVM.js'  type="module")
    
 body
    script(type='module' src='https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v8.4.3/eventFlux/EventFlux.min.js')
@@ -50,7 +50,7 @@ body
          const inputs = document.getElementsByTagName('input')
          let obj = getInputsValue(inputs)
          console.log(obj)
-         defEventFlux.doAction('evX', 'oh hi');
+         defEventFlux.doAction('checkLogin', obj)
       }
 
       // /////////////////////////////////////////////////////////////////
