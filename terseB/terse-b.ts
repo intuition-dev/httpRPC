@@ -10,7 +10,7 @@ export class TerseB {
         
         let log
         if(PROD) {// prod
-            let formatOut = bformat( { outputMode: 'bunyan' })
+            let formatOut = bformat( { outputMode: 'json' })
             log = bunyan.createLogger({src: false, level: 31, stream: formatOut, name: name })
         } else { // dev
             let formatOut = bformat( { outputMode: 'long' })

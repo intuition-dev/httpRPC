@@ -10,7 +10,7 @@ class TerseB {
         const PROD = process.env.NODE_ENV;
         let log;
         if (PROD) { // prod
-            let formatOut = bunyan_format2_1.default({ outputMode: 'bunyan' });
+            let formatOut = bunyan_format2_1.default({ outputMode: 'json' });
             log = bunyan_1.default.createLogger({ src: false, level: 31, stream: formatOut, name: name });
         }
         else { // dev
