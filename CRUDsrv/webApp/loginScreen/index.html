@@ -13,26 +13,76 @@
 </head>
 <body>
   <div class="container"><br/>
-    <form class="grid-form" id="f1">
-      <fieldset>
-        <legend>Login</legend>
-        <div data-row-span="1">
-          <div data-field-span="1">
-            <label>Name</label>
-            <input type="text"/>
+    <div>
+      <style>
+        .msg {
+           display: none;
+        }
+      </style>
+      <form class="grid-form" id="loginF">
+        <fieldset>
+          <legend>Login</legend>
+          <div data-row-span="1">
+            <div data-field-span="1">
+              <label>Name</label>
+              <input id="email" type="text"/>
+            </div>
           </div>
-        </div>
-        <div data-row-span="1">
-          <div data-field-span="1">
-            <label>Password</label>
-            <input type="text"/>
+          <div data-row-span="1">
+            <div data-field-span="1">
+              <label>Password</label>
+              <input id="pswd" type="password"/>
+            </div>
           </div>
-        </div>
-      </fieldset>
-    </form>
-    <div class="msg">Bad Email or Password</div>
-    <div class="btn btn-sm btn-a" id="loginBut">Login</div>
-    <div class="msg">Autorized!</div>
+        </fieldset>
+      </form>
+      <div class="msg">Bad Email or Password</div>
+      <div class="btn btn-sm btn-a" id="loginBut">Login</div>
+      <div class="msg">Autorized!</div>
+    </div>
   </div>
-  <script>console.log('ready')</script>
-<!-- mB v8.4.1 on 2020-03-29T22:56:15.230Z --></body>
+  <script>
+    addScript('https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.slim.min.js', function() {
+       addScript('https://cdn.jsdelivr.net/npm/disableautofill@1.2.8/src/jquery.disableAutoFill.min.js',  disAutoReady )
+    })
+    function disAutoReady() {
+       $(document).ready(function() {
+          $('#loginF').disableAutoFill()
+          console.log('dis ready')
+       })
+    }
+    
+    // end load /////////////////////////////////////////////////////////
+    document.getElementById('loginBut').addEventListener('click', onLoginBut)
+    function onLoginBut() {
+       console.log('klik')
+    
+       const inputs = document.getElementsByTagName('input')
+       let obj = getInputsValue(inputs)
+       console.log(obj)
+    }
+    
+    // /////////////////////////////////////////////////////////////////
+    function getInputsValue(inputs) {
+       const obj = {}
+       for(var input in inputs) {
+          const value = inputs[input].value
+          const key = inputs[input].id
+          if(!key) continue
+          obj[key]=value
+       }
+       return obj
+    }//()
+    
+    //- eg addScript('bla.js', null, 'api-key', 'key123') when they want you to use the tag: so you can in your own sequence
+    function addScript(src, callback, attr, attrValue, id) {
+       var s = document.createElement('script')
+       s.setAttribute('src', src)
+       if (attr) s.setAttribute(attr, attrValue)
+       if (id) s.id = id
+       if (callback) s.onload = callback
+       s.async = false 
+       document.getElementsByTagName('body')[0].appendChild(s)
+    }
+  </script>
+<!-- mB v8.4.1 on 2020-03-30T01:38:19.238Z --></body>

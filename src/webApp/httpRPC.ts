@@ -10,7 +10,7 @@ export class HttpRPC {
     __addScript(callback) {
         var s = document.createElement('script')
         s.setAttribute('src', 'https://cdn.jsdelivr.net/npm/lz-string@1.4.4/libs/lz-string.min.js')
-        s.async = true // it does it anyway, as the script is async
+        s.async = false 
         if (callback) s.onload = callback
         document.getElementsByTagName('body')[0].appendChild(s)
     }

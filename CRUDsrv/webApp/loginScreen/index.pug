@@ -5,21 +5,68 @@ head
    
 body
    .container
-      br 
-      form.grid-form#f1
-         fieldset
-               legend Login
-               div(data-row-span='1')
-                  div(data-field-span='1')
-                     label Name
-                     input(type='text')
-               div(data-row-span='1')
-                  div(data-field-span='1')
-                     label Password
-                     input(type='text')
-      .msg Bad Email or Password
-      #loginBut.btn.btn-sm.btn-a Login
-      .msg Autorized!
-      
+      br
+      div
+         style.
+            .msg {
+               display: none;
+            }
+         form.grid-form#loginF
+            fieldset
+                  legend Login
+                  div(data-row-span='1')
+                     div(data-field-span='1')
+                        label Name
+                        input#email(type='text' )
+                  div(data-row-span='1')
+                     div(data-field-span='1')
+                        label Password
+                        input#pswd(type='password' )
+         .msg Bad Email or Password
+         #loginBut.btn.btn-sm.btn-a Login
+         .msg Autorized!
+         
    script.
-      console.log('ready')
+      
+      addScript('https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.slim.min.js', function() {
+         addScript('https://cdn.jsdelivr.net/npm/disableautofill@1.2.8/src/jquery.disableAutoFill.min.js',  disAutoReady )
+      })
+      function disAutoReady() {
+         $(document).ready(function() {
+            $('#loginF').disableAutoFill()
+            console.log('dis ready')
+         })
+      }
+
+      // end load /////////////////////////////////////////////////////////
+      document.getElementById('loginBut').addEventListener('click', onLoginBut)
+      function onLoginBut() {
+         console.log('klik')
+
+         const inputs = document.getElementsByTagName('input')
+         let obj = getInputsValue(inputs)
+         console.log(obj)
+      }
+
+      // /////////////////////////////////////////////////////////////////
+      function getInputsValue(inputs) {
+         const obj = {}
+         for(var input in inputs) {
+            const value = inputs[input].value
+            const key = inputs[input].id
+            if(!key) continue
+            obj[key]=value
+         }
+         return obj
+      }//()
+
+      //- eg addScript('bla.js', null, 'api-key', 'key123') when they want you to use the tag: so you can in your own sequence
+      function addScript(src, callback, attr, attrValue, id) {
+         var s = document.createElement('script')
+         s.setAttribute('src', src)
+         if (attr) s.setAttribute(attr, attrValue)
+         if (id) s.id = id
+         if (callback) s.onload = callback
+         s.async = false 
+         document.getElementsByTagName('body')[0].appendChild(s)
+      }
