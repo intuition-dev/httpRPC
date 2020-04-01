@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs') // to hash passwords
 const jwt = require('jsonwebtoken')
 // https://github.com/auth0/node-jsonwebtoken
 
-export class JWT {
+export class jwT {
 
 makeExpiredToken(secret) {
     const options = {

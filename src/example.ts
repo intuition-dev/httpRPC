@@ -6,9 +6,9 @@ const log:any = new TerseB("example")
 
 import { BaseRPCMethodHandler, Serv } from './lib/Serv'
 import { HttpRPC } from "./lib/SrvRPC"
-import { JWT } from "./lib/jwtUtil"
+import { jwT } from "./lib/jwtUtil"
 
-const jwt = new JWT()
+const jwt = new jwT()
 let secret = '123'
 
 let allowedDomains = []

@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const bcrypt = require('bcryptjs'); // to hash passwords
 const jwt = require('jsonwebtoken');
 // https://github.com/auth0/node-jsonwebtoken
-class JWT {
+class jwT {
     makeExpiredToken(secret) {
         const options = {
             // expired
@@ -54,4 +54,4 @@ class JWT {
         return bcrypt.genSaltSync(10);
     }
 }
-exports.JWT = JWT;
+exports.jwT = jwT;

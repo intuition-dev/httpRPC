@@ -6,7 +6,7 @@ const log = new terse_b_1.TerseB("example");
 const Serv_1 = require("./lib/Serv");
 const SrvRPC_1 = require("./lib/SrvRPC");
 const jwtUtil_1 = require("./lib/jwtUtil");
-const jwt = new jwtUtil_1.JWT();
+const jwt = new jwtUtil_1.jwT();
 let secret = '123';
 let allowedDomains = [];
 allowedDomains.push('one.com'); // get from config.yaml, could be '*'
