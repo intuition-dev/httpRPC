@@ -1,7 +1,7 @@
 
 import { TerseB } from "terse-b/terse-b"
 
-import { getData } from "../bl/FakeDB"
+import { isValid } from "../bl/FakeDB"
 import { BaseRPCMethodHandler } from 'http-rpc/lib/Serv'
 
 export class LoginHandler extends BaseRPCMethodHandler {
@@ -12,11 +12,12 @@ export class LoginHandler extends BaseRPCMethodHandler {
       super(1,1)// cache
    }
 
-   srch(params) {
+   login(params) {
 
-      log.info(params)
+      this.log.info(params)
 
-      let ret  = getData()
+      let ret  = isValid(params['email'], null)
+
       return ret
    }//()
 

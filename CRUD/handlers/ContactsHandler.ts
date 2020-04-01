@@ -12,9 +12,9 @@ export class ContactsHandler extends BaseRPCMethodHandler {
       super(1,1)// cache
    }
 
-   srch(params) {
+   contacts(params) {
 
-      log.info(params)
+      this.log.info(params)
 
       let ret  = getData()
       return ret

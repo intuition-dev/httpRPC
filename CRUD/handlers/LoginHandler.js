@@ -8,7 +8,8 @@ class LoginHandler extends Serv_1.BaseRPCMethodHandler {
     constructor(db) {
         super(1, 1); // cache
     }
-    srch(params) {
+    this.rpc.invoke('apis', 'login', args)
+    (params) {
         log.info(params);
         let ret = FakeDBCall_1.getData();
         return ret;
