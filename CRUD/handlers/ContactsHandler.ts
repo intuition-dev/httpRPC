@@ -1,11 +1,10 @@
 
 import { TerseB } from "terse-b/terse-b"
 
-import { getData } from "../bl/FakeDB"
 import { BaseRPCMethodHandler } from 'http-rpc/lib/Serv'
 
-import { jwT } from 'http-rpc/lib/jwtUtil'
-const JWT = new jwT()
+import { FakeDL } from "../dl/FakeDL"
+const dl = new FakeDL()
 
 export class ContactsHandler extends BaseRPCMethodHandler {
   
@@ -19,7 +18,7 @@ export class ContactsHandler extends BaseRPCMethodHandler {
 
       this.log.info(params)
 
-      let ret  = getData()
+      let ret  = dl.getData()
       return ret
    }//()
 

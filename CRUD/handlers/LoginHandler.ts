@@ -1,11 +1,10 @@
 
 import { TerseB } from "terse-b/terse-b"
 
-import { isValid } from "../bl/FakeDB"
 import { BaseRPCMethodHandler } from 'http-rpc/lib/Serv'
 
-import { jwT } from 'http-rpc/lib/jwtUtil'
-const JWT = new jwT()
+import { FakeDL } from "../dl/FakeDL"
+const dl = new FakeDL()
 
 export class LoginHandler extends BaseRPCMethodHandler {
   
@@ -19,7 +18,7 @@ export class LoginHandler extends BaseRPCMethodHandler {
 
       this.log.info(params)
 
-      let ret  = isValid(params['email'], null)
+      let ret  = dl.isValid(params['email'], null)
 
 
 
@@ -27,5 +26,8 @@ export class LoginHandler extends BaseRPCMethodHandler {
       return ret
    }//()
 
+   logout() {
+
+   }
 
 }//class
