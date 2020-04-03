@@ -64,8 +64,10 @@
        const inputs = document.getElementsByTagName('input')
        let obj = getInputsValue(inputs)
        console.log(obj)
-       defEventFlux.doAction('checkLogin', obj)
+       defEventFlux.doAction('login-check', obj)
     }
+    
+    
     
     // /////////////////////////////////////////////////////////////////
     function getInputsValue(inputs) {
@@ -90,4 +92,4 @@
        document.getElementsByTagName('head')[0].appendChild(s)
     }
   </script>
-<!-- mB v8.4.1 on 2020-03-30T18:26:32.696Z --></body>
+<!-- mB v8.4.5 on 2020-04-03T16:04:57.812Z --></body>

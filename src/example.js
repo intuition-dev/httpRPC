@@ -31,7 +31,7 @@ class Handler1 extends Serv_1.BaseRPCMethodHandler {
         let a = params.a;
         let b = params.b;
         let result = await doMultiply(a, b);
-        return [jwt.makeExpiredToken(secret), result];
+        return [jwt.newToken5(secret, 'me@me.com', 'user', params['remoteAdddress']), result];
     } //()
 } //c
 const h1 = new Handler1();
@@ -42,9 +42,10 @@ setTimeout(function () {
     let params = { a: 5, b: 2 };
     foo(params);
 }, 2000);
+// server RPC call
 async function foo(params) {
     const rpc = new SrvRPC_1.HttpRPC('http', 'localhost', 8888);
-    rpc.setToken(jwt.makeExpiredToken(secret));
+    rpc.setToken(jwt.newToken5(secret, 'me@me.com', 'user', params['remoteAdddress']));
     let ans = await rpc.invoke('api', 'multiply', params);
     //console.log(ans[0])//token
     log.warn(ans[1]);

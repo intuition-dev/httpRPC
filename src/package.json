@@ -1,6 +1,6 @@
 {
     "name": "http-rpc",
-    "version": "2.4.6",
+    "version": "2.4.7",
     "description": "Inspired by JSON-RPC and gRPC, but works over HTTP: specifically it works with a browser over http protocol.",
     "license": "LGPL-3.0-only",
     "author": "http://www.INTUITION.DEV",
@@ -18,7 +18,7 @@
         "REST"
     ],
     "engines": {
-        "node": ">=12.16.1"
+        "node": ">=13.12.0"
     },
     "dependencies": {
         "bcryptjs": ">=2.4.3",

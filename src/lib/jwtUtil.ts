@@ -5,18 +5,6 @@ const jwt = require('jsonwebtoken')
 
 export class jwT {
 
-makeExpiredToken(secret) {
-    const options = {
-        // expired
-        expiresIn: Math.floor(Date.now() / 1000) - 3000
-    }
-
-    const payload = {
-        expired:true
-    }
-    return jwt.sign(payload, secret, options)
-}
-
 newToken5(secret, userID, role, ip, finger?, expiresIn?) {
     if(!expiresIn) expiresIn = '5 days'
     const options = {

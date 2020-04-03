@@ -50,8 +50,10 @@ body
          const inputs = document.getElementsByTagName('input')
          let obj = getInputsValue(inputs)
          console.log(obj)
-         defEventFlux.doAction('checkLogin', obj)
+         defEventFlux.doAction('login-check', obj)
       }
+
+      
 
       // /////////////////////////////////////////////////////////////////
       function getInputsValue(inputs) {

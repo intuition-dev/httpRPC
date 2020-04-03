@@ -42,7 +42,7 @@ class Handler1 extends BaseRPCMethodHandler {
 
       let result = await doMultiply(a,b)
       
-      return  [ jwt.makeExpiredToken(secret), result ]
+      return  [ jwt.newToken5(secret,'me@me.com', 'user', params['remoteAdddress']), result ]
    }//()
 
 }//c
@@ -62,7 +62,7 @@ setTimeout(function() {
 // server RPC call
 async function foo(params) {
    const rpc = new HttpRPC('http', 'localhost', 8888)
-   rpc.setToken(jwt.makeExpiredToken(secret))
+   rpc.setToken(jwt.newToken5(secret,'me@me.com', 'user', params['remoteAdddress']))
    
    let ans:any = await rpc.invoke('api', 'multiply',  params  )
 
