@@ -18,12 +18,14 @@ export class LoginHandler extends BaseRPCMethodHandler {
 
       this.log.info(params)
 
-      let ret  = dl.isValid(params['email'], null)
+      let valid  = dl.isValidPswd(params['email'], null)
 
+      let jwt
+      if (valid)
+         jwt = dl.makeToken(params['email'],params['remoteAddress'] )
+      else jwt = dl.makeOldToken()
 
-
-
-      return ret
+      return [jwt, valid]
    }//()
 
    logout() {

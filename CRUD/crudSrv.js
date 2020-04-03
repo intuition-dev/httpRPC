@@ -1,10 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const log = bunyan.createLogger({ src: true, stream: formatOut, name: "crudApp" });
+const terse_b_1 = require("terse-b/terse-b");
+const log = new terse_b_1.TerseB("example");
 const Serv_1 = require("http-rpc/lib/Serv");
+const LoginHandler_1 = require("./handlers/LoginHandler");
 const srv = new Serv_1.Serv(['*'], 4 * 1024);
-const uHand = new UserHandler(null);
-srv.routeRPC('uapi', uHand);
+const lhandler = new LoginHandler_1.LoginHandler(null);
+srv.routeRPC('apis', lhandler);
 srv.serveStatic('../wwwApp', 60 * 60, 60);
 Serv_1.Serv._expInst.use(function (req, resp, next) {
     log.warn('err', req.originalUrl);

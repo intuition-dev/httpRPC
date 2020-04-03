@@ -18,8 +18,15 @@ export class ContactsHandler extends BaseRPCMethodHandler {
 
       this.log.info(params)
 
+      try {
+         dl.validateToken(params['token'], params['remoteAddress'])
+      } catch(err) {
+         this.log.info(err)
+         return [dl.makeOldToken(), 'error']
+      }
+
       let ret  = dl.getData()
-      return ret
+      return [params['token'], ret]
    }//()
 
 

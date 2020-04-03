@@ -1,18 +1,25 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const log = bunyan.createLogger({ src: true, stream: formatOut, name: "UserHandler" });
-const FakeDBCall_1 = require("./FakeDBCall");
+const terse_b_1 = require("terse-b/terse-b");
 const Serv_1 = require("http-rpc/lib/Serv");
-log.info('hand');
+const FakeDL_1 = require("../dl/FakeDL");
+const dl = new FakeDL_1.FakeDL();
 class LoginHandler extends Serv_1.BaseRPCMethodHandler {
     constructor(db) {
         super(1, 1); // cache
+        this.log = new terse_b_1.TerseB(this.constructor.name);
     }
-    this.rpc.invoke('apis', 'login', args)
-    (params) {
-        log.info(params);
-        let ret = FakeDBCall_1.getData();
-        return ret;
+    login(params) {
+        this.log.info(params);
+        let valid = dl.isValidPswd(params['email'], null);
+        let jwt;
+        if (valid)
+            jwt = dl.makeToken(params['email'], params['remoteAddress']);
+        else
+            jwt = dl.makeOldToken();
+        return [jwt, valid];
     } //()
+    logout() {
+    }
 } //class
 exports.LoginHandler = LoginHandler;

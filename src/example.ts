@@ -59,6 +59,7 @@ setTimeout(function() {
    foo(params)   
 },2000)
 
+// server RPC call
 async function foo(params) {
    const rpc = new HttpRPC('http', 'localhost', 8888)
    rpc.setToken(jwt.makeExpiredToken(secret))

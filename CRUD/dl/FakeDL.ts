@@ -6,8 +6,21 @@ const JWT = new jwT()
 export class FakeDL {
 
 
-    
-isValid(userID, pswd) {
+secret = '123'
+
+makeOldToken() {
+    return JWT.makeExpiredToken(this.secret)
+}
+
+makeToken(userID, ip) {
+    return JWT.newToken5(this.secret, userID, 'user', ip)
+}
+
+validateToken(token, ip) {
+    return JWT.verify(token, this.secret, ip)
+}
+
+isValidPswd(userID, pswd) {
 
     if(userID == 'admin') return true
     return false

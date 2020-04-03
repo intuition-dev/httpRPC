@@ -1,10 +1,14 @@
 console.log('UI:');
-import { EventFlux } from 'https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v8.4.3/eventFlux/EventFlux.js';
-new EventFlux(); // makes defEventFlux var
+
+import { EventFlux } from 'https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v8.4.3/eventFlux/EventFlux.js'
+new EventFlux() // makes defEventFlux var
+
 class UIBinding {
+
     constructor() {
         defEventFlux.addListener('onUData', UIBinding.onData);
     } //()
+    
     static onData(data) {
         console.log('onData');
         let options = {
@@ -25,5 +29,6 @@ class UIBinding {
         }
         console.log('listjs', data);
     } //()
-} //
-new UIBinding();
+}//
+
+new UIBinding()

@@ -66,7 +66,7 @@ export class HttpRPC {
         params.method = method;
         
         try {
-            params.token = this.getItem('jwt') // get old token from storage
+            params.token = this.getItem('jwt') // auto get old token from storage
         } catch(err){}
 
         params.view = window.location.href;
@@ -101,7 +101,7 @@ export class HttpRPC {
                             reject(method + ' ' + str);
                         }
 
-                        THIZ.setItem('jwt',resp.token) // saves token
+                        THIZ.setItem('jwt',resp.token) // auto saves token
 
                         resolve(resp.result);
                     })
