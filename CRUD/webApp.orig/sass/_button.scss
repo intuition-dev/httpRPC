@@ -1,0 +1,87 @@
+//-------------------------------------------------------------------
+// Button Colors
+//-------------------------------------------------------------------
+
+$a--bg:           #0ae;
+$a--hover:        #09d;
+$a--active:       #08b;
+
+$b--bg:           #3c5;
+$b--hover:        #2b4;
+$b--active:       #2a4;
+
+$c--bg:           #d33;
+$c--hover:        #c22;
+$c--active:       #b22;
+
+//-------------------------------------------------------------------
+// Mixin to set btn background for inactive, active & hover states
+//-------------------------------------------------------------------
+
+// set default variables to be base button colors.
+@mixin btn-style ($bg:        $c-off-black,
+                  $bg-hover:  $c-darker,
+                  $bg-active: $c-dark) {
+  background: $bg;
+
+  &:hover {
+    background: $bg-hover;
+  }
+
+  &:active, &:focus {
+    background: $bg-active;
+  }
+}
+
+
+
+@if $import-buttons == true {
+//-------------------------------------------------------------------
+// Button Styles & Classes
+//-------------------------------------------------------------------
+
+// Set Generic <button> and .btn styling.
+// use .btn on any element to give it the styling of a button
+.btn {
+  @extend %txt-large;
+  @extend %no-underline;
+  @include btn-style;
+  border: 0;
+  border-radius: 6px; // rounded corners
+  color: $c-white;
+  cursor: pointer;
+  display: inline-block; // Enables non-inline-block elements like <a>s to be buttons
+  margin: .2em .3em .2em 0;
+  padding: 12px 30px 14px;
+}
+
+
+// Set colors for your buttons, see the button mixin at the top of this
+// file to see how the hex colors are allocated
+.btn-a {
+  @include btn-style($a--bg, $a--hover, $a--active);
+}
+
+.btn-b {
+  @include btn-style($b--bg, $b--hover, $b--active);
+}
+
+.btn-c {
+  @include btn-style($c--bg, $c--hover, $c--active);
+}
+
+
+// Add this class to a <button> or element with a .btn class
+// to create a smaller sized button.
+.btn-sm {
+  @extend %shared-font-size;
+  border-radius: 4px; /* rounded corners */
+  padding: 10px 15px 11px;
+}
+
+
+
+
+//-------------------------------------------------------------------
+// End @if
+}
