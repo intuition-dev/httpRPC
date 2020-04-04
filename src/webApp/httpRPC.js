@@ -9,12 +9,12 @@ export class HttpRPC {
     }
     static regInst(name, inst) {
         if (!window.regInstances)
-            regInstances = [];
+            window.regInstances = [];
         window.regInstances[name] = inst;
     }
     static getInst(name) {
         if (!window.regInstances)
-            regInstances = [];
+            window.regInstances = [];
         return window.regInstances[name];
     }
     __addScript(callback) {

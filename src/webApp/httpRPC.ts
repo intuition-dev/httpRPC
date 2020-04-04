@@ -10,12 +10,12 @@ export class HttpRPC {
 
     // can hold a reference to VM instance
     static regInst(name, inst) {
-        if(!window.regInstances) regInstances = []
+        if(!window.regInstances) window.regInstances = []
         window.regInstances[name] = inst
     }
     
     static getInst(name) {
-        if(!window.regInstances) regInstances = []
+        if(!window.regInstances) window.regInstances = []
         return window.regInstances[name]
     }
 
