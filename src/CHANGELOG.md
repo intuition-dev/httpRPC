@@ -1,5 +1,8 @@
 todo: finger and ip
 
+## 2.4.8
+- added VM registry
+
 ### 2.4.5
 - must return [result, token], that should be persistent
 - should send token in a reuqest

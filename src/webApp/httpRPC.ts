@@ -2,7 +2,22 @@
 // requires  lz-string 
 //    script(src='https://cdn.jsdelivr.net/npm/lz-string@1.4.4/libs/lz-string.min.js')
 
+
+declare var window
+declare var regInstances
+
 export class HttpRPC {
+
+    // can hold a reference to VM instance
+    static regInst(name, inst) {
+        if(!window.regInstances) regInstances = []
+        window.regInstances[name] = inst
+    }
+    
+    static getInst(name) {
+        if(!window.regInstances) regInstances = []
+        return window.regInstances[name]
+    }
 
     /** 
      * So you can control your own sequence
@@ -124,7 +139,7 @@ export class HttpRPC {
         
     }//()
 
-    // check if we are logged in client side.  The server is source of truth, but this may help UI
+    // check if we are logged in client side.  The server is source of truth, but this may help UX
     hasJWToken():boolean {
         let token = this.getItem('jwt')
         if(!token ) return false

@@ -3,7 +3,7 @@ declare var defEventFlux
 import { EventFlux } from 'https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v8.4.3/eventFlux/EventFlux.js';
 new EventFlux(); // also creates global defEventFlux var
 // req for rpc
-import { HttpRPC } from 'https://cdn.jsdelivr.net/npm/http-rpc@2.4.1/webApp/httpRPC.min.js';
+import { HttpRPC } from 'https://cdn.jsdelivr.net/npm/http-rpc@2.4.9/webApp/httpRPC.min.js';
 
 export class LoginVM {
 
@@ -12,6 +12,7 @@ export class LoginVM {
     rpc
     constructor() {
         console.log('cons');
+        HttpRPC.regInst('vm', this)
         let THIZ = this;
         THIZ.rpc = new HttpRPC('http', 'localhost', 8888);
         defEventFlux.register('login-check', this.checkLogin);
@@ -31,16 +32,14 @@ export class LoginVM {
             })
     } //()
 
-    doLogin(rep) {
-        console.log('got data', resp[1]);
+    doLogin(res) {
+        console.log('got data', res)
         defEventFlux.doAction('login-ok','OK')
 
     }
     
-    isIn() { //del
-        let token = this.rpc.getItem('jwt')
-        if(!token ) return false
-        return true
+    isIn() { 
+       return this.rpc.hasJWToken()
     }
 
 

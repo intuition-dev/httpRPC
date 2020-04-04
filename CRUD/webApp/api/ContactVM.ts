@@ -4,7 +4,7 @@ declare var defEventFlux
 import { EventFlux } from 'https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v8.4.3/eventFlux/EventFlux.js';
 new EventFlux(); // also creates global defEventFlux var
 // req for rpc
-import { HttpRPC } from 'https://cdn.jsdelivr.net/npm/http-rpc@2.4.1/webApp/httpRPC.min.js';
+import { HttpRPC } from 'https://cdn.jsdelivr.net/npm/http-rpc@2.4.9/webApp/httpRPC.min.js';
 
 export class ContactsVM {
 
@@ -14,6 +14,7 @@ export class ContactsVM {
 
     constructor() {
         console.log('cons');
+        HttpRPC.regInst('vm', this)
         let THIZ = this;
         THIZ.rpc = new HttpRPC('http', 'localhost', 8888);
         this.goFetch() // populate asap
@@ -37,10 +38,8 @@ export class ContactsVM {
         })
     } //()
 
-    isIn() { //del
-        let token = this.rpc.getItem('jwt')
-        if(!token ) return false
-        return true
+    isIn() { 
+        return this.rpc.hasJWToken()
     }
 
 } //class

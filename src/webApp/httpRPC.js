@@ -1,19 +1,4 @@
-// All rights reserved by Cekvenich|INTUITION.DEV) |  Cekvenich, licensed under LGPL 3.0
-// requires  lz-string 
-//    script(src='https://cdn.jsdelivr.net/npm/lz-string@1.4.4/libs/lz-string.min.js')
 export class HttpRPC {
-    /**
-     *
-     * @param httpOrs should be 'https'
-     * @param host
-     * @param port
-     *
-     * eg:
-        var pro = window.location.protocol
-        pro = pro.replace(':', '')
-        var host = window.location.hostname
-        var port = window.location.port
-     */
     constructor(httpOrs, host, port) {
         this.token = '';
         this.DEBUG = false;
@@ -22,13 +7,20 @@ export class HttpRPC {
         this.port = port;
         console.log(this.httpOrs, this.host, this.port);
     }
-    /**
-     * So you can control your own sequence
-     **/
+    static regInst(name, inst) {
+        if (!window.regInstances)
+            regInstances = [];
+        window.regInstances[name] = inst;
+    }
+    static getInst(name) {
+        if (!window.regInstances)
+            regInstances = [];
+        return window.regInstances[name];
+    }
     __addScript(callback) {
         var s = document.createElement('script');
         s.setAttribute('src', 'https://cdn.jsdelivr.net/npm/lz-string@1.4.4/libs/lz-string.min.js');
-        s.async = true; // it does it anyway, as the script is async
+        s.async = false;
         if (callback)
             s.onload = callback;
         document.getElementsByTagName('body')[0].appendChild(s);
@@ -42,15 +34,9 @@ export class HttpRPC {
                 console.log('cb script');
                 HttpRPC.lzStringAdded = true;
                 resolve();
-            }); //script
+            });
         });
-    } //pro
-    /**
-     * @param route api apth, eg api
-     * @param method CRUD, insert, check, listAll, etc
-     * @param params Object of name value pairs.
-     * @param timeout defaults to 2000
-     */
+    }
     invoke(route, method, params, timeout) {
         if (!timeout)
             timeout = 2000;
@@ -58,7 +44,7 @@ export class HttpRPC {
             params = {};
         params.method = method;
         try {
-            params.token = this.getItem('jwt'); // get old token from storage
+            params.token = this.getItem('jwt');
         }
         catch (err) { }
         params.view = window.location.href;
@@ -73,7 +59,6 @@ export class HttpRPC {
                     cache: 'default',
                     redirect: 'follow',
                     mode: 'cors',
-                    //credentials: 'include',
                     keepalive: true
                 })
                     .then(function (fullResp) {
@@ -90,20 +75,26 @@ export class HttpRPC {
                         console.warn(method + ' ' + str);
                         reject(method + ' ' + str);
                     }
-                    THIZ.setItem('jwt', resp.token); // saves token
+                    THIZ.setItem('jwt', resp.token);
                     resolve(resp.result);
                 })
                     .catch(function (err) {
                     console.warn('fetch err ', method, err);
                     reject(method + ' ' + err);
                 });
-            }); // add script
-        }); //pro
+            });
+        });
         const pro2 = new Promise(function (resolve, reject) {
             setTimeout(() => reject('timeout'), timeout);
         });
         return Promise.race([pro1, pro2]);
-    } //()
+    }
+    hasJWToken() {
+        let token = this.getItem('jwt');
+        if (!token)
+            return false;
+        return true;
+    }
     setItem(key, val) {
         localStorage.setItem(key, val);
     }
@@ -123,7 +114,7 @@ export class HttpRPC {
     static genGUID() {
         var d = new Date().getTime();
         if (typeof performance !== 'undefined' && typeof performance.now === 'function') {
-            d += performance.now(); //use high-precision timer if available
+            d += performance.now();
         }
         return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
             var r = (d + Math.random() * 16) % 16 | 0;
@@ -142,12 +133,12 @@ export class HttpRPC {
                 while (p.length > 0) {
                     document.cookie = cookieBase + p.join('/');
                     p.pop();
-                } //inner while
+                }
                 d.shift();
-            } //while
-        } //for
+            }
+        }
         localStorage.clear();
         sessionStorage.clear();
-    } //()
-} //class
+    }
+}
 HttpRPC.lzStringAdded = false;
