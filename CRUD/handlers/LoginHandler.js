@@ -16,7 +16,7 @@ class LoginHandler extends Serv_1.BaseRPCMethodHandler {
         if (valid)
             jwt = dl.makeToken(params['email'], params['remoteAddress']);
         else
-            jwt = dl.makeOldToken();
+            jwt = null;
         return [jwt, valid];
     } //()
     logout() {

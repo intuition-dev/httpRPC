@@ -42,7 +42,7 @@
           </div>
         </fieldset>
       </form>
-      <div class="msg">Bad Email or Password</div>
+      <div class="msg" id="Fail">Bad Email or Password</div>
       <div class="btn btn-sm btn-a" id="loginBut">Login</div>
       <div class="msg">Autorized!</div>
     </div>
@@ -56,6 +56,12 @@
        console.log('dis ready')
     }
     
+    //fake
+    setTimeout(function(){
+       defEventFlux.register('login-ok', this.onOK)
+       defEventFlux.register('login-fail', this.onFail)
+    }, 250)
+    
     // end load /////////////////////////////////////////////////////////
     document.getElementById('loginBut').addEventListener('click', onLoginBut)
     function onLoginBut() {
@@ -67,7 +73,16 @@
        defEventFlux.doAction('login-check', obj)
     }
     
+    function onOK() {
+       console.log('ok')
+       window.location.href='/contactScreen'
+    }
     
+    function onFail() {
+       console.log('fail')
+       document.getElmenetById('Fail').style.display= 'box'
+    
+    }
     
     // /////////////////////////////////////////////////////////////////
     function getInputsValue(inputs) {
@@ -92,4 +107,4 @@
        document.getElementsByTagName('head')[0].appendChild(s)
     }
   </script>
-<!-- mB v8.4.5 on 2020-04-03T16:04:57.812Z --></body>
+<!-- mB v8.4.7 on 2020-04-04T12:59:08.677Z --></body>

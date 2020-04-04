@@ -1,3 +1,5 @@
+declare var defEventFlux
+
 import { EventFlux } from 'https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v8.4.3/eventFlux/EventFlux.js';
 new EventFlux(); // also creates global defEventFlux var
 // req for rpc
@@ -7,6 +9,7 @@ export class LoginVM {
 
     static entity ='login'
     
+    rpc
     constructor() {
         console.log('cons');
         let THIZ = this;
@@ -22,13 +25,22 @@ export class LoginVM {
                     this.doLogin(resp);
                 else
                     defEventFlux.doAction('login-fail', 'FAIL') 
-            });
+            }).catch(function(err) {
+                console.warn('goFetch err ', err);
+                defEventFlux.doAction('login-fail', 'FAIL') 
+            })
     } //()
 
     doLogin(rep) {
         console.log('got data', resp[1]);
         defEventFlux.doAction('login-ok','OK')
 
+    }
+    
+    isIn() { //del
+        let token = this.rpc.getItem('jwt')
+        if(!token ) return false
+        return true
     }
 
 

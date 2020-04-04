@@ -1,6 +1,5 @@
 import { EventFlux } from 'https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v8.4.3/eventFlux/EventFlux.js';
-new EventFlux(); // also creates global defEventFlux var
-// req for rpc
+new EventFlux();
 import { HttpRPC } from 'https://cdn.jsdelivr.net/npm/http-rpc@2.4.1/webApp/httpRPC.min.js';
 export class LoginVM {
     constructor() {
@@ -8,7 +7,7 @@ export class LoginVM {
         let THIZ = this;
         THIZ.rpc = new HttpRPC('http', 'localhost', 8888);
         defEventFlux.register('login-check', this.checkLogin);
-    } //()
+    }
     checkLogin(args) {
         console.log('fetch', args);
         this.rpc.invoke('apis', 'login', args)
@@ -17,12 +16,21 @@ export class LoginVM {
                 this.doLogin(resp);
             else
                 defEventFlux.doAction('login-fail', 'FAIL');
+        }).catch(function (err) {
+            console.warn('goFetch err ', err);
+            defEventFlux.doAction('login-fail', 'FAIL');
         });
-    } //()
+    }
     doLogin(rep) {
         console.log('got data', resp[1]);
         defEventFlux.doAction('login-ok', 'OK');
     }
-} //class
+    isIn() {
+        let token = this.rpc.getItem('jwt');
+        if (!token)
+            return false;
+        return true;
+    }
+}
 LoginVM.entity = 'login';
 new LoginVM();

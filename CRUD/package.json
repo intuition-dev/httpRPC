@@ -7,10 +7,10 @@
         "node": ">=13.12.0"
     },
     "dependencies": {
-        "http-rpc": ">=2.4.6"
+        "http-rpc": ">=2.4.7"
     },
     "devDependencies": {
-        "agentg": ">=2.4.5",
+        "agentg": ">=2.4.7",
         "@types/node": ">=13.11.0"
     }
 }

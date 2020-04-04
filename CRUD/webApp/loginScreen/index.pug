@@ -28,10 +28,11 @@ body
                      div(data-field-span='1')
                         label Password
                         input#pswd.form-control.pswd(type='text')
-         .msg Bad Email or Password
+         .msg#Fail Bad Email or Password
          #loginBut.btn.btn-sm.btn-a Login
          .msg Autorized!
-         
+
+ 
    script.
       
       addScript('https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.slim.min.js', function() {
@@ -41,6 +42,12 @@ body
          $('#loginF').disableAutoFill()
          console.log('dis ready')
       }
+
+      //fake
+      setTimeout(function(){
+         defEventFlux.register('login-ok', this.onOK)
+         defEventFlux.register('login-fail', this.onFail)
+      }, 250)
 
       // end load /////////////////////////////////////////////////////////
       document.getElementById('loginBut').addEventListener('click', onLoginBut)
@@ -53,7 +60,16 @@ body
          defEventFlux.doAction('login-check', obj)
       }
 
+      function onOK() {
+         console.log('ok')
+         window.location.href='/contactScreen'
+      }
       
+      function onFail() {
+         console.log('fail')
+         document.getElmenetById('Fail').style.display= 'box'
+
+      }
 
       // /////////////////////////////////////////////////////////////////
       function getInputsValue(inputs) {

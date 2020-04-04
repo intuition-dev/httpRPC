@@ -6,7 +6,7 @@ import { BaseRPCMethodHandler } from 'http-rpc/lib/Serv'
 import { FakeDL } from "../dl/FakeDL"
 const dl = new FakeDL()
 
-export class ContactsHandler extends BaseRPCMethodHandler {
+export class ContactHandler extends BaseRPCMethodHandler {
   
    log:any = new TerseB(this.constructor.name)
    
@@ -22,7 +22,7 @@ export class ContactsHandler extends BaseRPCMethodHandler {
          dl.validateToken(params['token'], params['remoteAddress'])
       } catch(err) {
          this.log.info(err)
-         return [dl.makeOldToken(), 'error']
+         return [null, 'error']
       }
 
       let ret  = dl.getData()

@@ -29,6 +29,9 @@ export class HttpRPC {
         })
     }//pro
 
+
+    httpOrs
+    
     /**
      *
      * @param httpOrs should be 'https'
@@ -120,6 +123,13 @@ export class HttpRPC {
         return Promise.race([pro1, pro2]);
         
     }//()
+
+    // check if we are logged in client side.  The server is source of truth, but this may help UI
+    hasJWToken():boolean {
+        let token = this.getItem('jwt')
+        if(!token ) return false
+        return true
+    }
 
     setItem(key, val) {
         localStorage.setItem(key, val);

@@ -23,7 +23,7 @@ export class LoginHandler extends BaseRPCMethodHandler {
       let jwt
       if (valid)
          jwt = dl.makeToken(params['email'],params['remoteAddress'] )
-      else jwt = dl.makeOldToken()
+      else jwt = null
 
       return [jwt, valid]
    }//()

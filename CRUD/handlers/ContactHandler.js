@@ -4,7 +4,7 @@ const terse_b_1 = require("terse-b/terse-b");
 const Serv_1 = require("http-rpc/lib/Serv");
 const FakeDL_1 = require("../dl/FakeDL");
 const dl = new FakeDL_1.FakeDL();
-class ContactsHandler extends Serv_1.BaseRPCMethodHandler {
+class ContactHandler extends Serv_1.BaseRPCMethodHandler {
     constructor(db) {
         super(1, 1); // cache
         this.log = new terse_b_1.TerseB(this.constructor.name);
@@ -16,10 +16,10 @@ class ContactsHandler extends Serv_1.BaseRPCMethodHandler {
         }
         catch (err) {
             this.log.info(err);
-            return [dl.makeOldToken(), 'error'];
+            return [null, 'error'];
         }
         let ret = dl.getData();
         return [params['token'], ret];
     } //()
 } //class
-exports.ContactsHandler = ContactsHandler;
+exports.ContactHandler = ContactHandler;

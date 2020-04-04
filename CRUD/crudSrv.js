@@ -4,9 +4,12 @@ const terse_b_1 = require("terse-b/terse-b");
 const log = new terse_b_1.TerseB("example");
 const Serv_1 = require("http-rpc/lib/Serv");
 const LoginHandler_1 = require("./handlers/LoginHandler");
+const ContactHandler_1 = require("./handlers/ContactHandler");
 const srv = new Serv_1.Serv(['*'], 4 * 1024);
 const lhandler = new LoginHandler_1.LoginHandler(null);
-srv.routeRPC('apis', lhandler);
+srv.routeRPC('api', lhandler);
+const chandler = new ContactHandler_1.ContactHandler(null);
+srv.routeRPC('api', chandler);
 srv.serveStatic('../wwwApp', 60 * 60, 60);
 Serv_1.Serv._expInst.use(function (req, resp, next) {
     log.warn('err', req.originalUrl);
