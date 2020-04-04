@@ -122,7 +122,7 @@ class BaseRPCMethodHandler {
             const ans = await THIZ[method](params);
             const token = ans[0];
             if (!token)
-                throw new Error('no token returned');
+                log.info('no token returned');
             THIZ._ret(res, ans);
         }
         catch (err) {

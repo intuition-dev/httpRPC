@@ -1,6 +1,6 @@
 import { EventFlux } from 'https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v8.4.3/eventFlux/EventFlux.js';
 new EventFlux();
-import { HttpRPC } from 'https://cdn.jsdelivr.net/npm/http-rpc@2.4.10/webApp/httpRPC.js';
+import { HttpRPC } from 'https://cdn.jsdelivr.net/npm/http-rpc@2.4.11/webApp/httpRPC.js';
 export class LoginVM {
     constructor() {
         console.log('cons');
@@ -11,7 +11,7 @@ export class LoginVM {
     }
     checkLogin(args) {
         console.log('fetch', args);
-        LoginVM.rpc.invoke('api', 'login', args)
+        LoginVM.rpc.invoke('login', 'login', args)
             .then(function (resp) {
             if (resp[1])
                 LoginVM.doLogin(resp);
@@ -24,6 +24,7 @@ export class LoginVM {
     }
     static doLogin(res) {
         console.log('got data', res);
+        console.log(LoginVM.rpc.getItem('jwt'));
         defEventFlux.doAction('login-ok', 'OK');
     }
     isIn() {

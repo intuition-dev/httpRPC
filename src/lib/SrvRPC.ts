@@ -91,7 +91,7 @@ export class HttpRPC {//
                 reject(method +' '+ str)
              }
 
-             THIZ.setToken(resp.token) // saves token
+             THIZ.setToken(resp[0]) // saves token
 
              resolve(resp.result)
 

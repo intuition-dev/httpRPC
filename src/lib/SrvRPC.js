@@ -74,7 +74,7 @@ class HttpRPC {
                     THIZ._log.warn(method + ' ' + str);
                     reject(method + ' ' + str);
                 }
-                THIZ.setToken(resp.token); // saves token
+                THIZ.setToken(resp[0]); // saves token
                 resolve(resp.result);
             }) //fetch
                 .catch(function (err) {

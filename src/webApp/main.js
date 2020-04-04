@@ -9,7 +9,7 @@ rpc.invoke('api', 'multiply', {a:5, b:2}, 600 )
    .then(function(resp) {
       console.log(resp[1])
       console.log(resp[0]) //token
- 
+      console.log(rpc.getItem('jwt'))
    })
 
 

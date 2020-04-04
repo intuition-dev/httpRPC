@@ -31,7 +31,6 @@ export class HttpRPC {
             if (HttpRPC.lzStringAdded)
                 resolve();
             THIZ.__addScript(function () {
-                console.log('cb script');
                 HttpRPC.lzStringAdded = true;
                 resolve();
             });
@@ -72,10 +71,10 @@ export class HttpRPC {
                     .then(function (str) {
                     var resp = JSON.parse(str);
                     if ((!resp) || resp.errorMessage) {
-                        console.warn(method + ' ' + str);
+                        console.info(method + ' ' + str);
                         reject(method + ' ' + str);
                     }
-                    THIZ.setItem('jwt', resp.token);
+                    THIZ.setItem('jwt', resp.result[0]);
                     resolve(resp.result);
                 })
                     .catch(function (err) {

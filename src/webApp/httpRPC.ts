@@ -119,7 +119,7 @@ export class HttpRPC {
                             reject(method + ' ' + str);
                         }
 
-                        THIZ.setItem('jwt',resp.token) // auto saves token
+                        THIZ.setItem('jwt',resp.result[0]) // auto saves token
 
                         resolve(resp.result);
                     })

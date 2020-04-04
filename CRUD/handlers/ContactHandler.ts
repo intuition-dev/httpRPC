@@ -14,7 +14,7 @@ export class ContactHandler extends BaseRPCMethodHandler {
       super(1,1)// cache
    }
 
-   contacts(params) {
+   contact(params) {
 
       this.log.info(params)
 

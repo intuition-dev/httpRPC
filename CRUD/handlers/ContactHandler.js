@@ -9,7 +9,7 @@ class ContactHandler extends Serv_1.BaseRPCMethodHandler {
         super(1, 1); // cache
         this.log = new terse_b_1.TerseB(this.constructor.name);
     }
-    contacts(params) {
+    contact(params) {
         this.log.info(params);
         try {
             dl.validateToken(params['token'], params['remoteAddress']);

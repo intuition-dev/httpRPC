@@ -10,10 +10,11 @@ import {  ContactHandler } from "./handlers/ContactHandler"
 
 const srv = new Serv(['*'], 4 *1024) 
 
-const lhandler = new LoginHandler(null)
-srv.routeRPC('api',  lhandler)
 const chandler = new ContactHandler(null)
 srv.routeRPC('api',  chandler)
+
+const lhandler = new LoginHandler(null)
+srv.routeRPC('login',  lhandler)
 
 srv.serveStatic('../wwwApp', 60*60, 60)
 

@@ -4,11 +4,11 @@ declare var defEventFlux
 import { EventFlux } from 'https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v8.4.3/eventFlux/EventFlux.js';
 new EventFlux(); // also creates global defEventFlux var
 // req for rpc
-import { HttpRPC } from 'https://cdn.jsdelivr.net/npm/http-rpc@2.4.10/webApp/httpRPC.js';
+import { HttpRPC } from 'https://cdn.jsdelivr.net/npm/http-rpc@2.4.11/webApp/httpRPC.js';
 
-export class ContactsVM {
+export class ContactVM {
 
-    static entity ='contacts'
+    static entity ='contact'
     
     static rpc
 
@@ -16,22 +16,24 @@ export class ContactsVM {
         console.log('cons');
         HttpRPC.regInst('vm', this)
         let THIZ = this;
-        ContactsVM.rpc = new HttpRPC('http', 'localhost', 8888);
+        ContactVM.rpc = new HttpRPC('http', 'localhost', 8888);
         this.goFetch() // populate asap
         
-        defEventFlux.reigster('contacts-get', function (arg) {
+        defEventFlux.register('contact-get', function (arg) {
             THIZ.goFetch();
-        });
+        })
+
+        console.log(ContactVM.rpc.getItem('jwt'))
     } //
 
     goFetch() {
         let args = {};
       
         console.log('fetch', args);
-        ContactsVM.rpc.invoke('api', 'contacts', args)
+        ContactVM.rpc.invoke('api', 'contact', args)
             .then(function (resp) {
                 console.log('got data');
-                defEventFlux.dispatch('contacts-data', resp)
+                defEventFlux.dispatch('contact-data', resp)
             .catch(function(err) {
                 console.warn('goFetch err ', err);
             })
@@ -39,8 +41,8 @@ export class ContactsVM {
     } //()
 
     isIn() { 
-        return ContactsVM.rpc.hasJWToken()
+        return ContactVM.rpc.hasJWToken()
     }
 
 } //class
-new ContactsVM();
+new ContactVM();
