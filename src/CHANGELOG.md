@@ -1,6 +1,6 @@
 todo: finger and ip
 
-## 2.4.8
+## 2.4.11
 - added VM registry
 
 ### 2.4.5

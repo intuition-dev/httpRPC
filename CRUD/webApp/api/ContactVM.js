@@ -1,5 +1,4 @@
-import { EventFlux } from 'https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v8.4.3/eventFlux/EventFlux.js';
-new EventFlux();
+;
 import { HttpRPC } from 'https://cdn.jsdelivr.net/npm/http-rpc@2.4.11/webApp/httpRPC.js';
 export class ContactVM {
     constructor() {
@@ -19,10 +18,10 @@ export class ContactVM {
         ContactVM.rpc.invoke('api', 'contact', args)
             .then(function (resp) {
             console.log('got data');
-            defEventFlux.dispatch('contact-data', resp)
-                .catch(function (err) {
-                console.warn('goFetch err ', err);
-            });
+            defEventFlux.dispatch('contact-data', resp[1]);
+        })
+            .catch(function (err) {
+            console.warn('goFetch err ', err);
         });
     }
     isIn() {

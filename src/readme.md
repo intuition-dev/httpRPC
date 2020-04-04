@@ -66,7 +66,7 @@ And an example handler:
       multiply(params) {
          let a = params.a
          let b = params.b
-         return [TOKEN, doMultiply(a,b)]
+         return [TOKEN, doMultiply(a,b)]  // note that data is array[1]
       }//()
    }
    ```

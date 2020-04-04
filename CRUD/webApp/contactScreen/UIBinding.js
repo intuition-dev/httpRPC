@@ -1,6 +1,4 @@
 console.log('UI:');
-import { EventFlux } from 'https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v8.4.3/eventFlux/EventFlux.js';
-new EventFlux();
 class UIBinding {
     constructor() {
         defEventFlux.addListener('contacts-data', UIBinding.onData);
