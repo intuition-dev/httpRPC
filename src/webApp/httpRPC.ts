@@ -37,7 +37,7 @@ export class HttpRPC {
             if(HttpRPC.lzStringAdded) resolve()
 
             THIZ.__addScript(function(){
-                console.log('cb script')
+                //console.log('cb script')
                 HttpRPC.lzStringAdded = true
                 resolve()
             })//script
@@ -115,7 +115,7 @@ export class HttpRPC {
                     .then(function(str) {
                         var resp = JSON.parse(str);
                         if ((!resp) || resp.errorMessage) {
-                            console.warn(method + ' ' + str);
+                            console.info(method + ' ' + str);
                             reject(method + ' ' + str);
                         }
 

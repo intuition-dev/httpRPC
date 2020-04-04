@@ -9,21 +9,21 @@ export class LoginVM {
 
     static entity ='login'
     
-    rpc
+    static rpc
     constructor() {
         console.log('cons');
         HttpRPC.regInst('vm', this)
         let THIZ = this;
-        THIZ.rpc = new HttpRPC('http', 'localhost', 8888);
+        LoginVM.rpc = new HttpRPC('http', 'localhost', 8888);
         defEventFlux.register('login-check', this.checkLogin);
     } //()
     
     checkLogin(args) {
         console.log('fetch', args);
-        this.rpc.invoke('apis', 'login', args)
+        LoginVM.rpc.invoke('api', 'login', args)
             .then(function (resp) {
                 if(resp[1])
-                    this.doLogin(resp);
+                LoginVM.doLogin(resp);
                 else
                     defEventFlux.doAction('login-fail', 'FAIL') 
             }).catch(function(err) {
@@ -32,14 +32,14 @@ export class LoginVM {
             })
     } //()
 
-    doLogin(res) {
+    static doLogin(res) {
         console.log('got data', res)
         defEventFlux.doAction('login-ok','OK')
 
     }
     
     isIn() { 
-       return this.rpc.hasJWToken()
+       return LoginVM.rpc.hasJWToken()
     }
 
 

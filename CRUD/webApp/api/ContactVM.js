@@ -6,7 +6,7 @@ export class ContactsVM {
         console.log('cons');
         HttpRPC.regInst('vm', this);
         let THIZ = this;
-        THIZ.rpc = new HttpRPC('http', 'localhost', 8888);
+        ContactsVM.rpc = new HttpRPC('http', 'localhost', 8888);
         this.goFetch();
         defEventFlux.reigster('contacts-get', function (arg) {
             THIZ.goFetch();
@@ -15,7 +15,7 @@ export class ContactsVM {
     goFetch() {
         let args = {};
         console.log('fetch', args);
-        this.rpc.invoke('apis', 'contacts', args)
+        ContactsVM.rpc.invoke('api', 'contacts', args)
             .then(function (resp) {
             console.log('got data');
             defEventFlux.dispatch('contacts-data', resp)
@@ -25,7 +25,7 @@ export class ContactsVM {
         });
     }
     isIn() {
-        return this.rpc.hasJWToken();
+        return ContactsVM.rpc.hasJWToken();
     }
 }
 ContactsVM.entity = 'contacts';
