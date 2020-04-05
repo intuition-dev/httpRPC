@@ -1,24 +1,23 @@
 
 declare var defEventFlux
 
-import { EventFlux } from 'https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v8.4.11/eventFlux/EventFlux.js'
+import { EventFlux } from 'https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v8.4.12/eventFlux/EventFlux.js'
 
-import { AbsSlotComp } from 'https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v8.4.11/src/slotComp/AbsSlotComp.js';
+import { AbsSlotComp } from 'https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v8.4.12/src/slotComp/AbsSlotComp.js';
 
 class PgCustel extends AbsSlotComp {
 // https://fontstruct.com/fontstructions/show/1106896/password_dots_2
 template = `
    <style>
-   .msg {
-      display: none;
+   
+   ::slotted(.msg) {
+      display: none ;
    }
    
-   .pswd { 
-      -webkit-text-security: disc;
-   }
    </style>
    
    <slot></slot>
+
    `;
 
 constructor() {
@@ -35,30 +34,17 @@ constructor() {
    })
 
    defEventFlux.register('login-ok', this.onOK)
-   defEventFlux.register('login-fail', this.onFail)
+   defEventFlux.register('login-fail', this.onFail.bind(this))
    
    this.getSlotElById('loginBut').addEventListener('click', this.onLoginBut)
 
 }
 
-getSlotElById(id) {
-   let ret
-   this.slotEls.map(function(n){
-      if(n.id==id) ret = n
-   })
-   return ret
-}
-
-/**
- * Get elements in a slot
- */
-get slotEls() {
-   // https://javascript.info/slots-composition
-   return this.sr.querySelector('slot').assignedElements()
-}
-
 disAutoReady() {
       $('#loginF').disableAutoFill()
+
+      $(".pswd").css("-webkit-text-security","disc")
+
       console.log('dis ready')
 }
 
@@ -66,7 +52,7 @@ onLoginBut() {
    console.log('klik')
 
    const inputs = document.getElementsByTagName('input')
-   let obj = PgCustel.getInputsValue(inputs)
+   let obj = AbsSlotComp.getInputsValue(inputs)
    console.log(obj)
    defEventFlux.doAction('login-check', obj)
 }
@@ -78,20 +64,9 @@ onOK() {
 
 onFail() {
    console.log('fail')
-   document.getElementById('Fail').style.display= 'block'
+   this.getSlotElById('Fail').style.display= 'block'
 }
 
-
-static getInputsValue(inputs) {
-   const obj = {}
-   for(var input in inputs) {
-      const value = inputs[input].value
-      const key = inputs[input].id
-      if(!key) continue
-      obj[key]=value
-   }
-   return obj
-}//()
 
 } //custel
 

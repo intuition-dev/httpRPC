@@ -1,6 +1,6 @@
 declare var defEventFlux
 
-import { EventFlux } from 'https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v8.4.11/eventFlux/EventFlux.js';
+import { EventFlux } from 'https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v8.4.12/eventFlux/EventFlux.js';
 ; // also creates global defEventFlux var
 // req for rpc
 import { HttpRPC } from 'https://cdn.jsdelivr.net/npm/http-rpc@2.4.11/webApp/httpRPC.js';
