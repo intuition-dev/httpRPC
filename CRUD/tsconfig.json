@@ -26,8 +26,7 @@
    ],
    "exclude": [
       "node_modules",
-      "webApp",
-      "webApp.orig"
+      "webApp"
 
    ]
 }

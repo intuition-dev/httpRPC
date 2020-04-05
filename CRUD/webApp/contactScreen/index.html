@@ -12,21 +12,22 @@
   <script src="/api/ContactVM.js" type="module"></script>
 </head>
 <body>
-  <script src="https://cdn.jsdelivr.net/npm/list.js@1.5.0/dist/list.min.js"></script>
-  <p>Table:</p>
-  <div>
-    <input class="smooth" id="srchFld" type="text" placeholder="a"/><span>&nbsp;</span><a class="btn smooth btn-a btn-sm" id="srchBut">Search</a>
-  </div>
-  <div id="contactLst">
-    <table class="table">
-      <thead>
-        <th>FName</th>
-        <th>LName</th>
-        <th>Email</th>
-        <th>Org</th>
-      </thead>
-      <tbody class="list"></tbody>
-    </table>
-  </div>
-  <script src="UIBinding.js" type="module"></script>
-<!-- mB v8.4.7 on 2020-04-05T00:30:03.375Z --></body>
+  <pg-custel> 
+    <p>Table:</p>
+    <div>
+      <input class="smooth" id="srchFld" type="text" placeholder="a"/><span>&nbsp;</span><a class="btn smooth btn-a btn-sm" id="srchBut">Search</a>
+    </div>
+    <div id="contactLst">
+      <table class="table">
+        <thead>
+          <th>FName</th>
+          <th>LName</th>
+          <th>Email</th>
+          <th>Org</th>
+        </thead>
+        <tbody class="list"></tbody>
+      </table>
+    </div>
+    <script type="module" src="/contactScreen/pg-custel.js"> // slot</script>
+  </pg-custel>
+<!-- mB v8.4.12 on 2020-04-05T16:55:20.224Z --></body>

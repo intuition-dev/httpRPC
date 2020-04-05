@@ -4,20 +4,20 @@ head
    script(src='/api/ContactVM.js'  type="module")
    
 body
-   script(src='https://cdn.jsdelivr.net/npm/list.js@1.5.0/dist/list.min.js')
-   
-   p Table:
-   div
-      input#srchFld.smooth(type="text" placeholder='a') 
-      span &nbsp;
-      a#srchBut.btn.smooth.btn-a.btn-sm Search
-   #contactLst
-      table.table
-         thead
-            th FName
-            th LName
-            th Email
-            th Org
-         tbody.list
 
-   script(src='UIBinding.js' type = 'module')
+   pg-custel 
+      p Table:
+      div
+         input#srchFld.smooth(type="text" placeholder='a') 
+         span &nbsp;
+         a#srchBut.btn.smooth.btn-a.btn-sm Search
+      #contactLst
+         table.table
+            thead
+               th FName
+               th LName
+               th Email
+               th Org
+            tbody.list
+
+      script(type='module' src='/contactScreen/pg-custel.js')  // slot
