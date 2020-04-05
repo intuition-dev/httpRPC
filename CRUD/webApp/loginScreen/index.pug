@@ -1,23 +1,16 @@
+
 head
    include headFrag
    
-   script(src='/api/LoginVM.js'  type="module")
-   script(type='module' src='https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v8.4.11/eventFlux/EventFlux.min.js')
+   script(src='/api/LoginVM.js'  type="module") // VM
    
 body
    
    .container
       br
-      div
-         style.
-            .msg {
-               display: none;
-            }
-            
-            .pswd { // https://fontstruct.com/fontstructions/show/1106896/password_dots_2
-               -webkit-text-security: disc;
-            }
-
+      
+      // custom element w/ slot:
+      pg-custel 
          form.grid-form#loginF
             fieldset
                   legend Login
@@ -33,65 +26,6 @@ body
          #loginBut.btn.btn-sm.btn-a Login
          .msg Autorized!
 
- 
-   script.
-      
-      addScript('https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.slim.min.js', function() {
-         addScript('https://cdn.jsdelivr.net/npm/disableautofill@1.2.8/src/jquery.disableAutoFill.min.js',  disAutoReady )
-      })
-      function disAutoReady() {
-         $('#loginF').disableAutoFill()
-         console.log('dis ready')
-      }
+      script(type='module' src='/loginScreen/pg-custel.js')
 
-      //fake
-      setTimeout(function(){
-         //EventFlux.init()
-         defEventFlux.register('login-ok', onOK)
-         defEventFlux.register('login-fail', onFail)
-      }, 2000)
 
-      // end load /////////////////////////////////////////////////////////
-      document.getElementById('loginBut').addEventListener('click', onLoginBut)
-      function onLoginBut() {
-         console.log('klik')
-
-         const inputs = document.getElementsByTagName('input')
-         let obj = getInputsValue(inputs)
-         console.log(obj)
-         defEventFlux.doAction('login-check', obj)
-      }
-
-      function onOK() {
-         console.log('ok')
-         window.location.href='/contactScreen'
-      }
-      
-      function onFail() {
-         console.log('fail')
-         document.getElementById('Fail').style.display= 'block'
-
-      }
-
-      // /////////////////////////////////////////////////////////////////
-      function getInputsValue(inputs) {
-         const obj = {}
-         for(var input in inputs) {
-            const value = inputs[input].value
-            const key = inputs[input].id
-            if(!key) continue
-            obj[key]=value
-         }
-         return obj
-      }//()
-
-      //- eg addScript('bla.js', null, 'api-key', 'key123') when they want you to use the tag: so you can in your own sequence
-      function addScript(src, callback, attr, attrValue, id) {
-         var s = document.createElement('script')
-         s.setAttribute('src', src)
-         if (attr) s.setAttribute(attr, attrValue)
-         if (id) s.id = id
-         if (callback) s.onload = callback
-         s.async = false 
-         document.getElementsByTagName('head')[0].appendChild(s)
-      }
