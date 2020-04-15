@@ -1,5 +1,4 @@
-import { EventFlux } from 'https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v8.4.12/eventFlux/EventFlux.min.js';
-import { AbsSlotCustel } from 'https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v8.4.12/src/slotCustel/AbsSlotCustel.min.js';
+import { AbsSlotCustel } from 'https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v8.4.14/src/slotCustel/AbsSlotCustel.min.js';
 class PgCustel extends AbsSlotCustel {
     constructor() {
         super();
@@ -8,7 +7,6 @@ class PgCustel extends AbsSlotCustel {
    <slot></slot>
 
    `;
-        EventFlux.init();
         console.log('pgComp');
         this.setup(this.template);
         this.addScript('https://cdn.jsdelivr.net/npm/list.js@1.5.0/dist/list.min.js', function () {

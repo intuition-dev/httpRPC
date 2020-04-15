@@ -1,6 +1,5 @@
-import { EventFlux } from 'https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v8.4.12/eventFlux/EventFlux.min.js';
-;
-import { HttpRPC } from 'https://cdn.jsdelivr.net/npm/http-rpc@2.4.11/webApp/httpRPC.min.js';
+import { EventFlux } from 'https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v8.4.14/eventFlux/EventFlux.min.js';
+import { HttpRPC } from 'https://cdn.jsdelivr.net/npm/http-rpc@2.4.14/webApp/httpRPC.min.js';
 EventFlux.init();
 export class LoginVM {
     constructor() {

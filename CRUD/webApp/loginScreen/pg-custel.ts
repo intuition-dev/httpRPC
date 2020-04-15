@@ -1,9 +1,7 @@
 
 declare var defEventFlux
 
-import { EventFlux } from 'https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v8.4.12/eventFlux/EventFlux.min.js'
-
-import { AbsSlotCustel } from 'https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v8.4.12/src/slotCustel/AbsSlotCustel.min.js';
+import { AbsSlotCustel } from 'https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v8.4.14/src/slotCustel/AbsSlotCustel.min.js';
 
 class PgCustel extends AbsSlotCustel {
 // https://fontstruct.com/fontstructions/show/1106896/password_dots_2
@@ -22,7 +20,6 @@ template = `
 
 constructor() {
    super();
-   EventFlux.init()
 
    console.log('pgComp');
    this.setup(this.template) // just a helper function for boiler plate.

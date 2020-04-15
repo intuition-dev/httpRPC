@@ -1,4 +1,6 @@
 todo: finger and ip
+## 2.4.14
+- version bump
 
 ## 2.4.11
 - added VM registry
