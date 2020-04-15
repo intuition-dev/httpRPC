@@ -41,3 +41,6 @@ You can use any .js libraries / tools you like. But the default is our Typescrip
 that is must to map exactly to our Pug View/screen. ViewModel provides simple data structures so that the View can easily bind to it. 
 Validation is also included.
 
+## Auth
+
+This example has JWT,  likely you'd use it IAM  (KeyCloak or please-open.it)
