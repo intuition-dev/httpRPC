@@ -1,4 +1,4 @@
-
+﻿
 # HTTP-RPC
 
 #### Inspired by JSON-RPC and gRPC, but works over HTTP: specifically it works with a browser over http protocol.
@@ -14,14 +14,14 @@ HTTP-RPC leverage browsers fetch() command. As a plus, it has built in edge cach
 
 ## Features 
 
-- Handles CORS and does so in a *single* trip - no preflight or double request
+- Handles CORS and does so in a *single* trip - no pref light or double request
 - Built in error handling
 - Handles JWT token. Benefit is that it only checks the DB on login.
 - Has a field for the calling entity (or page or screen), so you know what screen/page called the RPC. 
 - Can use regular headers for caching at at edge w/ CDN or at the browser.
 - Timeout, configurable
 - Browser side AND server side calls/invokes.
-- Idempotent capability, configureable
+- Idempotent capability, configurable
 - Early TLS handshake via CDN edge
 - Can track VM (ViewModel) registry
 
