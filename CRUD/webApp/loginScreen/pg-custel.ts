@@ -1,11 +1,11 @@
 
 declare var defEventFlux
 
-import { EventFlux } from 'https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v8.4.12/eventFlux/EventFlux.js'
+import { EventFlux } from 'https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v8.4.12/eventFlux/EventFlux.min.js'
 
-import { AbsSlotComp } from 'https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v8.4.12/src/slotComp/AbsSlotComp.js';
+import { AbsSlotCustel } from 'https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v8.4.12/src/slotCustel/AbsSlotCustel.min.js';
 
-class PgCustel extends AbsSlotComp {
+class PgCustel extends AbsSlotCustel {
 // https://fontstruct.com/fontstructions/show/1106896/password_dots_2
 template = `
    <style>
@@ -52,7 +52,7 @@ onLoginBut() {
    console.log('klik')
 
    const inputs = document.getElementsByTagName('input')
-   let obj = AbsSlotComp.getInputsValue(inputs)
+   let obj = AbsSlotCustel.getInputsValue(inputs)
    console.log(obj)
    defEventFlux.doAction('login-check', obj)
 }
