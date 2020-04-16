@@ -36,7 +36,8 @@
         "mkdirp": "^0.5.4",
         "@types/node": ">=13.11.1",
         "@types/express": ">=4.17.6",
-        "pubnub": ">=4.26.1"
+        "pubnub": ">=4.26.1",
+        "keycloak-connect": ">=9.0.3"
 
     }
 }
