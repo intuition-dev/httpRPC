@@ -201,6 +201,9 @@ export class Serv {
 
    }//()
 
+   getExpress() {
+      return Serv._expInst;
+   }
 
    /**
     * Route to a handler
