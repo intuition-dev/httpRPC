@@ -176,7 +176,7 @@ export class Serv {
     * @param origins An array of string that would match a domain. So host would match localhost. eg ['*'] 
     * @param urlK How many bytes for url + header.  In bytes
     */
-   constructor(origins:Array<string>, urlSz:number ) {
+   constructor(origins:Array<string>, urlSz?:number ) { // the urlSz was set to 16K in v13.13 of node
       this._urlSz = urlSz
 
       process.on('unhandledRejection', (error, promise) => {
@@ -257,7 +257,7 @@ export class Serv {
     */
    listen(port:number) {
       
-      if(!this._urlSz) this._urlSz = 4 * 1024
+      if(!this._urlSz) this._urlSz = 16 * 1024
 
       const server = http.createServer({maxHeaderSize: this._urlSz }, Serv._expInst).listen(port)
       
