@@ -133,9 +133,11 @@ export class BaseRPCMethodHandler {
 
          const params = JSON.parse(str)
          
-         const ip = res.socket.remoteAddress;
+         const ip =  req.get('X-Forwarded-For') // res.socket.remoteAddress;
 
          params.remoteAddress = ip
+         params.xff = ip
+
          method = params.method
          
          if(typeof THIZ[method] != 'function') {

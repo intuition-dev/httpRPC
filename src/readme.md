@@ -95,7 +95,7 @@ We now have a running service with one handler and that handler has one method '
  Now call your remote method:
 
    ```
-   import { HttpRPC } from 'https://cdn.jsdelivr.net/npm/http-rpc@2.4.14/webApp/httpRPC.min.js'
+   import { HttpRPC } from 'https://cdn.jsdelivr.net/npm/http-rpc@2.4.17/webApp/httpRPC.min.js'
 
    const rpc = new HttpRPC('http', 'localhost', 8888)
    let params = {a:5,  b:2, token:TOKEN}

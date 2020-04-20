@@ -111,7 +111,7 @@ class BaseRPCMethodHandler {
             let compressed = qstr['p'];
             let str = lz_string_1.default.decompressFromEncodedURIComponent(compressed);
             const params = JSON.parse(str);
-            const ip = res.socket.remoteAddress;
+            const ip = req.get('X-Forwarded-For'); // res.socket.remoteAddress;
             params.remoteAddress = ip;
             method = params.method;
             if (typeof THIZ[method] != 'function') {
@@ -183,7 +183,7 @@ class Serv {
             broT = 24 * 60 * 60 + 1;
         if (!cdnT)
             cdnT = 24 * 60 * 60; // cdn is less than bro
-        log.warn('Serving root:', path, broT, cdnT);
+        log.warn('Serving (cache bro & cdn):', path, broT, cdnT);
         //filter forbidden
         Serv._expInst.use((req, res, next) => {
             if (req.path.endsWith('.ts') || req.path.endsWith('.pug')) {
@@ -213,7 +213,7 @@ class Serv {
             this._urlSz = 16 * 1024;
         const server = http.createServer({ maxHeaderSize: this._urlSz }, Serv._expInst).listen(port);
         console.log('services running on port:', port);
-        log.warn(server.maxHeaderSize);
+        log.warn('header sz ' + server.maxHeaderSize);
     }
 } //class
 exports.Serv = Serv;
