@@ -227,7 +227,7 @@ export class Serv {
       if(!broT ) broT = 24*60*60 + 1
       if(!cdnT ) cdnT = 24*60*60 // cdn is less than bro
       
-      log.warn('Serving root:', path, broT, cdnT)
+      log.warn('Serving (cache bro & cdn):', path, broT, cdnT)
 
       //filter forbidden
       Serv._expInst.use((req, res, next) => {
@@ -265,7 +265,7 @@ export class Serv {
       const server = http.createServer({maxHeaderSize: this._urlSz }, Serv._expInst).listen(port)
       
       console.log('services running on port:', port)
-      log.warn(server.maxHeaderSize)
+      log.warn('header sz '+server.maxHeaderSize)
 
    }
 }//class

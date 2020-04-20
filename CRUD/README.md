@@ -43,4 +43,4 @@ Validation is also included.
 
 ## Auth
 
-This example has JWT,  likely you'd use it IAM  (KeyCloak or please-open.it)
+- Likely you'd use JWT w/ IAM  (eg. AWS Cognito or Backendless )
