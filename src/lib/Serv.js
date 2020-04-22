@@ -111,8 +111,9 @@ class BaseRPCMethodHandler {
             let compressed = qstr['p'];
             let str = lz_string_1.default.decompressFromEncodedURIComponent(compressed);
             const params = JSON.parse(str);
-            const ip = req.get('X-Forwarded-For'); // res.socket.remoteAddress;
-            params.remoteAddress = ip;
+            const xff = req.get('X-Forwarded-For');
+            params.remoteAddressOrig = res.socket.remoteAddress;
+            params.xff = xff;
             method = params.method;
             if (typeof THIZ[method] != 'function') {
                 this._retErr(res, 'no such method ' + method);

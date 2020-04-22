@@ -1,7 +1,7 @@
 
 
-todo: finger and ip
-
+## 2.4.18
+- ip and xx update
 
 ## 2.4.16
 - version bump
