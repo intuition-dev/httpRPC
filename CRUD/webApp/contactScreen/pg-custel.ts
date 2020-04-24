@@ -6,17 +6,11 @@ import { AbsSlotCustel } from 'https://cdn.jsdelivr.net/gh/intuition-dev/mbToolB
 
 class PgCustel extends AbsSlotCustel {
 
-   template = `
-
-   <slot></slot>
-
-   `;
-
 constructor() {
    super();
 
    console.log('pgComp');
-   this.setup(this.template) // just a helper function for boiler plate.
+   this.setup(this.defTemplate) // just a helper function for boiler plate.
 
    this.addScript('https://cdn.jsdelivr.net/npm/list.js@1.5.0/dist/list.min.js', function() {
       console.log('cons')

@@ -8,8 +8,6 @@ import { HttpRPC } from 'https://cdn.jsdelivr.net/npm/http-rpc@2.4.18/webApp/htt
 EventFlux.init()
 
 export class ContactVM {
-
-    static entity ='contact'
     
     static rpc
 

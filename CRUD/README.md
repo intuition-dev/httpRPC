@@ -41,6 +41,9 @@ You can use any .js libraries / tools you like. But the default is our Typescrip
 that is must to map exactly to our Pug View/screen. ViewModel provides simple data structures so that the View can easily bind to it. 
 Validation is also included.
 
+
+Often, it is a good idea to use screen|page name as the enity/VM name.
+
 ## Auth
 
 - Likely you'd use JWT w/ IAM  (eg. AWS Cognito or Backendless )
