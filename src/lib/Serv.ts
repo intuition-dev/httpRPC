@@ -28,7 +28,7 @@ export class CustomCors {
          const origin2= request.headers.origin
 
          if (!origin) {
-            log.warn('no origin')
+            log.info('no origin')
             return next()
          }
 
@@ -104,7 +104,7 @@ export class BaseRPCMethodHandler {
    _retErr(resp:Response, msg) {
 
       if((!msg) || msg.length < 1) throw new Error('no message')
-      log.warn(msg)
+      log.info(msg)
       const ret:any= {} // new return
       ret.errorLevel = -1
       ret.errorMessage = msg

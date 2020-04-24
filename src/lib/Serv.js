@@ -18,7 +18,7 @@ class CustomCors {
             const origin = request.get('origin');
             const origin2 = request.headers.origin;
             if (!origin) {
-                log.warn('no origin');
+                log.info('no origin');
                 return next();
             }
             let approved = false;
@@ -87,7 +87,7 @@ class BaseRPCMethodHandler {
     _retErr(resp, msg) {
         if ((!msg) || msg.length < 1)
             throw new Error('no message');
-        log.warn(msg);
+        log.info(msg);
         const ret = {}; // new return
         ret.errorLevel = -1;
         ret.errorMessage = msg;

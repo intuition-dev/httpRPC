@@ -3,7 +3,7 @@ declare var defEventFlux
 
 import { EventFlux } from 'https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v8.4.14/eventFlux/EventFlux.min.js';
 // req for rpc
-import { HttpRPC } from 'https://cdn.jsdelivr.net/npm/http-rpc@2.4.18/webApp/httpRPC.min.js';
+import { HttpRPC } from 'https://cdn.jsdelivr.net/npm/http-rpc@2.4.19/webApp/httpRPC.min.js';
 
 EventFlux.init()
 
