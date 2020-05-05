@@ -2,7 +2,7 @@
 declare var defEventFlux
 
 
-import { AbsSlotCustel } from 'https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v8.4.14/slotCustel/slotCustel/AbsSlotCustel.min.js';
+import { AbsSlotCustel } from 'https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v8.4.25/slotCustel/slotCustel/AbsSlotCustel.min.js';
 
 class PgCustel extends AbsSlotCustel {
 
