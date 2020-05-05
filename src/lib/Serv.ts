@@ -15,6 +15,9 @@ var http = require('http')
 
 const serveStatic = require('serve-static')
 
+const favicon = require('serve-favicon')
+
+
 import { TerseB } from "terse-b/terse-b"
 
 const log:any = new TerseB("ServTS")
@@ -271,4 +274,13 @@ export class Serv {
       log.warn('header sz '+server.maxHeaderSize)
 
    }
+
+   /**
+    * Server icon
+    * @param icoPath 
+    */
+   favicon(icoPath) {
+      this.getExpress().use(favicon(icoPath))
+   }
+   
 }//class

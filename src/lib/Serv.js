@@ -10,6 +10,7 @@ const lz_string_1 = __importDefault(require("lz-string"));
 const URL = require('url');
 var http = require('http');
 const serveStatic = require('serve-static');
+const favicon = require('serve-favicon');
 const terse_b_1 = require("terse-b/terse-b");
 const log = new terse_b_1.TerseB("ServTS");
 class CustomCors {
@@ -215,6 +216,13 @@ class Serv {
         const server = http.createServer({ maxHeaderSize: this._urlSz }, Serv._expInst).listen(port);
         console.log('services running on port:', port);
         log.warn('header sz ' + server.maxHeaderSize);
+    }
+    /**
+     * Server icon
+     * @param icoPath
+     */
+    favicon(icoPath) {
+        this.getExpress().use(favicon(icoPath));
     }
 } //class
 exports.Serv = Serv;

@@ -1,4 +1,6 @@
 
+## 2.4.24
+- ico
 
 ## 2.4.19
 - ip and xx update
