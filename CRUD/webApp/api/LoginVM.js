@@ -31,5 +31,4 @@ export class LoginVM {
         return LoginVM.rpc.hasJWToken();
     }
 }
-LoginVM.entity = 'login';
 new LoginVM();

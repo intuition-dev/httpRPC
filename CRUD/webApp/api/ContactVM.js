@@ -29,5 +29,4 @@ export class ContactVM {
         return ContactVM.rpc.hasJWToken();
     }
 }
-ContactVM.entity = 'contact';
 new ContactVM();

@@ -2,13 +2,8 @@ import { AbsSlotCustel } from 'https://cdn.jsdelivr.net/gh/intuition-dev/mbToolB
 class PgCustel extends AbsSlotCustel {
     constructor() {
         super();
-        this.template = `
-
-   <slot></slot>
-
-   `;
         console.log('pgComp');
-        this.setup(this.template);
+        this.setup(this.defTemplate);
         this.addScript('https://cdn.jsdelivr.net/npm/list.js@1.5.0/dist/list.min.js', function () {
             console.log('cons');
             defEventFlux.addListener('contact-data', PgCustel.onData);

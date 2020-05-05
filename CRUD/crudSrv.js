@@ -10,7 +10,7 @@ const chandler = new ContactHandler_1.ContactHandler(null);
 srv.routeRPC('api', chandler);
 const lhandler = new LoginHandler_1.LoginHandler(null);
 srv.routeRPC('login', lhandler);
-srv.serveStatic('../wwwApp', 60 * 60, 60);
+srv.serveStatic('./webApp', 60 * 60, 60);
 Serv_1.Serv._expInst.use(function (req, resp, next) {
     log.warn('err', req.originalUrl);
 });
