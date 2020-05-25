@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ContactHandler = void 0;
 const terse_b_1 = require("terse-b/terse-b");
 const Serv_1 = require("http-rpc/lib/Serv");
 const FakeDL_1 = require("../dl/FakeDL");

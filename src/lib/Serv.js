@@ -4,6 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Serv = exports.BaseRPCMethodHandler = exports.CustomCors = void 0;
 const errorhandler = require('errorhandler');
 const express_1 = __importDefault(require("express"));
 const lz_string_1 = __importDefault(require("lz-string"));

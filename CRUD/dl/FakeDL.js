@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.FakeDL = void 0;
 const jwtUtil_1 = require("http-rpc/lib/jwtUtil");
 const JWT = new jwtUtil_1.jwT();
 class FakeDL {

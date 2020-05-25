@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.jwT = void 0;
 const bcrypt = require('bcryptjs'); // to hash passwords
 const jwt = require('jsonwebtoken');
 // https://github.com/auth0/node-jsonwebtoken

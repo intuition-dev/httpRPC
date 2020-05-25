@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.HttpRPC = void 0;
 // All rights reserved by Cekvenich|INTUITION.DEV) |  Cekvenich, licensed under LGPL 3.0
 const btoa = function (str) { return Buffer.from(str).toString('base64'); };
 const fetch = require('make-fetch-happen');
