@@ -7,9 +7,9 @@
         "node": ">=14.0.0"
     },
     "dependencies": {
-        "http-rpc": ">=2.4.24"
+        "http-rpc": ">=2.5.0"
     },
     "devDependencies": {
-        "@types/node": ">=13.13.5"
+        "@types/node": ">=14.0.11"
     }
 }
