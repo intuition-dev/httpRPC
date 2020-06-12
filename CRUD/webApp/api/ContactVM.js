@@ -6,7 +6,7 @@ export class ContactVM {
         console.log('cons');
         HttpRPC.regInst('vm', this);
         let THIZ = this;
-        ContactVM.rpc = new HttpRPC('http', 'localhost', 8888);
+        ContactVM.rpc = new HttpRPC('http', 'localhost', 8080);
         this.goFetch();
         defEventFlux.register('contact-get', function (arg) {
             THIZ.goFetch();

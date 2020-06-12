@@ -6,7 +6,7 @@ export class LoginVM {
         console.log('cons');
         HttpRPC.regInst('vm', this);
         let THIZ = this;
-        LoginVM.rpc = new HttpRPC('http', 'localhost', 8888);
+        LoginVM.rpc = new HttpRPC('http', 'localhost', 8080);
         defEventFlux.register('login-check', this.checkLogin);
     }
     checkLogin(args) {
