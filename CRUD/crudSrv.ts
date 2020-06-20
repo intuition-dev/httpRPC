@@ -22,5 +22,5 @@ Serv._expInst.use(function(req,resp, next){
    log.warn('err', req.originalUrl)
 })
 
-srv.listen(8080)
+srv.listen(8888)
 // notice api and static is using same port
